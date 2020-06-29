@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package ElaAuthentication;
+
+// import
+import "Protos/Common/ElaCommon.proto";
+
+// The BackendConfig service definition.
+service ElaAuthenticationPublicService {
+
+	// RPC definition
+
+	// main login function
+	rpc Login(ElaAuthenticationRequest) returns (ElaAuthenticationResponse) {}
+	rpc Logout(ElaInputBaseRequest) returns (ElaError) {}
+
+	// check authentication function
+	rpc CheckAuthorization(ElaManagerUserRequest) returns (ElaManagerUserResponse) {}
+
+	// main users function
+	rpc CreateUser(ElaManagerUserRequest) returns (ElaError) {}
+	rpc GetUsers(ElaManagerUserRequest) returns (ElaAuthenticationUserList) {}
+	rpc UpdateUser(ElaManagerUserRequest) returns (ElaError) {}
+	rpc DeleteUser(ElaManagerUserRequest) returns (ElaError) {}
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaAuthenticationRequest
+ * \brief information relative the authentication functions
+ */
+message ElaAuthenticationRequest {
+
+	ElaInputBaseRequest request = 1;
+	string login = 2;
+	string password = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaAuthenticationResponse
+ * \brief information for a result to an authentication request
+ */
+message ElaAuthenticationResponse {
+
+	ElaError error = 1;
+	string sessionId = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaManagerUserRequest
+ * \brief ELA Manage User Request
+ */
+message ElaManagerUserRequest {
+
+	ElaAuthenticationRequest request = 1;
+	ElaAuthenticationUser user = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaManagerUserRequest
+ * \brief ELA Manage User Request
+ */
+message ElaManagerUserResponse {
+
+	ElaAuthenticationError error = 1;
+	ElaAuthenticationUser user = 2;
+	bool allowedUser = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaAuthenticationUserList
+ * \brief ELA Manage User Request
+ */
+message ElaAuthenticationUserList {
+
+	ElaAuthenticationError error = 1;
+	ElaAuthenticationRequest inputRequest = 2;
+	repeated ElaAuthenticationUser users = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaAuthenticationUser
+ * \brief ELA Authentication User
+ */
+message ElaAuthenticationUser {
+
+	string username = 1;
+	string password = 2;
+	string expirationdate = 3;
+	string role = 4;
+}
+
+///////////////////////////////////////////////////////////

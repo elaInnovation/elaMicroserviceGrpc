@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+// import
+import "Protos/ElaBluetoothCommon.proto";
+
+//option csharp_namespace = "elaBluetoothPublicApiGrpc";
+
+package ElaBluetooth;
+
+// The BackendConfig service definition.
+service ElaBluetoothPublicService {
+
+  // authentication functions
+  rpc Connect(ElaAuthenticationRequest) returns (ElaAuthenticationResponse) {}
+  rpc Disconnect(ElaInputBaseRequest) returns (ElaBluetoothError) {}
+
+  // bluetooth scanning
+  rpc StartBluetoothListening(ElaBluetoothScanningRequest) returns (ElaBluetoothError) {}
+  rpc GetScannedDevices(ElaInputBaseRequest) returns (ElaBluetoothScanResults) {}
+  rpc StopBluetoothListening(ElaInputBaseRequest) returns (ElaBluetoothError) {}
+
+  // bluetooth connections
+  rpc SendElaBluetoothCommand(ElaBluetoothConnectRequest) returns (ElaBluetoothConnectResult) {}
+
+  // monitoring
+  rpc GetServiceStatus(ElaInputBaseRequest) returns (ElaBluetoothMicroserviceStatus) {}
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothConnectRequest
+ * \brief connection request 
+ */
+message ElaBluetoothConnectRequest {
+	
+	ElaInputBaseRequest request = 1;
+	string target_mac_address = 2;
+	string ela_command = 3;
+	string ela_command_password = 4;
+	string ela_command_arguments = 5;
+	bool isLongWaitCommand = 6;
+	//
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothConnectResult
+ * \brief connection result
+ */
+message ElaBluetoothConnectResult {
+
+	ElaBluetoothError error = 1;
+	ElaBluetoothConnectRequest input_request = 2;
+	string result = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothFilter
+ * \brief Ela Bluettoth Scanning Request
+ */
+message ElaBluetoothScanningRequest {
+
+	ElaInputBaseRequest request = 1;
+	ElaBluetoothFilter filter = 2;
+	bool define_scan_time = 3;
+	uint32 scan_time_seconds = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMicroserviceStatus
+ * \brief the status of the bluetooth microservice
+ */
+message ElaBluetoothMicroserviceStatus {
+
+	enum ScannerStatus {
+
+		Unknown = 0;
+		Pending = 1;
+		Scanning = 2;
+		Connecting = 3;
+		Connected = 4;
+	}
+	ElaBluetoothError last_error = 1;
+	ScannerStatus scanner_status = 2;
+	ElaBluetoothFilter current_filter = 3;
+	ElaBluetoothMicroserviceInfos microservice_infos = 4;
+	ServiceInformations user_informations = 5;
+	ElaBluetoothMicroserviceStatistics statisticsSummary = 6;
+	// RFU
+}
+
+///////////////////////////////////////////////////////////

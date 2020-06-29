@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package ElaBluetooth;
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothFilter
+ * \brief Ela Bluetooth Filter definition
+ */
+message ElaBluetoothFilter {
+
+	string filter_match_string = 1;
+	repeated string filter_white_list = 2;
+	int32 filter_maximum_rssi = 3;
+	bool filter_only_manufacturer_id = 4;
+	bool filter_only_connectable = 5;
+	enum FilterType {
+		No_Option = 0;
+		Match_String = 1;
+		White_List = 2;
+		Maximum_Rssi = 3;
+		Manufacturer_ID = 4;
+	}
+	FilterType filter_type = 6;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothScanResultItem
+ * \brief description of a scan bluetooth result item
+ */
+message ElaBluetoothScanResultItem {
+
+	string time_stamp = 1;
+	string mac_address = 2;
+	string local_name = 3;
+	int32 rssi = 4;
+	uint32 flags = 5;
+	bool connectable = 6;
+	uint32 num_service_data = 7;
+	repeated string service_data_array = 8;
+	uint32 service_uuid = 9;
+	uint32 manufacturer_id = 10;
+	repeated string manufacturer_data = 11;
+	//
+	// RFU
+	string gps_coordinate = 12;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothScanResultList 
+ * \brief List of scan result item
+ */
+message ElaBluetoothScanResultList {
+
+	string clientId = 1;
+	repeated ElaBluetoothScanResultItem results = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothScanResults
+ * \brief message to map results from scanner
+ */
+message ElaBluetoothScanResults {
+
+	ElaBluetoothError error = 1;
+	ElaBluetoothFilter current_filter_info = 2;
+	uint32 total_scanned_items_counter = 3;
+	uint32 last_scanned_items_counter = 4;
+	// scan duration
+
+	// max 64 items, all data will be bufferized in process
+	ElaBluetoothScanResultList scanned = 5;
+}
+
+///////////////////////////////////////////////////////////
