@@ -19,4 +19,12 @@
     </PackageReference>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Protobuf Include="Protos\Common\ElaCommon.proto" />
+    <Protobuf Include="Protos\Authentication\ElaAuthenticationCommon.proto" />
+    <Protobuf Include="Protos\Bluetooth\ElaBluetoothCommon.proto" />
+    <Protobuf Include="Protos\Bluetooth\ElaBluetoothPublicAPI.proto" />
+  </ItemGroup>
+
 </Project>

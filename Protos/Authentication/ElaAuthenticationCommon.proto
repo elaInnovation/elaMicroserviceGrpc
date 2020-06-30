@@ -65,7 +65,7 @@ message ElaManagerUserRequest {
  */
 message ElaManagerUserResponse {
 
-	ElaAuthenticationError error = 1;
+	ElaError error = 1;
 	ElaAuthenticationUser user = 2;
 	bool allowedUser = 3;
 }
@@ -77,7 +77,7 @@ message ElaManagerUserResponse {
  */
 message ElaAuthenticationUserList {
 
-	ElaAuthenticationError error = 1;
+	ElaError error = 1;
 	ElaAuthenticationRequest inputRequest = 2;
 	repeated ElaAuthenticationUser users = 3;
 }
