@@ -12,16 +12,16 @@ service ElaAuthenticationPublicService {
 
 	// main login function
 	rpc Login(ElaAuthenticationRequest) returns (ElaAuthenticationResponse) {}
-	rpc Logout(ElaInputBaseRequest) returns (ElaError) {}
+	rpc Logout(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
 	// check authentication function
 	rpc CheckAuthorization(ElaManagerUserRequest) returns (ElaManagerUserResponse) {}
 
 	// main users function
-	rpc CreateUser(ElaManagerUserRequest) returns (ElaError) {}
+	rpc CreateUser(ElaManagerUserRequest) returns (ElaCommon.ElaError) {}
 	rpc GetUsers(ElaManagerUserRequest) returns (ElaAuthenticationUserList) {}
-	rpc UpdateUser(ElaManagerUserRequest) returns (ElaError) {}
-	rpc DeleteUser(ElaManagerUserRequest) returns (ElaError) {}
+	rpc UpdateUser(ElaManagerUserRequest) returns (ElaCommon.ElaError) {}
+	rpc DeleteUser(ElaManagerUserRequest) returns (ElaCommon.ElaError) {}
 }
 
 ///////////////////////////////////////////////////////////
@@ -31,9 +31,9 @@ service ElaAuthenticationPublicService {
  */
 message ElaAuthenticationRequest {
 
-	ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest request = 1;
 	string login = 2;
-	string password = 3;
+	string certificate = 3;
 }
 
 ///////////////////////////////////////////////////////////
@@ -43,7 +43,7 @@ message ElaAuthenticationRequest {
  */
 message ElaAuthenticationResponse {
 
-	ElaError error = 1;
+	ElaCommon.ElaError error = 1;
 	string sessionId = 2;
 }
 
@@ -54,7 +54,7 @@ message ElaAuthenticationResponse {
  */
 message ElaManagerUserRequest {
 
-	ElaAuthenticationRequest request = 1;
+	ElaCommon.ElaInputBaseRequest request = 1;
 	ElaAuthenticationUser user = 2;
 }
 
@@ -65,7 +65,7 @@ message ElaManagerUserRequest {
  */
 message ElaManagerUserResponse {
 
-	ElaError error = 1;
+	ElaCommon.ElaError error = 1;
 	ElaAuthenticationUser user = 2;
 	bool allowedUser = 3;
 }
@@ -77,7 +77,7 @@ message ElaManagerUserResponse {
  */
 message ElaAuthenticationUserList {
 
-	ElaError error = 1;
+	ElaCommon.ElaError error = 1;
 	ElaAuthenticationRequest inputRequest = 2;
 	repeated ElaAuthenticationUser users = 3;
 }

@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>ELA Microservice gRPC interface</Description>
+    <Copyright>ELA Innovation</Copyright>    
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +20,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
 
   <ItemGroup>
     <Protobuf Include="Protos\Common\ElaCommon.proto" />

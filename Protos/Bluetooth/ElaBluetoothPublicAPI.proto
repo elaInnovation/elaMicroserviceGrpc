@@ -1,7 +1,9 @@
 syntax = "proto3";
 
 // import
-import "Protos/ElaBluetoothCommon.proto";
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+import "Protos/Bluetooth/ElaBluetoothCommon.proto";
 
 //option csharp_namespace = "elaBluetoothPublicApiGrpc";
 
@@ -11,19 +13,19 @@ package ElaBluetooth;
 service ElaBluetoothPublicService {
 
   // authentication functions
-  rpc Connect(ElaAuthenticationRequest) returns (ElaAuthenticationResponse) {}
-  rpc Disconnect(ElaInputBaseRequest) returns (ElaBluetoothError) {}
+  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // bluetooth scanning
-  rpc StartBluetoothListening(ElaBluetoothScanningRequest) returns (ElaBluetoothError) {}
-  rpc GetScannedDevices(ElaInputBaseRequest) returns (ElaBluetoothScanResults) {}
-  rpc StopBluetoothListening(ElaInputBaseRequest) returns (ElaBluetoothError) {}
+  rpc StartBluetoothListening(ElaBluetoothScanningRequest) returns (ElaCommon.ElaError) {}
+  rpc GetScannedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothScanResults) {}
+  rpc StopBluetoothListening(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // bluetooth connections
   rpc SendElaBluetoothCommand(ElaBluetoothConnectRequest) returns (ElaBluetoothConnectResult) {}
 
   // monitoring
-  rpc GetServiceStatus(ElaInputBaseRequest) returns (ElaBluetoothMicroserviceStatus) {}
+  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothMicroserviceStatus) {}
 }
 
 ///////////////////////////////////////////////////////////
@@ -33,7 +35,7 @@ service ElaBluetoothPublicService {
  */
 message ElaBluetoothConnectRequest {
 	
-	ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest request = 1;
 	string target_mac_address = 2;
 	string ela_command = 3;
 	string ela_command_password = 4;
@@ -49,7 +51,7 @@ message ElaBluetoothConnectRequest {
  */
 message ElaBluetoothConnectResult {
 
-	ElaBluetoothError error = 1;
+	ElaCommon.ElaError error = 1;
 	ElaBluetoothConnectRequest input_request = 2;
 	string result = 3;
 }
@@ -61,7 +63,7 @@ message ElaBluetoothConnectResult {
  */
 message ElaBluetoothScanningRequest {
 
-	ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest request = 1;
 	ElaBluetoothFilter filter = 2;
 	bool define_scan_time = 3;
 	uint32 scan_time_seconds = 4;
@@ -82,12 +84,12 @@ message ElaBluetoothMicroserviceStatus {
 		Connecting = 3;
 		Connected = 4;
 	}
-	ElaBluetoothError last_error = 1;
+	ElaCommon.ElaError last_error = 1;
 	ScannerStatus scanner_status = 2;
 	ElaBluetoothFilter current_filter = 3;
-	ElaBluetoothMicroserviceInfos microservice_infos = 4;
-	ServiceInformations user_informations = 5;
-	ElaBluetoothMicroserviceStatistics statisticsSummary = 6;
+	ElaCommon.ElaMicroserviceInfos microservice_infos = 4;
+	ElaCommon.ServiceInformations user_informations = 5;
+	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 6;
 	// RFU
 }
 

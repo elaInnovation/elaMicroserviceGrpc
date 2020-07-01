@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package ElaBluetooth;
 
+// import
+import "Protos/Common/ElaCommon.proto";
+
 ///////////////////////////////////////////////////////////
 /*
  * \class ElaBluetoothFilter
@@ -65,7 +68,7 @@ message ElaBluetoothScanResultList {
  */
 message ElaBluetoothScanResults {
 
-	ElaBluetoothError error = 1;
+	ElaCommon.ElaError error = 1;
 	ElaBluetoothFilter current_filter_info = 2;
 	uint32 total_scanned_items_counter = 3;
 	uint32 last_scanned_items_counter = 4;
