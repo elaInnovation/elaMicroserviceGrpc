@@ -3,7 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>ELA Microservice gRPC interface</Description>
-    <Copyright>ELA Innovation</Copyright>    
+    <Copyright>ELA Innovation</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseFile>ELA_MIT_Licence.txt</PackageLicenseFile>    
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +28,13 @@
     <Protobuf Include="Protos\Authentication\ElaAuthenticationCommon.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothCommon.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothPublicAPI.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\elaMicroservicesGrpc\ELA_MIT_Licence.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
