@@ -12,6 +12,7 @@
     <Folder Include="Protos\Common\" />
     <Folder Include="Protos\Bluetooth\" />
     <Folder Include="Protos\Authentication\" />
+	<Folder Include="Protos\Wirepas\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +29,9 @@
     <Protobuf Include="Protos\Authentication\ElaAuthenticationCommon.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothCommon.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothPublicAPI.proto" />
+	<Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
+	<Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
+	  
   </ItemGroup>
 
   <ItemGroup>

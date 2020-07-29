@@ -1,0 +1,91 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "elaMicroservicesGrpc";
+
+package ElaWirepas;
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+import "Protos/Wirepas/ElaWirepasCommon.proto";
+
+// The service definition.
+service ElaWirepasPublicService {
+
+  // authentication functions
+  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
+  // Wirepas flow management
+
+  /**
+    Request a new Ela-wirepas-data-packet
+	sends data request receives data stream
+    */
+  rpc StartWirepasDataFlow(ElaWirepasDataRequest) returns (stream ElaWirepasDataPacket) {}
+  rpc GetAvailableNodes(ElaCommon.ElaInputBaseRequest) returns (ElaWirepasNodeList) {}
+  rpc StopWirepasDataFlow(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
+  // Wirepas Commands
+  rpc SendElaWirepasCommand(SendPacketReq) returns (SendPacketResp) {}
+
+  // Wirepas Monitoring
+  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaWirepasMicroserviceStatus) {}
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaWirepasDataRequest
+ * \brief Ela Wirepas Data Request
+ */
+message ElaWirepasDataRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string DataType = 2; // defines what type of data is requested e.g. Location or Sensor data
+	string BrokerAdress = 3;
+	int32 BrokerPort = 4;
+}
+
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaWirepasDataPacket
+ * \brief custom ELA datapacket discription 
+ */
+message ElaWirepasDataPacket {
+
+	ElaWirepasNodeItem node_item = 1; 
+	string DataType = 2;
+	ElaWirepasSensorDataItem sensorData = 3;
+	ElaWirepasLocationDataItem locData = 4;
+	string VBat = 5;
+	string TimeStamp = 6;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaWirepasNodeList 
+ * \brief List of available wirepas nodes 
+ */
+message ElaWirepasNodeList {
+
+	string clientId = 1;
+	repeated ElaWirepasNodeItem results = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaWirepasMicroserviceStatus
+ * \brief the status of the Wirepas microservice
+ */
+message ElaWirepasMicroserviceStatus {
+
+	//enum WirepasFLowStatus {
+	// todo
+	//}
+	ElaCommon.ElaError last_error = 1;
+	ElaCommon.ElaMicroserviceInfos microservice_infos = 4;
+	ElaCommon.ServiceInformations user_informations = 5;
+	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 6;
+	// RFU
+}

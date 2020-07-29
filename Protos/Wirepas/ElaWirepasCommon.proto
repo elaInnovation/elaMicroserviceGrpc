@@ -1,0 +1,226 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "elaMicroservicesGrpc";
+
+package ElaWirepas;
+
+/*
+ * Generic Message definition
+ */
+message GenericMessage {
+    WirepasMessage wirepas = 1;
+    CustomerMessage customer = 2;
+}
+
+/*
+ * Wirepas implemented Message definition
+ */
+message WirepasMessage {
+   //StatusEvent status_event = 1;
+   //GetConfigsReq get_configs_req = 2;
+   //GetConfigsResp get_configs_resp = 3;
+   //SetConfigReq set_config_req = 4;
+   //SetConfigResp set_config_resp = 5;
+    SendPacketReq send_packet_req = 6;
+    SendPacketResp send_packet_resp = 7;
+    PacketReceivedEvent packet_received_event = 8;
+}
+
+/*
+ * Customer implemented Message definition
+ */
+message CustomerMessage {
+    // Customer name is needed to avoid any collision between different customer implementation
+    string customer_name = 1;
+    // Can be freely used for enhancing API by customers
+}
+
+
+/*
+ * Request definition
+ */
+message SendPacketReq {
+    RequestHeader header = 1;
+
+    uint32 destination_address = 2;
+    uint32 source_endpoint = 3;
+    uint32 destination_endpoint = 4;
+    uint32 qos = 5;
+    bytes payload = 6;
+
+    uint32 initial_delay_ms = 7;
+    bool is_unack_csma_ca = 8;
+    uint32 hop_limit = 9;
+}
+
+
+/*
+ * Responce definition
+ */
+
+message SendPacketResp {
+    ResponseHeader header = 1;
+}
+
+/*
+ * Event definition
+ */
+message PacketReceivedEvent {
+    EventHeader header = 1;
+
+    uint32 source_address = 2;
+    uint32 destination_address = 3;
+    uint32 source_endpoint = 4;
+    uint32 destination_endpoint = 5;
+    uint32 travel_time_ms = 6;
+    uint64 rx_time_ms_epoch = 7; // Reception time of the message on the gateway
+    uint32 qos = 8;
+
+    bytes payload = 9;
+    uint32 payload_size = 10;
+
+    uint32 hop_count = 11;
+}
+
+
+/*
+ * Generic proto definition
+ */
+
+
+message RequestHeader { 
+    // Unique request id 
+    uint64 req_id = 1; 
+    // Sink id if relevant for request 
+    string sink_id = 2; 
+} 
+
+message EventHeader {
+    // Gw id that generated the event
+    string gw_id = 1;
+    // Sink id if relevant for event
+    string sink_id = 2;
+    // Random event id to help duplicate event filtering
+    uint64 event_id = 3;
+}
+
+message ResponseHeader {
+    // Same as in Request
+    uint64 req_id = 1;
+    // Gw id that handled the request
+    string gw_id = 2;
+    // Sink id if relevant for request
+    string sink_id = 3;
+    // Global result of request
+    ErrorCode res = 4;
+}
+
+enum ErrorCode {
+    OK = 0;
+    INTERNAL_ERROR = 1;
+    INVALID_SINK_ID = 2;
+    INVALID_ROLE = 3;
+    INVALID_NETWORK_ADDRESS = 4;
+    INVALID_NETWORK_CHANNEL = 5;
+    INVALID_CHANNEL_MAP = 6;
+    INVALID_NETWORK_KEYS = 7;
+    INVALID_AC_RANGE = 8;
+    INVALID_SINK_STATE = 9;
+    INVALID_DEST_ADDRESS = 10;
+    INVALID_DEST_ENDPOINT = 11;
+    INVALID_SRC_ENDPOINT = 12;
+    INVALID_QOS = 13;
+    INVALID_DATA_PAYLOAD = 14;
+    INVALID_SCRATCHPAD = 15;
+    INVALID_SCRATCHPAD_SIZE = 16;
+    INVLAID_SEQUENCE_NUMBER = 17;
+    INVALID_REBOOT_DELAY = 18;
+    INVALID_DIAG_INTERVAL = 19;
+    INVALID_APP_CONFIG = 20;
+    INVALID_PARAM = 21;
+    NO_SCRATCHPAD_PRESENT = 22;
+    ACCESS_DENIED = 23;
+    REQUEST_NEEDS_SINK_ID = 24;
+    INVALID_MAX_HOP_COUNT = 25;
+}
+
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaWirepasNodeItem
+ * \brief description of a scan bluetooth result item
+ */
+message ElaWirepasNodeItem {
+
+	uint32 node_address = 1;
+	string node_role = 2;
+	string local_name = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaWirepasLocationDataItem
+ * \brief description of ELA Wirepas Location Data for Positioning Engine
+ */
+message ElaWirepasLocationDataItem {
+
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaWirepasSensorDataItem
+ * \brief description of ELA Wirepas Sensor Data for client
+ */
+message ElaWirepasSensorDataItem {
+    
+	ElaWirepasBV bv = 1;
+	ElaWirepasT t= 2;
+	ElaWirepasRHT rht = 3;
+    ElaWirepasDI di = 4;
+    ElaWirepasDO do= 5;
+    ElaWirepasAT at = 6; // anti tear
+    ElaWirepasMAG mag = 7;
+    ElaWirepasMOV mov =8;  
+    uint32 sensorType = 9;
+}
+
+message ElaWirepasBV{
+
+    uint32 vbat = 1;
+}
+
+message ElaWirepasT{  
+    uint32 temp =1;
+}
+
+message ElaWirepasRHT{
+    uint32 temp =1;
+    uint32 humi =2;
+}
+
+message ElaWirepasDI{
+    uint32 din_act_count =1;
+    uint32 din_deact_count =2;
+}
+
+message ElaWirepasDO{
+    uint32 dout_act_count =1;
+    uint32 dout_deact_count =2;
+}
+
+message ElaWirepasAT{
+    uint32 remov_cont =1;
+    uint32 non_remov_cont =2;
+}
+
+message ElaWirepasMAG{
+    uint32 mag_dect_cont =1;
+    uint32 mag_non_dect_cont =2;
+}
+
+message ElaWirepasMOV{
+    uint32 mov_dect_cont =1;
+    uint32 mov_non_dect_cont =2;
+}
+
+
