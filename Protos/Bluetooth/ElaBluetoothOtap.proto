@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+import "Protos/Bluetooth/ElaBluetoothCommon.proto";
+
+package ElaBluetooth;
+
+// The BackendConfig service definition.
+service ElaBluetoothOtapPublicService {
+
+  // authentication functions
+  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
+  // bluetooth otap microservice main functions
+  rpc ConfigureTag(ElaConfigurationTagRequest) returns (ElaCommon.ElaError) {}
+  rpc ConfigureService(ElaConfigurationServiceRequest) returns (ElaCommon.ElaError) {}
+  rpc Otap(ElaOtapRequest) returns (ElaCommon.ElaError) {}
+  rpc UploadOtapFile(ElaOtapUploadRequest) returns (ElaCommon.ElaError) {}
+  rpc CheckOtapReady(ElaCommon.ElaInputBaseRequest) returns (ElaOtapReadyResult) {}
+
+  // monitoring
+  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothOtapMicroserviceStatus) {}
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaConfigurationTagRequest
+ * \brief le tag configuration Request
+ */
+message ElaConfigurationTagRequest {
+	
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string target_mac_address = 2;
+	string tag_password = 3;
+	string tag_configuration_buffer = 4;
+	string tag_values_buffer = 5;
+	//
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaConfigurationServiceRequest
+ * \brief service configuration Request
+ */
+message ElaConfigurationServiceRequest {
+	
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string ble_base_microservice_hostname = 2;
+	uint32 ble_base_microservice_port = 3;
+	string nordic_device_port_com = 4;
+	//
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaOtapRequest
+ * \brief otap start request
+ */
+message ElaOtapRequest {
+	
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string tag_mac_address = 2;
+	string tag_name = 3;
+	string tag_password = 3;
+	string otap_file_path = 3;
+	bool force_upload_otap_nrf = 6;
+	//
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaOtapUploadRequest
+ * \brief upload request to try to upload the file directly to the microservice
+ */
+message ElaOtapRequest {
+	
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string otap_file_path = 2;
+	string otap_file_dest = 3;
+	//
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaOtapReadyResult
+ * \brief response in the function otap is ready
+ */
+message ElaOtapReadyResult {
+
+	ElaCommon.ElaError error = 1;
+	bool isOtapReady = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothOtapMicroserviceStatus
+ * \brief the status of the bluetooth otpa microservice
+ */
+message ElaBluetoothOtapMicroserviceStatus {
+
+	enum ServiceStatus {
+
+		Unknown = 0;
+		Pending = 1;
+		ConfigurationInProgress = 2;
+		OtapInProgress = 3;
+		UploadInProgress = 4;
+	}
+	ElaCommon.ElaError last_error = 1;
+	ServiceStatus scanner_status = 2;
+	uint32 upload_progression_purcentage = 3;
+	uint32 otap_progression_purcentage = 4;
+	uint32 configuration_progression_purcentage = 5;
+	string surrent_mac_address_otapped = 6;
+	ElaCommon.ElaMicroserviceInfos microservice_infos = 4;
+	ElaCommon.ServiceInformations user_informations = 5;
+	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 6;
+	// RFU
+}
+
+///////////////////////////////////////////////////////////
