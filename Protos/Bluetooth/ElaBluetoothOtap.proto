@@ -3,9 +3,8 @@ syntax = "proto3";
 // import
 import "Protos/Common/ElaCommon.proto";
 import "Protos/Authentication/ElaAuthenticationCommon.proto";
-import "Protos/Bluetooth/ElaBluetoothCommon.proto";
 
-package ElaBluetooth;
+package ElaBluetoothOtap;
 
 // The BackendConfig service definition.
 service ElaBluetoothOtapPublicService {
@@ -50,7 +49,9 @@ message ElaConfigurationServiceRequest {
 	ElaCommon.ElaInputBaseRequest request = 1;
 	string ble_base_microservice_hostname = 2;
 	uint32 ble_base_microservice_port = 3;
-	string nordic_device_port_com = 4;
+	string authentication_microservice_hostname = 4;
+	uint32 authentication_microservice_port = 5;
+	string nordic_device_port_com = 6;
 	//
 }
 
@@ -64,8 +65,8 @@ message ElaOtapRequest {
 	ElaCommon.ElaInputBaseRequest request = 1;
 	string tag_mac_address = 2;
 	string tag_name = 3;
-	string tag_password = 3;
-	string otap_file_path = 3;
+	string tag_password = 4;
+	string otap_file_path = 5;
 	bool force_upload_otap_nrf = 6;
 	//
 }
@@ -75,7 +76,7 @@ message ElaOtapRequest {
  * \class ElaOtapUploadRequest
  * \brief upload request to try to upload the file directly to the microservice
  */
-message ElaOtapRequest {
+message ElaOtapUploadRequest {
 	
 	ElaCommon.ElaInputBaseRequest request = 1;
 	string otap_file_path = 2;
@@ -105,19 +106,21 @@ message ElaBluetoothOtapMicroserviceStatus {
 
 		Unknown = 0;
 		Pending = 1;
-		ConfigurationInProgress = 2;
-		OtapInProgress = 3;
-		UploadInProgress = 4;
+		ServiceConfigurationInProgress = 2;
+		TagConfigurationInProgress = 3;
+		OtapInProgress = 4;
+		UploadInProgress = 5;
 	}
 	ElaCommon.ElaError last_error = 1;
-	ServiceStatus scanner_status = 2;
+	ServiceStatus service_status = 2;
 	uint32 upload_progression_purcentage = 3;
 	uint32 otap_progression_purcentage = 4;
-	uint32 configuration_progression_purcentage = 5;
-	string surrent_mac_address_otapped = 6;
-	ElaCommon.ElaMicroserviceInfos microservice_infos = 4;
-	ElaCommon.ServiceInformations user_informations = 5;
-	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 6;
+	string otap_progression_message = 5;
+	uint32 configuration_progression_purcentage = 6;
+	string current_mac_address_otapped = 7;
+	ElaCommon.ElaMicroserviceInfos microservice_infos = 8;
+	ElaCommon.ServiceInformations user_informations = 9;
+	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 10;
 	// RFU
 }
 

@@ -2,23 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>ELA Microservice gRPC interface</Description>
+    <Description>ELA Microservice gRPC interface for all microservice provided by ELA Innovation</Description>
     <Copyright>ELA Innovation</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseFile>ELA_MIT_Licence.txt</PackageLicenseFile>    
+    <PackageLicenseFile>ELA_MIT_Licence.txt</PackageLicenseFile>
+    <Authors>ELA Innovation Software Team</Authors>
+    <Copyright>Copyright ELA Innovation (c) 2019</Copyright>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Protos\Common\" />
     <Folder Include="Protos\Bluetooth\" />
     <Folder Include="Protos\Authentication\" />
-	<Folder Include="Protos\Wirepas\" />
+	  <Folder Include="Protos\Wirepas\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.10.0" />
-    <PackageReference Include="Grpc.Core" Version="2.24.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.24.0">
+    <PackageReference Include="Grpc.Core" Version="2.26.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.26.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -29,9 +35,9 @@
     <Protobuf Include="Protos\Authentication\ElaAuthenticationCommon.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothCommon.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothPublicAPI.proto" />
-	<Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
-	<Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
-	  
+    <Protobuf Include="Protos\Bluetooth\ElaBluetoothOtap.proto" />
+	  <Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
+	  <Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +45,18 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <Content Remove="Images\**" />
+    <Compile Remove="Images\**" />
+    <EmbeddedResource Remove="Images\**" />
+    <None Include="Images\Icon-Ela.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>  
   </ItemGroup>
+  
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <PackageIcon>Icon-Ela.png</PackageIcon>
+  </PropertyGroup>
 
 </Project>
