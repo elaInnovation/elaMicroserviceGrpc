@@ -34,7 +34,7 @@ namespace elaMicroservicesGrpc.Constant
         /// ///////////////////////////////////////////////////////
         // Bluetooth Configuration definition
         public static readonly int PORT_BLUETOOTH_CONFIG_REMOTE_API = 50053;
-        public static readonly String DEFAULT_BLUETOOTH_CONFIG_BASE_NAME = "Wirepas Base Service";
+        public static readonly String DEFAULT_BLUETOOTH_CONFIG_BASE_NAME = "Bluetooth Otap and Configuration Service";
 
         /// ///////////////////////////////////////////////////////
         // Proto version constant definition
