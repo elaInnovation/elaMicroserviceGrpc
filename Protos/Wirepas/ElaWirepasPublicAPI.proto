@@ -1,13 +1,12 @@
 ﻿syntax = "proto3";
 
-option csharp_namespace = "elaMicroservicesGrpc";
-
 package ElaWirepas;
 
 // import
 import "Protos/Common/ElaCommon.proto";
 import "Protos/Authentication/ElaAuthenticationCommon.proto";
 import "Protos/Wirepas/ElaWirepasCommon.proto";
+import "Protos/Wirepas/WirepasMessages.proto";
 
 // The service definition.
 service ElaWirepasPublicService {
@@ -58,7 +57,7 @@ message ElaWirepasDataPacket {
 	string DataType = 2;
 	ElaWirepasSensorDataItem sensorData = 3;
 	ElaWirepasLocationDataItem locData = 4;
-	string VBat = 5;
+	uint32 VBat = 5;
 	string TimeStamp = 6;
 }
 
