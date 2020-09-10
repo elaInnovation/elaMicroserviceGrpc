@@ -1,0 +1,44 @@
+﻿syntax = "proto3";
+
+// import
+import "Protos/Wirepas/ElaWirepasCommon.proto";
+import "Protos/Common/ElaCommon.proto";
+
+package ElaWirepas;
+
+// The service definition.
+service ElaWirepasConfigurationService {
+
+  // Configuration functions
+	rpc SetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaCommon.ElaError) {}
+	rpc GetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaWirepasConfigPacket) {}
+
+	// Authentication functions
+    rpc CheckAuthentication(ElaWirepasAuthenticationRequest) returns (ElaWirepasAuthenticationResponse) {}
+	rpc LogoutClient(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+}
+
+message ElaWirepasNodeConfigRequest {
+
+	ElaWirepasNodeItem node_item = 1; 
+}
+
+message ElaWirepasAuthenticationRequest {
+
+    string username = 1;
+    string password = 2;
+}
+
+message ElaWirepasAuthenticationResponse {
+
+    ElaCommon.ElaError error = 1;
+    bool athorized = 2;
+}
+
+message ElaWirepasConfigPacket {
+	
+	ElaWirepasNodeItem node_item = 1; 
+
+}
+
+
