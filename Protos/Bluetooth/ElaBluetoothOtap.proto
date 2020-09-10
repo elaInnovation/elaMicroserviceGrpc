@@ -118,9 +118,11 @@ message ElaBluetoothOtapMicroserviceStatus {
 	string otap_progression_message = 5;
 	uint32 configuration_progression_purcentage = 6;
 	string current_mac_address_otapped = 7;
-	ElaCommon.ElaMicroserviceInfos microservice_infos = 8;
-	ElaCommon.ServiceInformations user_informations = 9;
-	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 10;
+	string python_version = 8;
+	string nrf_util_version = 9;
+	ElaCommon.ElaMicroserviceInfos microservice_infos = 10;
+	ElaCommon.ServiceInformations user_informations = 11;
+	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 12;
 	// RFU
 }
 

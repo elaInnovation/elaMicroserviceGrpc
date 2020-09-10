@@ -8,10 +8,10 @@
     <PackageLicenseFile>ELA_MIT_Licence.txt</PackageLicenseFile>
     <Authors>ELA Innovation Software Team</Authors>
     <Copyright>Copyright ELA Innovation (c) 2019</Copyright>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
