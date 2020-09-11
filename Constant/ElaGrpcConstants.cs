@@ -35,11 +35,15 @@ namespace elaMicroservicesGrpc.Constant
         // Bluetooth Configuration definition
         public static readonly int PORT_BLUETOOTH_CONFIG_REMOTE_API = 50053;
         public static readonly String DEFAULT_BLUETOOTH_CONFIG_BASE_NAME = "Bluetooth Otap and Configuration Service";
+        /// ///////////////////////////////////////////////////////
+        // Bluetooth Master definition
+        public static readonly int PORT_BLUETOOTH_MASTER_REMOTE_API = 50054;
+        public static readonly String DEFAULT_BLUETOOTH_MASTER_BASE_NAME = "Bluetooth Master Service";
 
         /// ///////////////////////////////////////////////////////
         // Proto version constant definition
         public static readonly uint VERSION_PROTO_MAJOR = 1;
-        public static readonly uint VERSION_PROTO_MINOR = 1;
+        public static readonly uint VERSION_PROTO_MINOR = 2;
         public static readonly uint VERSION_PROTO_RELEASE = 0;
         //
 
