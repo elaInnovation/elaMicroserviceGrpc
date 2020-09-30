@@ -35,10 +35,10 @@
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothCommon.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothPublicAPI.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothOtap.proto" />
-	<Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
-	<Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
-	<Protobuf Include="Protos\Wirepas\WirepasMessages.proto" />
-	<Protobuf Include="Protos\Wirepas\ElaWirepasConfigAPI.proto" />
+	  <Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
+	  <Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
+	  <Protobuf Include="Protos\Wirepas\WirepasMessages.proto" />
+	  <Protobuf Include="Protos\Wirepas\ElaWirepasConfigAPI.proto" />
   </ItemGroup>
 
   <ItemGroup>

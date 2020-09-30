@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+
+package ElaCommon;
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMicroserviceAddRequest
+ * \brief request to add a new microservice to the management pool
+ */
+message ElaMicroserviceAddRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaAuthentication.ElaAuthenticationRequest authenticationRequest = 2;
+	ElaCommon.ElaMicroserviceItem microservice_infos = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMicroserviceAddResult
+ * \brief answer to add an add request to the microservice the management pool
+ */
+message ElaMicroserviceAddResult {
+
+	ElaCommon.ElaError error = 1;
+	ElaCommon.ElaMicroserviceItem item = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMicroserviceDeleteRequest
+ * \brief request to delete a new microservice to the management pool
+ */
+message ElaMicroserviceDeleteRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaMicroserviceItem microservice_infos = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMicroserviceGetInfosRequest 
+ * \brief request to get information about the target service point by his id
+ */
+message ElaMicroserviceGetInfosRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string target_id = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMicroserviceListResult
+ * \brief microservice list result items to list all microservice instancied in bluetooth master
+ */
+message ElaMicroserviceListResult {
+
+	ElaCommon.ElaError error = 1;
+	uint32 number_items = 2;
+	repeated ElaCommon.ElaMicroserviceItem items = 3;
+}
+
+///////////////////////////////////////////////////////////

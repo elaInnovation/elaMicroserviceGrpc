@@ -68,3 +68,16 @@ message ElaMicroserviceStatistics {
 }
 
 ///////////////////////////////////////////////////////////
+/*
+ * \class ElaMicroserviceItem
+ * \brief microservice item to handle microservice listing and instanciation information
+ */
+message ElaMicroserviceItem {
+
+	string hostname = 1;
+	uint32 port = 2;
+	string microservice_username = 3;
+	string microservice_id = 4;
+}
+
+///////////////////////////////////////////////////////////

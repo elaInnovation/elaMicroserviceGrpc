@@ -1,0 +1,180 @@
+syntax = "proto3";
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+import "Protos/Bluetooth/ElaBluetoothCommon.proto";
+
+//option csharp_namespace = "elaBluetoothPublicApiGrpc";
+
+package ElaBluetooth;
+
+// The BackendConfig service definition.
+service ElaBluetoothMasterPublicService {
+
+  // authentication functions
+  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
+  // microservice base management
+  rpc AddMicroservice(ElaCommon.ElaMicroserviceAddRequest) returns (ElaCommon.ElaMicroserviceAddResult) {}
+  rpc DeleteMicroservice(ElaCommon.ElaMicroserviceDeleteRequest) returns (ElaCommon.ElaError) {}
+  rpc ListMicroservices(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceListResult) {}
+  rpc GetMicroservicesInfos(ElaCommon.ElaMicroserviceGetInfosRequest) returns (ElaCommon.ElaMicroserviceListResult) {}
+
+  // bluetooth scanning
+  rpc StartBluetoothListening(ElaBluetoothMasterScanRequest) returns (ElaBluetoothMasterScanResult) {}
+  rpc GetScannedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothMasterScanResults) {}
+  rpc StopBluetoothListening(ElaBluetoothMasterScanRequest) returns (ElaBluetoothMasterScanResult) {}
+
+  // bluetooth otap microservice main functions
+  rpc ConfigureTags(ElaBluetoothMasterConfigurationTagRequest) returns (ElaCommon.ElaError) {}
+  rpc ConfigureServices(ElaBluetoothMasterConfigurationServiceRequest) returns (ElaCommon.ElaError) {}
+  rpc Otaps(ElaBluetoothMasterOtapRequest) returns (ElaCommon.ElaError) {}
+  rpc UploadOtapFile(ElaOtapUploadRequest) returns (ElaCommon.ElaError) {}
+
+  // bluetooth connections
+  rpc SendElaBluetoothCommand(ElaBluetoothMasterConnectRequest) returns (ElaBluetoothConnectResult) {}
+
+  // monitoring
+  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothMasterMicroserviceStatus) {}
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterScanRequest
+ * \brief Ela Bluetooth Master Start Scanning Request
+ */
+message ElaBluetoothMasterScanRequest {
+
+	enum ScanMode {
+
+		Start = 1;
+		Stop = 2;
+	}
+	ElaBluetooth.ElaBluetoothScanningRequest scan_request = 1;
+	ScanMode scan_mode = 2;
+	repeated String target_services_id = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterStartResult
+ * \brief Ela Bluetooth Master Start Scanning Result
+ */
+message ElaBluetoothMasterScanResult {
+
+	ElaCommon.ElaError error = 1;
+	ElaBluetoothMasterScanRequest scan_request = 2;
+	repeated String started_services_id = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterScanResultItem
+ * \brief Ela Bluetooth Master Scan Result Item to describe the results from one service
+ */
+ message ElaBluetoothMasterScanResultItem {
+	
+	ElaMicroserviceItem microservice_id = 1;
+	ElaBluetooth.ElaBluetoothScanResult microservice_result = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterScanResults 
+ * \brief Ela Bluetooth Master Scan Results
+ */
+ message ElaBluetoothMasterScanResults {
+	
+	ElaCommon.ElaError error = 1;
+	String clientId = 2;
+	repeated ElaBluetoothMasterScanResultItem results = 3;
+	uint32 total_microservice_source = 4;
+	uint32 total_data_get = 5;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterConnectRequest
+ * \brief connection request for the bluetooth master microservice
+ */
+message ElaBluetoothMasterConnectRequest {
+	
+	enum ConnectionMode {
+
+		First_Found = 1;
+		Already_Seen = 2;
+		Target_Microservice = 3;
+	}
+	ElaBluetooth.ElaBluetoothConnectRequest connection_request = 1;
+	ConnectionMode connection_mode = 2;
+	String target_services_id = 3;
+	//
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterConnectResult
+ * \brief connection result for the bluetooth master microservice
+ */
+message ElaBluetoothMasterConnectResult {
+
+	ElaBluetooth.ElaBluetoothConnectResult connection_result = 1;
+	String target_services_id = 2;
+	ConnectionMode connection_mode = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothBaseMicroserviceStatus
+ * \brief the status of the bluetooth base microservice
+ */
+message ElaBluetoothBaseMicroserviceStatus {
+
+	ElaMicroserviceItem microservice_id = 1;
+	ElaBluetoothMicroserviceStatus microservice_status = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterStatusSnapshot 
+ * \brief provide a snapshot for all microservice bases
+ */
+message ElaBluetoothMasterStatusSnapshot {
+
+	uint32 countServices = 1;
+	uint32 countUnkonwn = 2;
+	uint32 countPending = 3;
+	uint32 countConnecting = 4;
+	uint32 countConnected = 5;
+	uint32 countScanning = 6;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterMicroserviceStatus
+ * \brief the status of the bluetooth microservice
+ */
+message ElaBluetoothMasterMicroserviceStatus {
+
+	// TODO_MAT
+	enum BleMasterStatus {
+
+		Unknown = 0;
+		Pending = 1;
+		Processing_Request = 2;
+		Provide_Feedback = 3;
+	}
+	ElaCommon.ElaError last_error = 1;
+	BleMasterStatus ble_master_status = 2;
+	repeated ElaBluetoothBaseMicroserviceStatus ble_bases_status = 3;
+	repeated ElaBluetoothOtapMicroserviceStatus ble_otap_status = 4;
+	ElaBluetoothMasterStatusSnapshot ble_bases_snapshot = 5;
+	ElaCommon.ElaMicroserviceInfos microservice_infos = 6;
+	ElaCommon.ServiceInformations user_informations = 7;
+	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 8;
+	// RFU
+}
+
+///////////////////////////////////////////////////////////
