@@ -26,6 +26,8 @@ service ElaBluetoothPublicService {
 
   // monitoring
   rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothMicroserviceStatus) {}
+  rpc GetLogInformations(ElaCommon.ElaLogRequest) returns (ElaCommon.ElaLogResponse) {}
+  rpc SetUserInformations(ElaCommon.ElaUserInformationsRequest) returns (ElaCommon.ElaError) {}
 }
 
 ///////////////////////////////////////////////////////////

@@ -8,14 +8,13 @@ package ElaCommon;
 
 ///////////////////////////////////////////////////////////
 /*
- * \class ElaMicroserviceAddRequest
- * \brief request to add a new microservice to the management pool
+ * \class ElaManageMicroserviceRequest
+ * \brief generic request to manage the microservice instanciation and pool to create, delete or update ms information into the pool
  */
-message ElaMicroserviceAddRequest {
+message ElaManageMicroserviceRequest {
 
 	ElaCommon.ElaInputBaseRequest request = 1;
-	ElaAuthentication.ElaAuthenticationRequest authenticationRequest = 2;
-	ElaCommon.ElaMicroserviceItem microservice_infos = 3;
+	ElaCommon.ElaMicroserviceItem microservice_infos = 2;
 }
 
 ///////////////////////////////////////////////////////////
@@ -27,17 +26,6 @@ message ElaMicroserviceAddResult {
 
 	ElaCommon.ElaError error = 1;
 	ElaCommon.ElaMicroserviceItem item = 2;
-}
-
-///////////////////////////////////////////////////////////
-/*
- * \class ElaMicroserviceDeleteRequest
- * \brief request to delete a new microservice to the management pool
- */
-message ElaMicroserviceDeleteRequest {
-
-	ElaCommon.ElaInputBaseRequest request = 1;
-	ElaCommon.ElaMicroserviceItem microservice_infos = 3;
 }
 
 ///////////////////////////////////////////////////////////
