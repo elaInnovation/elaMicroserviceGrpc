@@ -12,8 +12,8 @@ package ElaWirepas;
 service ElaWirepasConfigurationService {
 
   // Configuration functions
-	rpc SetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaCommon.ElaError) {}
-	rpc GetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaWirepasConfigPacket) {}
+	//rpc SetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaCommon.ElaError) {}
+	//rpc GetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaWirepasConfigPacket) {}
     rpc GetAvailableNodes(ElaCommon.ElaInputBaseRequest) returns (ElaWirepasNodeList) {}
 
 	// Authentication functions

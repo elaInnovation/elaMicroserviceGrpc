@@ -18,7 +18,7 @@ service ElaWirepasPublicService {
     */
   rpc StartWirepasDataFlow(ElaWirepasDataRequest) returns (stream ElaWirepasDataPacket) {}
 //  rpc GetAvailableNodes(ElaCommon.ElaInputBaseRequest) returns (ElaWirepasNodeList) {}
-  rpc StopWirepasDataFlow(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+  rpc StopWirepasDataFlow(ElaWirepasDataRequest) returns (ElaCommon.ElaError) {}
 
   // Wirepas Commands
   rpc SendElaWirepasCommand(SendPacketReq) returns (SendPacketResp) {}
