@@ -4,7 +4,7 @@ package ElaWirepas;
 
 /*
  * \class ElaWirepasNodeItem
- * \brief description of a scan bluetooth result item
+ * \brief description of a scan Ela Wirepas NodeItem
  */
 message ElaWirepasNodeItem {
 
@@ -16,10 +16,25 @@ message ElaWirepasNodeItem {
 
 /*
  * \class ElaWirepasLocationDataItem
- * \brief description of ELA Wirepas Location Data for Positioning Engine
- */
-message ElaWirepasLocationDataItem {
+ * \brief description of a location raw data packet
+ */  
 
+message ElaWirepasLocDataItem {
+    
+	ElaWirepas.ElaWirepasNodeItem wpNode_item = 1;
+    repeated ElaWirepasNodeLocData wp_Loc_node_data = 2;
+    bytes wpLocPayload = 3;
+}
+
+/*
+ * \class ElaWirepasNodeLocData
+ * \brief description of a location data for Wirepas node
+ */  
+
+message ElaWirepasNodeLocData {
+    
+	uint32 node_address = 1;
+	int32 wpRssi = 2;
 }
 
 /*

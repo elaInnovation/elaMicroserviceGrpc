@@ -4,16 +4,11 @@ package ElaWirepas;
 
 // import
 import "Protos/Common/ElaCommon.proto";
-import "Protos/Authentication/ElaAuthenticationCommon.proto";
 import "Protos/Wirepas/ElaWirepasCommon.proto";
 import "Protos/Wirepas/WirepasMessages.proto";
 
 // The service definition.
 service ElaWirepasPublicService {
-
-  // authentication functions
-  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
-  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // Wirepas flow management
 
@@ -22,7 +17,7 @@ service ElaWirepasPublicService {
 	sends data request receives data stream
     */
   rpc StartWirepasDataFlow(ElaWirepasDataRequest) returns (stream ElaWirepasDataPacket) {}
-  rpc GetAvailableNodes(ElaCommon.ElaInputBaseRequest) returns (ElaWirepasNodeList) {}
+//  rpc GetAvailableNodes(ElaCommon.ElaInputBaseRequest) returns (ElaWirepasNodeList) {}
   rpc StopWirepasDataFlow(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // Wirepas Commands
@@ -49,28 +44,33 @@ message ElaWirepasDataRequest {
 ///////////////////////////////////////////////////////////
 /*
  * \class ElaWirepasDataPacket
- * \brief custom ELA datapacket discription 
+ * \brief interoperable ELA datapacket discription 
  */
 message ElaWirepasDataPacket {
 
-	ElaWirepasNodeItem node_item = 1; 
-	string DataType = 2;
-	ElaWirepasSensorDataItem sensorData = 3;
-	ElaWirepasLocationDataItem locData = 4;
-	uint32 VBat = 5;
-	string TimeStamp = 6;
+	string DataType = 1; // 
+
+	ElaWirepasSensorDataItem wirepasSensorData = 2;
+	ElaWirepasLocDataItem wirepasLocData = 3;
+
+	double VBat = 4;
+	string TimeStamp = 5;
+	ElaWirepasNodeItem wpNode_item = 6;
 }
+
+
+
 
 ///////////////////////////////////////////////////////////
 /*
  * \class ElaWirepasNodeList 
  * \brief List of available wirepas nodes 
  */
-message ElaWirepasNodeList {
+//message ElaWirepasNodeList {
 
-	string clientId = 1;
-	repeated ElaWirepasNodeItem results = 2;
-}
+//	string clientId = 1;
+	//repeated ElaWirepasNodeItem results = 2;
+//}
 
 ///////////////////////////////////////////////////////////
 /*
@@ -88,3 +88,4 @@ message ElaWirepasMicroserviceStatus {
 	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 6;
 	// RFU
 }
+
