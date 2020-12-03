@@ -45,9 +45,11 @@ message ElaBluetoothScanResultItem {
 	uint32 service_uuid = 9;
 	uint32 manufacturer_id = 10;
 	repeated string manufacturer_data = 11;
+	string payload = 12;
 	//
 	// RFU
-	string gps_coordinate = 12;
+	string gps_coordinate = 13;
+	string microservice_id = 14;
 }
 
 ///////////////////////////////////////////////////////////
