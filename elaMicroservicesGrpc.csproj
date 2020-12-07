@@ -17,17 +17,18 @@
     <Folder Include="Protos\Common\" />
     <Folder Include="Protos\Bluetooth\" />
     <Folder Include="Protos\Authentication\" />
-	  <Folder Include="Protos\Wirepas\" />
+	<Folder Include="Protos\Wirepas\" />
+	<Folder Include="Protos\Tagset\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.10.0" />
-    <PackageReference Include="Grpc.Core" Version="2.26.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.26.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" Version="3.10.0" />
+		<PackageReference Include="Grpc.Core" Version="2.26.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.26.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="Protos\Common\ElaCommon.proto" />
@@ -39,6 +40,8 @@
 	  <Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
 	  <Protobuf Include="Protos\Wirepas\WirepasMessages.proto" />
 	  <Protobuf Include="Protos\Wirepas\ElaWirepasConfigAPI.proto" />
+	  <Protobuf Include="Protos\Tagset\ElaTagsetCommon.proto" />
+	  <Protobuf Include="Protos\Tagset\ElaTagsetPublicAPI.proto" />
   </ItemGroup>
 
   <ItemGroup>
