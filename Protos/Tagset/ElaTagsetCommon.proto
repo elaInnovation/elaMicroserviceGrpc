@@ -206,7 +206,7 @@ message ElaTagsetMicroserviceTagConfiguration {
 message ElaTagsetMicroserviceTagIncrementsAvailable {
 
 	ElaCommon.ElaError last_error = 1;
-	repeated string increments = 2;
+	IncrementEntry entry = 2;
 }
 
 ///////////////////////////////////////////////////////////
