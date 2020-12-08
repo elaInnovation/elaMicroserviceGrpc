@@ -7,10 +7,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>ELA Innovation Software Team</Authors>
     <Copyright>Copyright ELA Innovation (c) 2019</Copyright>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,29 +19,33 @@
     <Folder Include="Protos\Authentication\" />
 	<Folder Include="Protos\Wirepas\" />
 	<Folder Include="Protos\Tagset\" />
+	  <Folder Include="Protos\Smili\" />
   </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Google.Protobuf" Version="3.10.0" />
-		<PackageReference Include="Grpc.Core" Version="2.26.0" />
-		<PackageReference Include="Grpc.Tools" Version="2.26.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
+  <ItemGroup>
+	<PackageReference Include="Google.Protobuf" Version="3.13.0" />
+	<PackageReference Include="Grpc.Core" Version="2.33.1" />
+	<PackageReference Include="Grpc.Tools" Version="2.33.1">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="Protos\Common\ElaCommon.proto" />
+    <Protobuf Include="Protos\Common\ElaMicroserviceManagement.proto" />
     <Protobuf Include="Protos\Authentication\ElaAuthenticationCommon.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothCommon.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothPublicAPI.proto" />
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothOtap.proto" />
+    <Protobuf Include="Protos\Bluetooth\ElaBluetoothMasterPublicAPI.proto" />
 	  <Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
 	  <Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
 	  <Protobuf Include="Protos\Wirepas\WirepasMessages.proto" />
 	  <Protobuf Include="Protos\Wirepas\ElaWirepasConfigAPI.proto" />
 	  <Protobuf Include="Protos\Tagset\ElaTagsetCommon.proto" />
 	  <Protobuf Include="Protos\Tagset\ElaTagsetPublicAPI.proto" />
+	  <Protobuf Include="Protos\Smili\ElaSmiliCommon.proto" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,5 +62,13 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackageIcon>Icon-Ela.png</PackageIcon>
   </PropertyGroup>
+  <!--
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>ARM</PlatformTarget>
+  </PropertyGroup>
+-->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>  
 
 </Project>

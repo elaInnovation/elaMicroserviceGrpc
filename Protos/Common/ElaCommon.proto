@@ -29,6 +29,17 @@ message ServiceInformations {
 
 ///////////////////////////////////////////////////////////
 /*
+ * \class ElaUserInformationsRequest
+ * \brief user information request definition 
+ */
+message ElaUserInformationsRequest {
+
+	ElaInputBaseRequest request = 1;
+	ServiceInformations user_information = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
  * \class ElaError
  * \brief basic error associated to a service
  */
@@ -76,8 +87,33 @@ message ElaMicroserviceItem {
 
 	string hostname = 1;
 	uint32 port = 2;
-	string microservice_username = 3;
-	string microservice_id = 4;
+	string login = 3;
+	string password = 4;
+	string microservice_username = 5;
+	string microservice_id = 6;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaLogRequest
+ * \brief log request
+ */
+message ElaLogRequest {
+
+	ElaInputBaseRequest request = 1;
+	bool AllValuesRequired = 2;
+	uint32 max_log_values = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaLogResponse
+ * \brief log response
+ */
+message ElaLogResponse {
+
+	ElaError error = 1;
+	repeated string logValues = 2;
 }
 
 ///////////////////////////////////////////////////////////

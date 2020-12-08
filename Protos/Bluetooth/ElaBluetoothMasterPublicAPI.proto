@@ -2,8 +2,11 @@ syntax = "proto3";
 
 // import
 import "Protos/Common/ElaCommon.proto";
+import "Protos/Common/ElaMicroserviceManagement.proto";
 import "Protos/Authentication/ElaAuthenticationCommon.proto";
 import "Protos/Bluetooth/ElaBluetoothCommon.proto";
+import "Protos/Bluetooth/ElaBluetoothOtap.proto";
+import "Protos/Bluetooth/ElaBluetoothPublicAPI.proto";
 
 //option csharp_namespace = "elaBluetoothPublicApiGrpc";
 
@@ -17,8 +20,8 @@ service ElaBluetoothMasterPublicService {
   rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // microservice base management
-  rpc AddMicroservice(ElaCommon.ElaMicroserviceAddRequest) returns (ElaCommon.ElaMicroserviceAddResult) {}
-  rpc DeleteMicroservice(ElaCommon.ElaMicroserviceDeleteRequest) returns (ElaCommon.ElaError) {}
+  rpc AddMicroservice(ElaCommon.ElaManageMicroserviceRequest) returns (ElaCommon.ElaMicroserviceAddResult) {}
+  rpc DeleteMicroservice(ElaCommon.ElaManageMicroserviceRequest) returns (ElaCommon.ElaError) {}
   rpc ListMicroservices(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceListResult) {}
   rpc GetMicroservicesInfos(ElaCommon.ElaMicroserviceGetInfosRequest) returns (ElaCommon.ElaMicroserviceListResult) {}
 
@@ -31,7 +34,7 @@ service ElaBluetoothMasterPublicService {
   rpc ConfigureTags(ElaBluetoothMasterConfigurationTagRequest) returns (ElaCommon.ElaError) {}
   rpc ConfigureServices(ElaBluetoothMasterConfigurationServiceRequest) returns (ElaCommon.ElaError) {}
   rpc Otaps(ElaBluetoothMasterOtapRequest) returns (ElaCommon.ElaError) {}
-  rpc UploadOtapFile(ElaOtapUploadRequest) returns (ElaCommon.ElaError) {}
+  rpc UploadOtapFile(ElaBluetoothOtap.ElaOtapUploadRequest) returns (ElaCommon.ElaError) {}
 
   // bluetooth connections
   rpc SendElaBluetoothCommand(ElaBluetoothMasterConnectRequest) returns (ElaBluetoothConnectResult) {}
@@ -49,12 +52,12 @@ message ElaBluetoothMasterScanRequest {
 
 	enum ScanMode {
 
-		Start = 1;
-		Stop = 2;
+		Start = 0;
+		Stop = 1;
 	}
 	ElaBluetooth.ElaBluetoothScanningRequest scan_request = 1;
 	ScanMode scan_mode = 2;
-	repeated String target_services_id = 3;
+	repeated string target_services_id = 3;
 }
 
 ///////////////////////////////////////////////////////////
@@ -66,7 +69,7 @@ message ElaBluetoothMasterScanResult {
 
 	ElaCommon.ElaError error = 1;
 	ElaBluetoothMasterScanRequest scan_request = 2;
-	repeated String started_services_id = 3;
+	repeated string updated_services_id = 3;
 }
 
 ///////////////////////////////////////////////////////////
@@ -76,8 +79,8 @@ message ElaBluetoothMasterScanResult {
  */
  message ElaBluetoothMasterScanResultItem {
 	
-	ElaMicroserviceItem microservice_id = 1;
-	ElaBluetooth.ElaBluetoothScanResult microservice_result = 2;
+	ElaCommon.ElaMicroserviceItem microservice_id = 1;
+	ElaBluetooth.ElaBluetoothScanResults microservice_result = 2;
 }
 
 ///////////////////////////////////////////////////////////
@@ -88,7 +91,7 @@ message ElaBluetoothMasterScanResult {
  message ElaBluetoothMasterScanResults {
 	
 	ElaCommon.ElaError error = 1;
-	String clientId = 2;
+	string clientId = 2;
 	repeated ElaBluetoothMasterScanResultItem results = 3;
 	uint32 total_microservice_source = 4;
 	uint32 total_data_get = 5;
@@ -103,13 +106,13 @@ message ElaBluetoothMasterConnectRequest {
 	
 	enum ConnectionMode {
 
-		First_Found = 1;
-		Already_Seen = 2;
-		Target_Microservice = 3;
+		First_Found = 0;
+		Already_Seen = 1;
+		Target_Microservice = 2;
 	}
 	ElaBluetooth.ElaBluetoothConnectRequest connection_request = 1;
 	ConnectionMode connection_mode = 2;
-	String target_services_id = 3;
+	string target_services_id = 3;
 	//
 }
 
@@ -121,8 +124,8 @@ message ElaBluetoothMasterConnectRequest {
 message ElaBluetoothMasterConnectResult {
 
 	ElaBluetooth.ElaBluetoothConnectResult connection_result = 1;
-	String target_services_id = 2;
-	ConnectionMode connection_mode = 3;
+	string target_services_id = 2;
+	ElaBluetoothMasterConnectRequest.ConnectionMode connection_mode = 3;
 }
 
 ///////////////////////////////////////////////////////////
@@ -132,7 +135,7 @@ message ElaBluetoothMasterConnectResult {
  */
 message ElaBluetoothBaseMicroserviceStatus {
 
-	ElaMicroserviceItem microservice_id = 1;
+	ElaCommon.ElaMicroserviceItem microservice_id = 1;
 	ElaBluetoothMicroserviceStatus microservice_status = 2;
 }
 
@@ -169,12 +172,42 @@ message ElaBluetoothMasterMicroserviceStatus {
 	ElaCommon.ElaError last_error = 1;
 	BleMasterStatus ble_master_status = 2;
 	repeated ElaBluetoothBaseMicroserviceStatus ble_bases_status = 3;
-	repeated ElaBluetoothOtapMicroserviceStatus ble_otap_status = 4;
+	repeated ElaBluetoothOtap.ElaBluetoothOtapMicroserviceStatus ble_otap_status = 4;
 	ElaBluetoothMasterStatusSnapshot ble_bases_snapshot = 5;
 	ElaCommon.ElaMicroserviceInfos microservice_infos = 6;
 	ElaCommon.ServiceInformations user_informations = 7;
 	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 8;
 	// RFU
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterConfigurationTagRequest
+ * \brief bluetooth master configuration tag request to configure one or several tags
+ */
+message ElaBluetoothMasterConfigurationTagRequest {
+
+	string to_do = 1;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterConfigurationServiceRequest
+ * \brief bluetooth master service configuration tag configure the underlayer ms
+ */
+message ElaBluetoothMasterConfigurationServiceRequest {
+
+	string to_do = 1;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothMasterOtapRequest
+ * \brief bluetooth master configuration tag request to configure one or several tags
+ */
+message ElaBluetoothMasterOtapRequest {
+
+	repeated ElaBluetoothOtap.ElaOtapRequest target_tags = 1;
 }
 
 ///////////////////////////////////////////////////////////

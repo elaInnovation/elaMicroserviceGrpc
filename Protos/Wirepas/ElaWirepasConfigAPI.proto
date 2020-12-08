@@ -1,4 +1,6 @@
-﻿syntax = "proto3";
+﻿
+syntax = "proto3";
+
 
 // import
 import "Protos/Wirepas/ElaWirepasCommon.proto";
@@ -10,8 +12,9 @@ package ElaWirepas;
 service ElaWirepasConfigurationService {
 
   // Configuration functions
-	rpc SetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaCommon.ElaError) {}
-	rpc GetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaWirepasConfigPacket) {}
+	//rpc SetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaCommon.ElaError) {}
+	//rpc GetNodeConfiguration(ElaWirepasNodeConfigRequest) returns (ElaWirepasConfigPacket) {}
+    rpc GetAvailableNodes(ElaCommon.ElaInputBaseRequest) returns (ElaWirepasNodeList) {}
 
 	// Authentication functions
     rpc CheckAuthentication(ElaWirepasAuthenticationRequest) returns (ElaWirepasAuthenticationResponse) {}
@@ -38,7 +41,23 @@ message ElaWirepasAuthenticationResponse {
 message ElaWirepasConfigPacket {
 	
 	ElaWirepasNodeItem node_item = 1; 
-
 }
+
+
+
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaWirepasNodeList 
+ * \brief List of available wirepas nodes 
+ */
+
+
+message ElaWirepasNodeList {
+
+	string clientId = 1;
+	repeated ElaWirepasNodeItem results = 2;
+}
+
 
 

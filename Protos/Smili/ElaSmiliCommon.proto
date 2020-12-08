@@ -1,0 +1,165 @@
+﻿syntax = "proto3";
+
+package ElaSmili;
+
+// import
+
+import "Protos/Wirepas/ElaWirepasPublicAPI.proto";
+import "Protos/Common/ElaCommon.proto";
+//import "Protos/Authentication/ElaAuthenticationCommon.proto";
+
+// SMILI requests service definition. handles all requests interoperability
+service ElaSmiliRequestService {
+
+  // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc.
+	rpc GetLocation(ElaSmiliDataPacket) returns (stream ElaSmiliDataPacket) {}  // request of location to epe returns stream of location results
+	rpc GetData(ElaSmiliDataPacket) returns (stream ElaSmiliDataPacket) {} // request of raw data to handler services returns stream of raw data
+}
+
+// The service definition.
+service ElaSmiliConfigService {
+
+  // Configuration functions
+    rpc SetConfiguration(ElaSmiliDataPacket) returns (ElaCommon.ElaError) {}
+	rpc GetConfiguration(ElaSmiliDataPacket) returns (ElaSmiliDataPacket) {}
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaSmiliDataPacket
+ * \brief interoperable SMILI datapacket discription 
+ */
+message ElaSmiliDataPacket {
+       
+    string ElaTech = 1;   // Wirepas, Ble etc.
+	ElaSmiliRequest smiliRequest = 2;
+	ElaWirepas.ElaWirepasDataPacket wirepasData = 3;
+	ElaBleDataPacket bleData = 4;
+	ElaLocationResult locResult = 6;
+	//ElaConfigResponse configResponse = 7;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaSmiliRequest
+ * \brief SMILI request discription 
+ */
+message ElaSmiliRequest {
+       
+    string requestType = 1;    // request for location results, rawdata, config etc. //!
+	
+	MqttRequest mreq = 2;
+	//ElaSmiliRawDataRequest smiliRawDataRequest = 2;
+	//ElaSmiliLocResultRequest smiliLocResultsRequest = 3;
+	ElaSmiliConfigRequest smiliConfigRequest = 4;  
+	//ElaSmiliAdvertisementRequest smiliAdvertisementRequest = 5;   // manage advertisement request with BLE microservice
+	//ElaSmiliAuthenticationRequest authReq = 6;
+}
+
+
+message MqttRequest{
+
+     	string BrokerAdress = 1;
+	    int32 BrokerPort = 2;
+
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaSmiliConfigRequest
+ * \brief SMILI request discription 
+ */
+message ElaSmiliConfigRequest {
+       
+	string AnchorsConfigJson = 1;
+	string CaliConfigJson = 2;
+}
+
+
+
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBleDataPacket
+ * \brief interoperable ELA datapacket discription 
+ */
+message ElaBleDataPacket {
+
+	string DataType = 1; // 
+
+	ElaBleSensorDataItem bleSensorData = 2;
+	ElaBleLocationDataItem bleLocData = 3;
+
+	uint32 VBat = 4;
+	string TimeStamp = 5;
+}
+
+message ElaBleSensorDataItem{
+
+}
+
+
+
+
+/*
+ * \class ElaLocationResult
+ * \brief description of a location result packet
+ */  
+
+message ElaLocationResult {
+    
+	ElaSmiliNodeItem node_item = 1;
+    double xCoordinate = 2;
+	double yCoordinate = 3;
+	string resultType = 4;
+	int32 conversionFactor = 5; // convert x, y coordinates todo
+	string AnchorsJson = 6; //! todo
+}
+
+/*
+ * \class ElaSmiliNodeItem
+ * \brief description of a node information item
+ */
+message ElaSmiliNodeItem {
+
+	uint32 node_address = 1;
+	string node_role = 2;
+	string local_name = 3;
+    string node_type = 4;
+	//todo
+}
+
+message ElaBleLocationDataItem {
+    
+	ElaBleNodeItem bleNode_item = 1;
+    repeated ElaBleNodeLocData ble_Loc_node_data = 2;
+}
+
+/*
+ * \class ElaBleNodeLocData
+ * \brief description of a location data for BLE node
+ */  
+
+message ElaBleNodeLocData {
+    
+	uint32 node_address = 1;
+	int32 bleRssi = 2;
+}
+
+
+
+
+
+/*
+ * \class ElaBleNodeItem
+ * \brief description of a Ble node information item
+ */
+message ElaBleNodeItem {
+
+	uint32 node_address = 1;
+	string node_role = 2;
+	string local_name = 3;
+    string node_type = 4;
+	//todo unique Ble data
+}
+
