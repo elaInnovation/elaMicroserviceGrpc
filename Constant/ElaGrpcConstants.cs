@@ -38,7 +38,11 @@ namespace elaMicroservicesGrpc.Constant
         /// ///////////////////////////////////////////////////////
         // Bluetooth Master definition
         public static readonly int PORT_BLUETOOTH_MASTER_REMOTE_API = 50054;
-        public static readonly String DEFAULT_BLUETOOTH_MASTER_BASE_NAME = "Bluetooth Master Service";
+        public static readonly String DEFAULT_BLUETOOTH_MASTER_BASE_NAME = "Bluetooth Master Service";        
+        /// ///////////////////////////////////////////////////////
+        // EPE Master definition
+        public static readonly int PORT_EPE_REMOTE_API = 50055;
+        public static readonly String DEFAULT_EPE_CORE_BASE_NAME = "Ela Positioning Engine Core Service";
 
         /// ///////////////////////////////////////////////////////
         // Proto version constant definition
