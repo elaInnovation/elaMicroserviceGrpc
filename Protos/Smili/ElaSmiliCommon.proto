@@ -73,6 +73,7 @@ message ElaSmiliConfigRequest {
        
 	string AnchorsConfigJson = 1;
 	string CaliConfigJson = 2;
+	string AppStatus = 3;
 }
 
 
