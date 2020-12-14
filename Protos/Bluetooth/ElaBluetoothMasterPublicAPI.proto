@@ -28,6 +28,7 @@ service ElaBluetoothMasterPublicService {
   // bluetooth scanning
   rpc StartBluetoothListening(ElaBluetoothMasterScanRequest) returns (ElaBluetoothMasterScanResult) {}
   rpc GetScannedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothMasterScanResults) {}
+  rpc GetJsonScannedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothMasterScanJsonResults) {}
   rpc StopBluetoothListening(ElaBluetoothMasterScanRequest) returns (ElaBluetoothMasterScanResult) {}
 
   // bluetooth otap microservice main functions
@@ -81,6 +82,20 @@ message ElaBluetoothMasterScanResult {
 	
 	ElaCommon.ElaMicroserviceItem microservice_id = 1;
 	ElaBluetooth.ElaBluetoothScanResults microservice_result = 2;
+}
+
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaBluetoothMasterScanJsonResults
+ * \brief ELA bluetooth Master scan result where each result is a Json object according to the commun format
+ */
+message ElaBluetoothMasterScanJsonResults {
+
+	ElaCommon.ElaError error = 1;
+	string clientId = 2;
+	repeated string results = 3;
+	uint32 total_microservice_source = 4;
+	uint32 total_data_get = 5;
 }
 
 ///////////////////////////////////////////////////////////
