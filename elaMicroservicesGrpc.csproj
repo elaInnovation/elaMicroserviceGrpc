@@ -65,7 +65,6 @@
   </PropertyGroup>
 -->
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>ARM</PlatformTarget>
   </PropertyGroup>  
 
 </Project>
