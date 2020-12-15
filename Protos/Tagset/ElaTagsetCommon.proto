@@ -1,0 +1,289 @@
+syntax = "proto3";
+
+package ElaTagset;
+
+// import
+import "Protos/Common/ElaCommon.proto";
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetAuthenticationRequest
+ * \brief Ela Tagset Format definition
+ */
+message ElaTagsetAuthenticationRequest {
+
+    string username = 1;
+    string password = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetAuthenticationResponse
+ * \brief Ela Tagset Format definition
+ */
+message ElaTagsetAuthenticationResponse {
+
+    ElaCommon.ElaError error = 1;
+    bool authorized = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetTagFormatRequest
+ * \brief Ela Tagset Format definition
+ */
+message ElaTagsetTagFormatRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string techno = 2;
+	string version = 3;
+	string format_hw = 4;
+	string format_fw = 5;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class IncrementVariable
+ * \brief Ela Tagset incremental variable configuration definition
+ */
+message IncrementVariable {
+
+	string Variablename = 1;
+	int32 length = 2;
+	string fix = 3;
+	bool isprefix = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class IncrementEntry
+ * \brief Ela Tagset incremental variable configuration definition
+ */
+message IncrementEntry {
+
+	uint32 increment = 4;
+	uint32 start_id = 5;
+	bool ishexadecimal = 6;
+	repeated IncrementVariable variable = 7;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetTagFormatRequest
+ * \brief Ela Tagset incremental variable configuration definition
+ */
+message ElaTagsetTagIncrementalVariableConfigurationRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	IncrementEntry increment = 2;
+	uint32 quantity = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetTagIncrementalVariableRequest
+ * \brief Ela Tagset incremental variable calculator definition
+ */
+message ElaTagsetTagIncrementalVariableRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	uint32 uitags = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetTagNfcConfigurationRequest
+ * \brief Ela Tagset tag configuration definition
+ */
+message ElaTagsetTagNfcConfigurationRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string config = 2;
+	string values = 3;
+	string quuppacfg = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetFileProductionRequest
+ * \brief message to create production file
+ */
+message ElaTagsetFileProductionRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaTagsetTagFormatRequest format = 2;
+	ElaTagsetTagNfcConfigurationRequest configuration = 3;
+	ElaTagsetTagIncrementalVariableConfigurationRequest increment = 4;
+	ElaTagsetFileOutputFieldsRequest fields = 5;
+	string customer = 6;
+	string command = 7;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetFileOutputFieldsRequest
+ * \brief message to create output fields file
+ */
+message ElaTagsetFileOutputFieldsRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	repeated string fields = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceCustomers
+ * \brief message to get a list of customers
+ */
+message ElaTagsetMicroserviceCustomers {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string customers = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceTechnos
+ * \brief message to get a list of technos
+ */
+message ElaTagsetMicroserviceTechnos {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string technos = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceFirmwareVersions
+ * \brief message to get a list of firmware versions
+ */
+message ElaTagsetMicroserviceFirmwareVersions {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string versions = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceFirmwareFormats
+ * \brief message to get a list of firmware formats
+ */
+message ElaTagsetMicroserviceFirmwareFormats {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string formats = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceHardwareFormats
+ * \brief message to get a list of hardware formats
+ */
+message ElaTagsetMicroserviceHardwareFormats {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string formats = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceTagConfiguration
+ * \brief message to get a tag configuration
+ */
+message ElaTagsetMicroserviceTagConfiguration {
+
+	ElaCommon.ElaError last_error = 1;
+	string config = 2;
+	string values = 3;
+	string quuppacfg = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceTagIncrementsAvailable
+ * \brief message to get a list of available incremental variables
+ */
+message ElaTagsetMicroserviceTagIncrementsAvailable {
+
+	ElaCommon.ElaError last_error = 1;
+	IncrementEntry entry = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceDefaultTagIncrements
+ * \brief message to get a list of default incremental variables
+ */
+message ElaTagsetMicroserviceDefaultTagIncrements {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string increments = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceValidity
+ * \brief message to get if entry is valid
+ */
+message ElaTagsetMicroserviceValidity {
+
+	ElaCommon.ElaError last_error = 1;
+	bool valid = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceHardwareFormats
+ * \brief message to get a list of values of incremental variables
+ */
+message ElaTagsetMicroserviceTagIncrementsConfiguration {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string increments = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceHardwareFormats
+ * \brief message to get a list of values of incremental variables
+ */
+message ElaTagsetMicroserviceTagIncrementsValues {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated uint32 increments = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceAvailableOutputFields
+ * \brief message to get a list of values of incremental variables
+ */
+message ElaTagsetMicroserviceAvailableOutputFields {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string fields = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceDefaultOutputFields
+ * \brief message to get a list of values of incremental variables
+ */
+message ElaTagsetMicroserviceDefaultOutputFields {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string fields = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceFilePath
+ * \brief message to get the file path
+ */
+message ElaTagsetMicroserviceFilePath {
+
+	ElaCommon.ElaError last_error = 1;
+	string path = 2;
+}
+
+///////////////////////////////////////////////////////////
