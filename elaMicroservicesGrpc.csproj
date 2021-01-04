@@ -62,12 +62,6 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackageIcon>Icon-Ela.png</PackageIcon>
   </PropertyGroup>
-  <!--
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>ARM</PlatformTarget>
-  </PropertyGroup>
--->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-  </PropertyGroup>  
+   
 
 </Project>

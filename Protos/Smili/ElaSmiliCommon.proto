@@ -5,24 +5,15 @@ package ElaSmili;
 // import
 
 import "Protos/Wirepas/ElaWirepasPublicAPI.proto";
-import "Protos/Common/ElaCommon.proto";
-//import "Protos/Authentication/ElaAuthenticationCommon.proto";
 
 // SMILI requests service definition. handles all requests interoperability
 service ElaSmiliRequestService {
 
   // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc.
-	rpc GetLocation(ElaSmiliDataPacket) returns (stream ElaSmiliDataPacket) {}  // request of location to epe returns stream of location results
+	rpc GetResults(ElaSmiliDataPacket) returns (stream ElaSmiliDataPacket) {}  // request of results to epe returns stream of results
 	rpc GetData(ElaSmiliDataPacket) returns (stream ElaSmiliDataPacket) {} // request of raw data to handler services returns stream of raw data
 }
 
-// The service definition.
-service ElaSmiliConfigService {
-
-  // Configuration functions
-    rpc SetConfiguration(ElaSmiliDataPacket) returns (ElaCommon.ElaError) {}
-	rpc GetConfiguration(ElaSmiliDataPacket) returns (ElaSmiliDataPacket) {}
-}
 
 ///////////////////////////////////////////////////////////
 /*
@@ -30,13 +21,10 @@ service ElaSmiliConfigService {
  * \brief interoperable SMILI datapacket discription 
  */
 message ElaSmiliDataPacket {
-       
-    string ElaTech = 1;   // Wirepas, Ble etc.
-	ElaSmiliRequest smiliRequest = 2;
-	ElaWirepas.ElaWirepasDataPacket wirepasData = 3;
-	ElaBleDataPacket bleData = 4;
-	ElaLocationResult locResult = 6;
-	//ElaConfigResponse configResponse = 7;
+	ElaSmiliRequest smili_request = 1;
+	ElaWirepas.ElaWirepasDataPacket wirepas_data = 2;
+	ElaBleDataPacket ble_data = 3;
+	ElaResultPacket result_packet = 4;
 }
 
 ///////////////////////////////////////////////////////////
@@ -45,22 +33,36 @@ message ElaSmiliDataPacket {
  * \brief SMILI request discription 
  */
 message ElaSmiliRequest {
-       
-    string requestType = 1;    // request for location results, rawdata, config etc. //!
+
+    int32 smili_request_id = 1; 
+	int32 smili_user_id = 2;
+    ReqType smili_request_type = 3;    
 	
-	MqttRequest mreq = 2;
-	//ElaSmiliRawDataRequest smiliRawDataRequest = 2;
-	//ElaSmiliLocResultRequest smiliLocResultsRequest = 3;
-	ElaSmiliConfigRequest smiliConfigRequest = 4;  
-	//ElaSmiliAdvertisementRequest smiliAdvertisementRequest = 5;   // manage advertisement request with BLE microservice
-	//ElaSmiliAuthenticationRequest authReq = 6;
+	RequestDestination req_destination = 4;	
+	ElaSmiliConfigRequest smili_config_request = 5;
+	//ElaSmiliAdvertisementRequest smiliAdvertisementRequest = 6;   // manage advertisement request with BLE microservice
+	//ElaSmiliAuthenticationRequest authReq = 7;
+
+	enum ReqType{
+		DATA = 0;
+		RESULTS = 1;
+		CONFIG = 3; //!
+	}
 }
 
 
-message MqttRequest{
+message RequestDestination{
 
-     	string BrokerAdress = 1;
-	    int32 BrokerPort = 2;
+     	string req_destination_adress = 1;
+	    int32 req_destination_port = 2;
+		DestType DestinationType=3;
+		
+
+		enum DestType{
+			SELF = 0; // data acquizition on the same device
+			MQTTBROKER = 1; // remote MQTT broker
+			SERVICE = 2;
+		}
 
 }
 
@@ -71,12 +73,29 @@ message MqttRequest{
  */
 message ElaSmiliConfigRequest {
        
-	string AnchorsConfigJson = 1;
-	string CaliConfigJson = 2;
-	string AppStatus = 3;
+	int32 smili_project_id = 1;
+	repeated SmiliAnchorModel anchors_list = 2;
+	string cali_config_json = 3;
+	ReqStat request_status = 4;
+
+	enum ReqStat{
+	NEW = 0; // new GUI instance with new configs
+	REFRESH = 1; // 
+	FETCH = 2;
+	UPDATE = 3;
+	}
 }
 
-
+message SmiliAnchorModel {
+    
+	uint32 node_address = 1;
+    double x_coordinate = 2;
+	double y_coordinate = 3;
+	double z_coordinate = 4;
+	string floor = 5;
+	string technology = 6;
+	string environment = 7;
+}
 
 
 ///////////////////////////////////////////////////////////
@@ -103,18 +122,19 @@ message ElaBleSensorDataItem{
 
 
 /*
- * \class ElaLocationResult
- * \brief description of a location result packet
+ * \class ElaResultPacket
+ * \brief description of a smili result packet
  */  
 
-message ElaLocationResult {
+message ElaResultPacket {
     
 	ElaSmiliNodeItem node_item = 1;
-    double xCoordinate = 2;
-	double yCoordinate = 3;
-	string resultType = 4;
-	int32 conversionFactor = 5; // convert x, y coordinates todo
-	string AnchorsJson = 6; //! todo
+    double x_coordinate = 2;
+	double y_coordinate = 3;
+	double z_coordinate = 4;
+	string floor = 5;
+	double battery = 6;
+	string sensor_value = 7;
 }
 
 /*
@@ -124,10 +144,20 @@ message ElaLocationResult {
 message ElaSmiliNodeItem {
 
 	uint32 node_address = 1;
-	string node_role = 2;
-	string local_name = 3;
-    string node_type = 4;
-	//todo
+	string local_name = 2;
+    SmiliNodeType smili_node_type = 3;
+	SmiliTech smili_technology = 4;
+
+	enum SmiliNodeType{
+		ANCHOR = 0;
+		TAG = 1;
+		UNKNOWN = 2;
+	}
+
+	enum SmiliTech{
+		WIREPAS = 0;
+		BLUETOOTH = 1;
+	}
 }
 
 message ElaBleLocationDataItem {
@@ -164,3 +194,21 @@ message ElaBleNodeItem {
 	//todo unique Ble data
 }
 
+/*
+ * \class Status
+ * \brief description of a status information message
+ */
+message Status {
+
+	string smili_user_id = 1;
+	string smili_service_id = 2;
+	Stat smili_status_code = 3;
+	string smili_status_timestamp = 4;
+
+	enum Stat{
+	AVAILABLE = 0;
+	UNAVAILABLE = 1;
+	RESTARTED = 2;
+	STOPPED = 3;
+	}
+}
