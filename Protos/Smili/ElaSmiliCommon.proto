@@ -135,6 +135,7 @@ message ElaResultPacket {
 	string floor = 5;
 	double battery = 6;
 	string sensor_value = 7;
+	string time_stamp = 8;
 }
 
 /*
