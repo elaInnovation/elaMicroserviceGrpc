@@ -117,3 +117,14 @@ message ElaLogResponse {
 }
 
 ///////////////////////////////////////////////////////////
+/**
+ * \class ElaCloseStreamingRequest 
+ * \brief common close streaming request
+ */
+message ElaCloseStreamingRequest {
+
+	ElaError error = 1;
+	bool close_steaming_requiered = 2;
+	string clientId = 3;	
+}
+///////////////////////////////////////////////////////////
