@@ -6,9 +6,14 @@ package ElaWirepas;
 import "Protos/Common/ElaCommon.proto";
 import "Protos/Wirepas/ElaWirepasCommon.proto";
 import "Protos/Wirepas/WirepasMessages.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
 
 // The service definition.
 service ElaWirepasPublicService {
+
+  // authentication functions
+  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // Wirepas flow management
 
