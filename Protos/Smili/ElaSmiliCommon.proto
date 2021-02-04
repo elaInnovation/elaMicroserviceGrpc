@@ -25,6 +25,16 @@ message ElaSmiliDataPacket {
 	ElaWirepas.ElaWirepasDataPacket wirepas_data = 2;
 	ElaBleDataPacket ble_data = 3;
 	ElaResultPacket result_packet = 4;
+	ElaSmiliError error = 5;
+}
+
+message ElaSmiliError{
+
+	ErrCode error_code = 1;
+
+    enum ErrCode{
+		NOTHINGTOFETCH = 0;
+	}
 }
 
 ///////////////////////////////////////////////////////////
@@ -196,10 +206,10 @@ message ElaBleNodeItem {
 }
 
 /*
- * \class Status
+ * \class SmiliStatus
  * \brief description of a status information message
  */
-message Status {
+message SmiliStatus {
 
 	string smili_user_id = 1;
 	string smili_service_id = 2;
