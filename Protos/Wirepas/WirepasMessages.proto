@@ -9,6 +9,8 @@ package ElaWirepas;
  * Generic Message definition
  */
 
+ import "Protos/Common/ElaCommon.proto";
+
 message GenericMessage {
     WirepasMessage wirepas = 1;
 }
@@ -48,6 +50,8 @@ message SendPacketReq {
     uint32 initial_delay_ms = 7;
     bool is_unack_csma_ca = 8;
     uint32 hop_limit = 9;
+
+    ElaCommon.ElaInputBaseRequest request = 10;
 }
 
 /*

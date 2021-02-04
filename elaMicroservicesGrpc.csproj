@@ -7,10 +7,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>ELA Innovation Software Team</Authors>
     <Copyright>Copyright ELA Innovation (c) 2019</Copyright>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -52,7 +52,7 @@
     <Content Remove="Images\**" />
     <Compile Remove="Images\**" />
     <EmbeddedResource Remove="Images\**" />
-    <None Include="Images\Icon-Ela.png">
+    <None Include="Images\150x150_round_picto_ela.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>  
@@ -60,7 +60,7 @@
   
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <PackageIcon>Icon-Ela.png</PackageIcon>
+    <PackageIcon>150x150_round_picto_ela.png</PackageIcon>
   </PropertyGroup>
    
 

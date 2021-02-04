@@ -31,6 +31,10 @@ service ElaBluetoothMasterPublicService {
   rpc GetJsonScannedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothMasterScanJsonResults) {}
   rpc StopBluetoothListening(ElaBluetoothMasterScanRequest) returns (ElaBluetoothMasterScanResult) {}
 
+  // bluetooth scanning streaming
+  rpc StartBluetoothDataFlow(ElaBluetoothMasterScanRequest) returns (stream ElaBluetoothMasterScanJsonResult) {}
+  rpc StopBluetoothDataFlow(ElaBluetoothMasterScanRequest) returns (ElaCommon.ElaError) {}
+
   // bluetooth otap microservice main functions
   rpc ConfigureTags(ElaBluetoothMasterConfigurationTagRequest) returns (ElaCommon.ElaError) {}
   rpc ConfigureServices(ElaBluetoothMasterConfigurationServiceRequest) returns (ElaCommon.ElaError) {}
@@ -96,6 +100,18 @@ message ElaBluetoothMasterScanJsonResults {
 	repeated string results = 3;
 	uint32 total_microservice_source = 4;
 	uint32 total_data_get = 5;
+}
+
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaBluetoothMasterScanJsonResult
+ * \brief ELA bluetooth Master scan result just expone one result in json format
+ */
+message ElaBluetoothMasterScanJsonResult {
+
+	string clientId = 1;
+	string jsonresult = 2;
+	bool closeStreamingRequest = 3;
 }
 
 ///////////////////////////////////////////////////////////
