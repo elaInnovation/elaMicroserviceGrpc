@@ -19,7 +19,7 @@
     <Folder Include="Protos\Authentication\" />
 	<Folder Include="Protos\Wirepas\" />
 	<Folder Include="Protos\Tagset\" />
-	  <Folder Include="Protos\Smili\" />
+     <Folder Include="Protos\Smili\" />
   </ItemGroup>
 
   <ItemGroup>

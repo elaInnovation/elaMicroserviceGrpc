@@ -52,12 +52,27 @@ message ElaSmiliRequest {
 	ElaSmiliConfigRequest smili_config_request = 5;
 	//ElaSmiliAdvertisementRequest smiliAdvertisementRequest = 6;   // manage advertisement request with BLE microservice
 	//ElaSmiliAuthenticationRequest authReq = 7;
+	ElaSmiliBluetoothRequest smili_bluetooth_request = 6;
 
 	enum ReqType{
 		DATA = 0;
 		RESULTS = 1;
 		CONFIG = 3; //!
 	}
+}
+
+
+message ElaSmiliBluetoothRequest{
+
+     	repeated SmiliScannerModel scanner_list = 1;
+}
+
+
+message SmiliScannerModel{
+
+     		string node_address = 1;
+	string host_name = 2;
+	string local_name = 3;
 }
 
 
