@@ -23,9 +23,8 @@ service ElaSmiliRequestService {
 message ElaSmiliDataPacket {
 	ElaSmiliRequest smili_request = 1;
 	ElaWirepas.ElaWirepasDataPacket wirepas_data = 2;
-	ElaBleDataPacket ble_data = 3;
-	ElaResultPacket result_packet = 4;
-	ElaSmiliError error = 5;
+	SmiliNodeModel node_packet = 3;
+	ElaSmiliError error = 4;
 }
 
 message ElaSmiliError{
@@ -48,31 +47,14 @@ message ElaSmiliRequest {
 	int32 smili_user_id = 2;
     ReqType smili_request_type = 3;    
 	
-	RequestDestination req_destination = 4;	
+	repeated RequestDestination destinations = 4;	
 	ElaSmiliConfigRequest smili_config_request = 5;
-	//ElaSmiliAdvertisementRequest smiliAdvertisementRequest = 6;   // manage advertisement request with BLE microservice
-	//ElaSmiliAuthenticationRequest authReq = 7;
-	ElaSmiliBluetoothRequest smili_bluetooth_request = 6;
 
 	enum ReqType{
 		DATA = 0;
 		RESULTS = 1;
 		CONFIG = 3; //!
 	}
-}
-
-
-message ElaSmiliBluetoothRequest{
-
-     	repeated SmiliScannerModel scanner_list = 1;
-}
-
-
-message SmiliScannerModel{
-
-     		string node_address = 1;
-	string host_name = 2;
-	string local_name = 3;
 }
 
 
@@ -86,7 +68,8 @@ message RequestDestination{
 		enum DestType{
 			SELF = 0; // data acquizition on the same device
 			MQTTBROKER = 1; // remote MQTT broker
-			SERVICE = 2;
+			BLUETOOTHMASTER = 2;
+			SERVICE = 3;
 		}
 
 }
@@ -99,7 +82,7 @@ message RequestDestination{
 message ElaSmiliConfigRequest {
        
 	int32 smili_project_id = 1;
-	repeated SmiliAnchorModel anchors_list = 2;
+	repeated SmiliNodeModel nodes_list = 2;
 	string cali_config_json = 3;
 	ReqStat request_status = 4;
 
@@ -111,47 +94,15 @@ message ElaSmiliConfigRequest {
 	}
 }
 
-message SmiliAnchorModel {
-    
-	uint32 node_address = 1;
-    double x_coordinate = 2;
-	double y_coordinate = 3;
-	double z_coordinate = 4;
-	string floor = 5;
-	string technology = 6;
-	string environment = 7;
-}
-
-
-///////////////////////////////////////////////////////////
-/*
- * \class ElaBleDataPacket
- * \brief interoperable ELA datapacket discription 
- */
-message ElaBleDataPacket {
-
-	string DataType = 1; // 
-
-	ElaBleSensorDataItem bleSensorData = 2;
-	ElaBleLocationDataItem bleLocData = 3;
-
-	uint32 VBat = 4;
-	string TimeStamp = 5;
-}
-
-message ElaBleSensorDataItem{
-
-}
-
 
 
 
 /*
- * \class ElaResultPacket
+ * \class SmiliNodeModel
  * \brief description of a smili result packet
  */  
 
-message ElaResultPacket {
+message SmiliNodeModel {
     
 	ElaSmiliNodeItem node_item = 1;
     double x_coordinate = 2;
@@ -161,6 +112,7 @@ message ElaResultPacket {
 	double battery = 6;
 	string sensor_value = 7;
 	string time_stamp = 8;
+	string environment = 9;
 }
 
 /*
@@ -169,56 +121,25 @@ message ElaResultPacket {
  */
 message ElaSmiliNodeItem {
 
-	uint32 node_address = 1;
+	string node_address = 1;
 	string local_name = 2;
     SmiliNodeType smili_node_type = 3;
 	SmiliTech smili_technology = 4;
+	string name2 = 5;
 
 	enum SmiliNodeType{
 		ANCHOR = 0;
 		TAG = 1;
-		UNKNOWN = 2;
+		UNKNOWNTYPE = 100;
 	}
 
 	enum SmiliTech{
 		WIREPAS = 0;
 		BLUETOOTH = 1;
+		UNKNOWNTECH = 100;
 	}
 }
 
-message ElaBleLocationDataItem {
-    
-	ElaBleNodeItem bleNode_item = 1;
-    repeated ElaBleNodeLocData ble_Loc_node_data = 2;
-}
-
-/*
- * \class ElaBleNodeLocData
- * \brief description of a location data for BLE node
- */  
-
-message ElaBleNodeLocData {
-    
-	uint32 node_address = 1;
-	int32 bleRssi = 2;
-}
-
-
-
-
-
-/*
- * \class ElaBleNodeItem
- * \brief description of a Ble node information item
- */
-message ElaBleNodeItem {
-
-	uint32 node_address = 1;
-	string node_role = 2;
-	string local_name = 3;
-    string node_type = 4;
-	//todo unique Ble data
-}
 
 /*
  * \class SmiliStatus
