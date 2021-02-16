@@ -7,10 +7,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>ELA Innovation Software Team</Authors>
     <Copyright>Copyright ELA Innovation (c) 2019</Copyright>
-    <AssemblyVersion>1.2.0.0</AssemblyVersion>
-    <FileVersion>1.2.0.0</FileVersion>
+    <AssemblyVersion>1.2.1.0</AssemblyVersion>
+    <FileVersion>1.2.1.0</FileVersion>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Google.Protobuf" Version="3.14.0" />
+	<PackageReference Include="Google.Protobuf" Version="3.10.0" />
 	<PackageReference Include="Grpc.Core" Version="2.26.0" />
 	<PackageReference Include="Grpc.Tools" Version="2.26.0">
 	  <PrivateAssets>all</PrivateAssets>
