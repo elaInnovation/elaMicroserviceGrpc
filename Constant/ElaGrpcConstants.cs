@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 /**
  * \namespace elaMicroservicesGrpc.Constant
@@ -55,9 +53,9 @@ namespace elaMicroservicesGrpc.Constant
          * \fn getVersion
          * \brief getter on the proto version
          */
-        public static String getVersion()
+        public static string GetVersion()
         {
-            return $"{VERSION_PROTO_MAJOR.ToString()}.{VERSION_PROTO_MINOR.ToString()}.{VERSION_PROTO_RELEASE.ToString()}";
+            return $"{VERSION_PROTO_MAJOR}.{VERSION_PROTO_MINOR}.{VERSION_PROTO_RELEASE}";
         }
     }
 }

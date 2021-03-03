@@ -9,11 +9,14 @@ import "Protos/Wirepas/ElaWirepasPublicAPI.proto";
 // SMILI requests service definition. handles all requests interoperability
 service ElaSmiliRequestService {
 
-  // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc.
+  // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc. and unary calls such as request to stop data/results flow
 	rpc GetResults(ElaSmiliDataPacket) returns (stream ElaSmiliDataPacket) {}  // request of results to epe returns stream of results
+	rpc StopResults(ElaSmiliDataPacket) returns (ElaSmiliError) {}  // request to stop results from epe returns ElaSmiliError with status
 	rpc GetData(ElaSmiliDataPacket) returns (stream ElaSmiliDataPacket) {} // request of raw data to handler services returns stream of raw data
+	rpc StopData(ElaSmiliDataPacket) returns (ElaSmiliError) {}  // request to stop data to epe returns ElaSmiliError with status
+	rpc UpdateConfigs(ElaSmiliRequest) returns (ElaSmiliError) {}  // request to update configurations to epe returns ElaSmiliError with status
+	rpc GetStatus(ElaSmiliRequest) returns (SmiliStatus) {}  // request to get Positioning Engine status
 }
-
 
 ///////////////////////////////////////////////////////////
 /*
@@ -32,7 +35,9 @@ message ElaSmiliError{
 	ErrCode error_code = 1;
 
     enum ErrCode{
-		NOTHINGTOFETCH = 0;
+	    OK = 0;
+		KO = 1;
+		NOTHINGTOFETCH = 2;
 	}
 }
 
@@ -54,6 +59,7 @@ message ElaSmiliRequest {
 		DATA = 0;
 		RESULTS = 1;
 		CONFIG = 3; //!
+		STATUS = 4;
 	}
 }
 
@@ -71,7 +77,6 @@ message RequestDestination{
 			BLUETOOTHMASTER = 2;
 			SERVICE = 3;
 		}
-
 }
 
 ///////////////////////////////////////////////////////////
@@ -105,11 +110,11 @@ message ElaSmiliConfigRequest {
 message SmiliNodeModel {
     
 	ElaSmiliNodeItem node_item = 1;
-    double x_coordinate = 2;
-	double y_coordinate = 3;
-	double z_coordinate = 4;
+    string x_coordinate = 2;
+	string y_coordinate = 3;
+	string z_coordinate = 4;
 	string floor = 5;
-	double battery = 6;
+	string battery = 6;
 	string sensor_value = 7;
 	string time_stamp = 8;
 	string environment = 9;
@@ -151,11 +156,10 @@ message SmiliStatus {
 	string smili_service_id = 2;
 	Stat smili_status_code = 3;
 	string smili_status_timestamp = 4;
-
+	repeated int32 projects_list = 5;
+	
 	enum Stat{
 	AVAILABLE = 0;
-	UNAVAILABLE = 1;
-	RESTARTED = 2;
-	STOPPED = 3;
+	NOCONFIGS = 1;
 	}
 }
