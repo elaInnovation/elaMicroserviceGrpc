@@ -69,28 +69,28 @@ message ElaWirepasRHT{
 }
 
 message ElaWirepasDI{
-    uint32 din_act_count =1;
-    uint32 din_deact_count =2;
+    uint32 din_act =1;
+    uint32 din_act_count =2;
 }
 
 message ElaWirepasDO{
-    uint32 dout_act_count =1;
-    uint32 dout_deact_count =2;
+    uint32 dout_act =1;
+    uint32 dout_act_count =2;
 }
 
 message ElaWirepasAT{
-    uint32 remov_cont =1;
-    uint32 non_remov_cont =2;
+    uint32 remov_detect =1;
+    uint32 remov_detect_count =2;
 }
 
 message ElaWirepasMAG{
-    uint32 mag_dect_cont =1;
-    uint32 mag_non_dect_cont =2;
+    uint32 mag_dectect =1;
+    uint32 mag_dectect_count =2;
 }
 
 message ElaWirepasMOV{
-    uint32 mov_dect_cont =1;
-    uint32 mov_non_dect_cont =2;
+    uint32 mov_dectect =1;
+    uint32 mov_dectect_count =2;
 }
 
 
