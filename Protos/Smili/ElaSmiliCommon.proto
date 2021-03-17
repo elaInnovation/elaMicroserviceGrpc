@@ -86,10 +86,11 @@ message RequestDestination{
  */
 message ElaSmiliConfigRequest {
        
-	int32 smili_project_id = 1;
+	ProjectItem smili_project_item = 1;
 	repeated SmiliNodeModel nodes_list = 2;
 	string cali_config_json = 3;
 	ReqStat request_status = 4;
+	string client_id = 5;
 
 	enum ReqStat{
 	NEW = 0; // new GUI instance with new configs
@@ -137,13 +138,16 @@ message ElaSmiliNodeItem {
 		TAG = 1;
 		UNKNOWNTYPE = 100;
 	}
+}
+
+
 
 	enum SmiliTech{
 		WIREPAS = 0;
 		BLUETOOTH = 1;
+		MULTITECH = 2;
 		UNKNOWNTECH = 100;
 	}
-}
 
 
 /*
@@ -156,10 +160,23 @@ message SmiliStatus {
 	string smili_service_id = 2;
 	Stat smili_status_code = 3;
 	string smili_status_timestamp = 4;
-	repeated int32 projects_list = 5;
+	repeated ProjectItem projects_list = 5;
 	
 	enum Stat{
 	AVAILABLE = 0;
 	NOCONFIGS = 1;
+	ONLINE = 2;
 	}
+}
+
+/*
+ * \class ProjectItem
+ * \brief description of a project data
+ */  
+
+message ProjectItem {
+    
+    int32 smili_project_id = 1;
+	string smili_project_name = 2;
+	SmiliTech smili_technology = 3;
 }
