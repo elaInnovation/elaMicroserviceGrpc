@@ -5,6 +5,7 @@ package ElaSmili;
 // import
 
 import "Protos/Wirepas/ElaWirepasPublicAPI.proto";
+import "Protos/Common/ElaCommon.proto";
 
 // SMILI requests service definition. handles all requests interoperability
 service ElaSmiliRequestService {
@@ -46,12 +47,10 @@ message ElaSmiliError{
  */
 message ElaSmiliRequest {
 
-    int32 smili_request_id = 1; 
-	int32 smili_user_id = 2;
-    ReqType smili_request_type = 3;    
-	
-	repeated RequestDestination destinations = 4;	
-	ElaSmiliConfigRequest smili_config_request = 5;
+	ElaCommon.ElaInputBaseRequest request = 1;
+    ReqType smili_request_type = 2;  
+	repeated RequestDestination destinations = 3;	
+	ElaSmiliConfigRequest smili_config_request = 4;
 
 	enum ReqType{
 		DATA = 0;
