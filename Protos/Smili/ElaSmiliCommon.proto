@@ -10,10 +10,8 @@ import "Protos/Wirepas/ElaWirepasPublicAPI.proto";
 service ElaSmiliRequestService {
 
   // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc. and unary calls such as request to stop data/results flow
-	rpc GetResults(ElaSmiliDataPacket) returns (stream ElaSmiliDataPacket) {}  // request of results to epe returns stream of results
-	rpc StopResults(ElaSmiliDataPacket) returns (ElaSmiliError) {}  // request to stop results from epe returns ElaSmiliError with status
-	rpc GetData(ElaSmiliDataPacket) returns (stream ElaSmiliDataPacket) {} // request of raw data to handler services returns stream of raw data
-	rpc StopData(ElaSmiliDataPacket) returns (ElaSmiliError) {}  // request to stop data to epe returns ElaSmiliError with status
+	rpc GetResults(ElaSmiliRequest) returns (stream ElaSmiliDataPacket) {}  // request of results to epe returns stream of results
+	rpc StopResults(ElaSmiliRequest) returns (ElaSmiliError) {}  // request to stop results from epe returns ElaSmiliError with status
 	rpc UpdateConfigs(ElaSmiliRequest) returns (ElaSmiliError) {}  // request to update configurations to epe returns ElaSmiliError with status
 	rpc GetStatus(ElaSmiliRequest) returns (SmiliStatus) {}  // request to get Positioning Engine status
 }
@@ -68,14 +66,17 @@ message RequestDestination{
 
      	string req_destination_adress = 1;
 	    int32 req_destination_port = 2;
-		DestType DestinationType=3;
+		string req_broker_adress = 3;
+	    int32 req_broker_port = 4;
+		DestType destination_type = 5;
 		
 
 		enum DestType{
 			SELF = 0; // data acquizition on the same device
 			MQTTBROKER = 1; // remote MQTT broker
 			BLUETOOTHMASTER = 2;
-			SERVICE = 3;
+			WIREPASBASE = 3;
+			SERVICE = 4;
 		}
 }
 
