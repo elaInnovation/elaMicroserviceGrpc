@@ -2,7 +2,6 @@
 
 // import
 import "Protos/Common/ElaCommon.proto";
-import "Protos/Authentication/ElaAuthenticationCommon.proto";
 import "Protos/Tagset/ElaTagsetCommon.proto";
 
 //option csharp_namespace = "elaTagsetPublicApiGrpc";

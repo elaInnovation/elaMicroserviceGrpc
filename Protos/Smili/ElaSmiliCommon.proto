@@ -5,7 +5,7 @@ package ElaSmili;
 // import
 
 import "Protos/Wirepas/ElaWirepasPublicAPI.proto";
-import "Protos/Authentication/ElaAuthenticationCommon.proto";
+import "Protos/Common/ElaCommon.proto";
 
 // SMILI requests service definition. handles all requests interoperability
 service ElaSmiliRequestService {
@@ -47,7 +47,7 @@ message ElaSmiliError{
  */
 message ElaSmiliRequest {
 
-	ElaAuthentication.ElaAuthenticationRequest authentication_request = 1;
+	ElaCommon.ElaInputBaseRequest request = 1;
     ReqType smili_request_type = 2;  
 	repeated RequestDestination destinations = 3;	
 	ElaSmiliConfigRequest smili_config_request = 4;
