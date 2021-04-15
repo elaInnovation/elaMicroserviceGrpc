@@ -142,12 +142,12 @@ message ElaSmiliNodeItem {
 
 
 
-	enum SmiliTech{
-		WIREPAS = 0;
-		BLUETOOTH = 1;
-		MULTITECH = 2;
-		UNKNOWNTECH = 100;
-	}
+enum SmiliTech{
+	WIREPAS = 0;
+	BLUETOOTH = 1;
+	MULTITECH = 2;
+	UNKNOWNTECH = 100;
+}
 
 
 /*
@@ -176,7 +176,9 @@ message SmiliStatus {
 
 message ProjectItem {
     
-    int32 smili_project_id = 1;
+    string smili_project_id = 1;
 	string smili_project_name = 2;
 	SmiliTech smili_technology = 3;
+	repeated SmiliNodeModel nodes = 4;
+	string owner_login = 5;
 }

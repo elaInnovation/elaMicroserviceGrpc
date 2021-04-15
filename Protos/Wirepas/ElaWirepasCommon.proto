@@ -12,6 +12,7 @@ message ElaWirepasNodeItem {
 	string node_role = 2;
 	string local_name = 3;
     string node_type = 4;
+	uint32 network_id = 5;
 }
 
 /*
