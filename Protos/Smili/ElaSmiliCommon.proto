@@ -24,9 +24,8 @@ service ElaSmiliRequestService {
  */
 message ElaSmiliDataPacket {
 	ElaSmiliRequest smili_request = 1;
-	ElaWirepas.ElaWirepasDataPacket wirepas_data = 2;
-	SmiliNodeModel node_packet = 3;
-	ElaSmiliError error = 4;
+	SmiliNodeModel node_packet = 2;
+	ElaSmiliError error = 3;
 }
 
 message ElaSmiliError{
