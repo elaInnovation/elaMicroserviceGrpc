@@ -53,7 +53,7 @@ message ElaWirepasDataRequest {
  */
 message ElaWirepasDataPacket {
 
-	string DataType = 1; // 
+	string last_updated_data_type = 1; // 
 
 	ElaWirepasSensorDataItem wirepasSensorData = 2;
 	ElaWirepasLocDataItem wirepasLocData = 3;
