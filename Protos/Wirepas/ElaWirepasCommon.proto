@@ -35,7 +35,8 @@ message ElaWirepasLocDataItem {
 message ElaWirepasNodeLocData {
     
 	uint32 node_address = 1;
-	int32 wpRssi = 2;
+    uint32 network_id = 2;
+	int32 rssi = 3;
 }
 
 /*
