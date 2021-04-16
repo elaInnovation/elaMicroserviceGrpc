@@ -9,9 +9,10 @@ package ElaCommon;
  */
 message ElaInputBaseRequest {
 
-	string clientId = 1;
-	string sessionId = 2;
-	string requestId = 3;
+	string client_id = 1;
+	string session_id = 2;
+	string request_id = 3;
+	string client_ip_address = 4;
 }
 
 ///////////////////////////////////////////////////////////
