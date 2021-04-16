@@ -28,11 +28,11 @@ message ElaSmiliDataPacket {
 	ElaSmiliError error = 3;
 }
 
-message ElaSmiliError{
+message ElaSmiliError {
 
 	ErrCode error_code = 1;
 
-    enum ErrCode{
+    enum ErrCode {
 	    OK = 0;
 		KO = 1;
 		NOTHINGTOFETCH = 2;
@@ -48,34 +48,14 @@ message ElaSmiliRequest {
 
 	ElaCommon.ElaInputBaseRequest request = 1;
     ReqType smili_request_type = 2;  
-	repeated RequestDestination destinations = 3;	
-	ElaSmiliConfigRequest smili_config_request = 4;
+	ElaSmiliConfigRequest smili_config_request = 3;
 
-	enum ReqType{
+	enum ReqType {
 		DATA = 0;
 		RESULTS = 1;
 		CONFIG = 3; //!
 		STATUS = 4;
 	}
-}
-
-
-message RequestDestination{
-
-     	string req_destination_adress = 1;
-	    int32 req_destination_port = 2;
-		string req_broker_adress = 3;
-	    int32 req_broker_port = 4;
-		DestType destination_type = 5;
-		
-
-		enum DestType{
-			SELF = 0; // data acquizition on the same device
-			MQTTBROKER = 1; // remote MQTT broker
-			BLUETOOTHMASTER = 2;
-			WIREPASBASE = 3;
-			SERVICE = 4;
-		}
 }
 
 ///////////////////////////////////////////////////////////
@@ -86,16 +66,14 @@ message RequestDestination{
 message ElaSmiliConfigRequest {
        
 	ProjectItem smili_project_item = 1;
-	repeated SmiliNodeModel nodes_list = 2;
-	string cali_config_json = 3;
-	ReqStat request_status = 4;
-	string client_id = 5;
+	string cali_config_json = 2;
+	ReqStat request_status = 3;
 
-	enum ReqStat{
-	NEW = 0; // new GUI instance with new configs
-	REFRESH = 1; // 
-	FETCH = 2;
-	UPDATE = 3;
+	enum ReqStat {
+		NEW = 0; // new GUI instance with new configs
+		REFRESH = 1; // 
+		FETCH = 2;
+		UPDATE = 3;
 	}
 }
 
@@ -126,13 +104,14 @@ message SmiliNodeModel {
  */
 message ElaSmiliNodeItem {
 
-	string node_address = 1;
+	string id = 1; // MAC address for bluetooth, node address for Wirepas
 	string local_name = 2;
     SmiliNodeType smili_node_type = 3;
 	SmiliTech smili_technology = 4;
-	string name2 = 5;
+	string host_name = 5; //for ble base anchor
+	uint32 network_id = 6;
 
-	enum SmiliNodeType{
+	enum SmiliNodeType {
 		ANCHOR = 0;
 		TAG = 1;
 		UNKNOWNTYPE = 100;
@@ -141,7 +120,7 @@ message ElaSmiliNodeItem {
 
 
 
-enum SmiliTech{
+enum SmiliTech {
 	WIREPAS = 0;
 	BLUETOOTH = 1;
 	MULTITECH = 2;
@@ -173,11 +152,27 @@ message SmiliStatus {
  * \brief description of a project data
  */  
 
-message ProjectItem {
-    
+message ProjectItem {   
     string smili_project_id = 1;
 	string smili_project_name = 2;
 	SmiliTech smili_technology = 3;
 	repeated SmiliNodeModel nodes = 4;
-	string owner_login = 5;
+	repeated RequestDestination destinations = 5;
+	string owner_login = 6;
+}
+
+message RequestDestination {
+
+    string req_destination_adress = 1;
+	int32 req_destination_port = 2;
+	string req_broker_adress = 3;
+	int32 req_broker_port = 4;
+	DestType destination_type = 5;	
+
+	enum DestType {
+		SELF = 0; // data acquizition on the same device
+		BLUETOOTHMASTER = 1;
+		WIREPASBASE = 2;
+		SERVICE = 3;
+	}
 }
