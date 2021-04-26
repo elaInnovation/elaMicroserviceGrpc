@@ -68,6 +68,7 @@ message ElaSmiliConfigRequest {
 	ProjectItem smili_project_item = 1;
 	string cali_config_json = 2;
 	ReqStat request_status = 3;
+	string ertls_project_json = 4;
 
 	enum ReqStat {
 		NEW = 0; // new GUI instance with new configs
