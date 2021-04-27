@@ -140,6 +140,7 @@ message SmiliStatus {
 	Stat smili_status_code = 3;
 	string smili_status_timestamp = 4;
 	repeated ProjectItem projects_list = 5;
+	repeated string ertls_project_json_list = 6;
 	
 	enum Stat{
 	AVAILABLE = 0;
