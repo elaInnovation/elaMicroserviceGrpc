@@ -6,37 +6,29 @@ package ElaSmili;
 
 import "Protos/Wirepas/ElaWirepasPublicAPI.proto";
 import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
 
 // SMILI requests service definition. handles all requests interoperability
 service ElaSmiliRequestService {
+	rpc Connect (ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+	rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
-  // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc. and unary calls such as request to stop data/results flow
+    // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc. and unary calls such as request to stop data/results flow
 	rpc GetResults(ElaSmiliRequest) returns (stream ElaSmiliDataPacket) {}  // request of results to epe returns stream of results
-	rpc StopResults(ElaSmiliRequest) returns (ElaSmiliError) {}  // request to stop results from epe returns ElaSmiliError with status
-	rpc UpdateConfigs(ElaSmiliRequest) returns (ElaSmiliError) {}  // request to update configurations to epe returns ElaSmiliError with status
-	rpc GetStatus(ElaSmiliRequest) returns (SmiliStatus) {}  // request to get Positioning Engine status
+	rpc StopResults(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}  // request to stop results from epe returns ElaError with status
+	rpc UpdateConfigs(ElaSmiliRequest) returns (ElaCommon.ElaError) {}  // request to update configurations to epe returns ElaError with status
+	rpc GetStatus(ElaSmiliStatusRequest) returns (SmiliStatus) {}  // request to get Positioning Engine status
 }
 
 ///////////////////////////////////////////////////////////
 /*
  * \class ElaSmiliDataPacket
- * \brief interoperable SMILI datapacket discription 
+ * \brief interoperable SMILI datapacket description 
  */
 message ElaSmiliDataPacket {
 	ElaSmiliRequest smili_request = 1;
 	SmiliNodeModel node_packet = 2;
-	ElaSmiliError error = 3;
-}
-
-message ElaSmiliError {
-
-	ErrCode error_code = 1;
-
-    enum ErrCode {
-	    OK = 0;
-		KO = 1;
-		NOTHINGTOFETCH = 2;
-	}
+	ElaCommon.ElaError error = 3;
 }
 
 ///////////////////////////////////////////////////////////
@@ -49,13 +41,13 @@ message ElaSmiliRequest {
 	ElaCommon.ElaInputBaseRequest request = 1;
     ReqType smili_request_type = 2;  
 	ElaSmiliConfigRequest smili_config_request = 3;
+}
 
-	enum ReqType {
+enum ReqType {
 		DATA = 0;
 		RESULTS = 1;
 		CONFIG = 3; //!
 		STATUS = 4;
-	}
 }
 
 ///////////////////////////////////////////////////////////
@@ -78,7 +70,15 @@ message ElaSmiliConfigRequest {
 	}
 }
 
-
+/*
+ * \class ElaSmiliStatusRequest
+ * \brief SMILI request description 
+ */
+message ElaSmiliStatusRequest {
+       
+	string user_login = 1;
+	ReqType smili_request_type = 2;  
+}
 
 
 /*
@@ -141,6 +141,7 @@ message SmiliStatus {
 	string smili_status_timestamp = 4;
 	repeated ProjectItem projects_list = 5;
 	repeated string ertls_project_json_list = 6;
+	ElaCommon.ElaError ela_error = 7;
 	
 	enum Stat{
 	AVAILABLE = 0;
