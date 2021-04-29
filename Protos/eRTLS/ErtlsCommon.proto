@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-package ElaSmili;
+package Ertls;
 
 // import
 
@@ -8,38 +8,38 @@ import "Protos/Wirepas/ElaWirepasPublicAPI.proto";
 import "Protos/Common/ElaCommon.proto";
 import "Protos/Authentication/ElaAuthenticationCommon.proto";
 
-// SMILI requests service definition. handles all requests interoperability
-service ElaSmiliRequestService {
+// eRTLS requests service definition. handles all requests interoperability
+service ErtlsRequestService {
 	rpc Connect (ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
 	rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
     // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc. and unary calls such as request to stop data/results flow
-	rpc GetResults(ElaSmiliRequest) returns (stream ElaSmiliDataPacket) {}  // request of results to epe returns stream of results
+	rpc GetResults(ErtlsRequest) returns (stream ErtlsDataPacket) {}  // request of results to epe returns stream of results
 	rpc StopResults(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}  // request to stop results from epe returns ElaError with status
-	rpc UpdateConfigs(ElaSmiliRequest) returns (ElaCommon.ElaError) {}  // request to update configurations to epe returns ElaError with status
-	rpc GetStatus(ElaSmiliStatusRequest) returns (SmiliStatus) {}  // request to get Positioning Engine status
+	rpc UpdateConfigs(ErtlsRequest) returns (ElaCommon.ElaError) {}  // request to update configurations to epe returns ElaError with status
+	rpc GetStatus(ErtlsStatusRequest) returns (ErtlsStatus) {}  // request to get Positioning Engine status
 }
 
 ///////////////////////////////////////////////////////////
 /*
- * \class ElaSmiliDataPacket
- * \brief interoperable SMILI datapacket description 
+ * \class ErtlsDataPacket
+ * \brief interoperable eRTLS datapacket description 
  */
-message ElaSmiliDataPacket {
-	SmiliNodeModel node_packet = 1;
+message ErtlsDataPacket {
+	ErtlsNodeModel node_packet = 1;
 	ElaCommon.ElaError error = 2;
 }
 
 ///////////////////////////////////////////////////////////
 /*
- * \class ElaSmiliRequest
- * \brief SMILI request discription 
+ * \class ErtlsRequest
+ * \brief eRTLS request discription 
  */
-message ElaSmiliRequest {
+message ErtlsRequest {
 
 	ElaCommon.ElaInputBaseRequest request = 1;
-    ReqType smili_request_type = 2;  
-	ElaSmiliConfigRequest smili_config_request = 3;
+    ReqType ertls_request_type = 2;  
+	ErtlsConfigRequest ertls_config_request = 3;
 }
 
 enum ReqType {
@@ -51,10 +51,10 @@ enum ReqType {
 
 ///////////////////////////////////////////////////////////
 /*
- * \class ElaSmiliConfigRequest
- * \brief SMILI request discription 
+ * \class ErtlsConfigRequest
+ * \brief ERTLS request discription 
  */
-message ElaSmiliConfigRequest {
+message ErtlsConfigRequest {
 	string cali_config_json = 1;
 	ReqStat request_status = 2;
 	string ertls_project_json = 3;
@@ -68,24 +68,24 @@ message ElaSmiliConfigRequest {
 }
 
 /*
- * \class ElaSmiliStatusRequest
- * \brief SMILI request description 
+ * \class ErtlsStatusRequest
+ * \brief eRTLS request description 
  */
-message ElaSmiliStatusRequest {
+message ErtlsStatusRequest {
        
 	string user_login = 1;
-	ReqType smili_request_type = 2;  
+	ReqType ertls_request_type = 2;  
 }
 
 
 /*
- * \class SmiliNodeModel
- * \brief description of a smili result packet
+ * \class ErtlsNodeModel
+ * \brief description of a eRTLS result packet
  */  
 
-message SmiliNodeModel {
+message ErtlsNodeModel {
     
-	ElaSmiliNodeItem node_item = 1;
+	ErtlsNodeItem node_item = 1;
     string x_coordinate = 2;
 	string y_coordinate = 3;
 	string z_coordinate = 4;
@@ -97,19 +97,19 @@ message SmiliNodeModel {
 }
 
 /*
- * \class ElaSmiliNodeItem
+ * \class ErtlsNodeItem
  * \brief description of a node information item
  */
-message ElaSmiliNodeItem {
+message ErtlsNodeItem {
 
 	string id = 1; // MAC address for bluetooth, node address for Wirepas
 	string local_name = 2;
-    SmiliNodeType smili_node_type = 3;
-	SmiliTech smili_technology = 4;
+    ErtlsNodeType ertls_node_type = 3;
+	ErtlsTech ertls_technology = 4;
 	string host_name = 5; //for ble base anchor
 	uint32 network_id = 6;
 
-	enum SmiliNodeType {
+	enum ErtlsNodeType {
 		ANCHOR = 0;
 		TAG = 1;
 		UNKNOWNTYPE = 100;
@@ -118,7 +118,7 @@ message ElaSmiliNodeItem {
 
 
 
-enum SmiliTech {
+enum ErtlsTech {
 	WIREPAS = 0;
 	BLUETOOTH = 1;
 	MULTITECH = 2;
@@ -127,15 +127,15 @@ enum SmiliTech {
 
 
 /*
- * \class SmiliStatus
+ * \class ErtlsStatus
  * \brief description of a status information message
  */
-message SmiliStatus {
+message ErtlsStatus {
 
-	string smili_user_id = 1;
-	string smili_service_id = 2;
-	Stat smili_status_code = 3;
-	string smili_status_timestamp = 4;
+	string ertls_user_id = 1;
+	string ertls_service_id = 2;
+	Stat ertls_status_code = 3;
+	string ertls_status_timestamp = 4;
 	repeated string ertls_project_json_list = 5;
 	ElaCommon.ElaError ela_error = 6;
 	

@@ -19,7 +19,6 @@
     <Folder Include="Protos\Authentication\" />
 	<Folder Include="Protos\Wirepas\" />
 	<Folder Include="Protos\Tagset\" />
-     <Folder Include="Protos\Smili\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,7 +44,7 @@
 	  <Protobuf Include="Protos\Wirepas\ElaWirepasConfigAPI.proto" />
 	  <Protobuf Include="Protos\Tagset\ElaTagsetCommon.proto" />
 	  <Protobuf Include="Protos\Tagset\ElaTagsetPublicAPI.proto" />
-	  <Protobuf Include="Protos\Smili\ElaSmiliCommon.proto" />
+	  <Protobuf Include="Protos\eRTLS\ErtlsCommon.proto" />
   </ItemGroup>
 
   <ItemGroup>
