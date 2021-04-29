@@ -26,9 +26,8 @@ service ElaSmiliRequestService {
  * \brief interoperable SMILI datapacket description 
  */
 message ElaSmiliDataPacket {
-	ElaSmiliRequest smili_request = 1;
-	SmiliNodeModel node_packet = 2;
-	ElaCommon.ElaError error = 3;
+	SmiliNodeModel node_packet = 1;
+	ElaCommon.ElaError error = 2;
 }
 
 ///////////////////////////////////////////////////////////
@@ -44,10 +43,10 @@ message ElaSmiliRequest {
 }
 
 enum ReqType {
-		DATA = 0;
-		RESULTS = 1;
-		CONFIG = 3; //!
-		STATUS = 4;
+	DATA = 0;
+	RESULTS = 1;
+	CONFIG = 3; //!
+	STATUS = 4;
 }
 
 ///////////////////////////////////////////////////////////
@@ -56,11 +55,9 @@ enum ReqType {
  * \brief SMILI request discription 
  */
 message ElaSmiliConfigRequest {
-       
-	ProjectItem smili_project_item = 1;
-	string cali_config_json = 2;
-	ReqStat request_status = 3;
-	string ertls_project_json = 4;
+	string cali_config_json = 1;
+	ReqStat request_status = 2;
+	string ertls_project_json = 3;
 
 	enum ReqStat {
 		NEW = 0; // new GUI instance with new configs
@@ -139,43 +136,12 @@ message SmiliStatus {
 	string smili_service_id = 2;
 	Stat smili_status_code = 3;
 	string smili_status_timestamp = 4;
-	repeated ProjectItem projects_list = 5;
-	repeated string ertls_project_json_list = 6;
-	ElaCommon.ElaError ela_error = 7;
+	repeated string ertls_project_json_list = 5;
+	ElaCommon.ElaError ela_error = 6;
 	
 	enum Stat{
 	AVAILABLE = 0;
 	NOCONFIGS = 1;
 	ONLINE = 2;
-	}
-}
-
-/*
- * \class ProjectItem
- * \brief description of a project data
- */  
-
-message ProjectItem {   
-    string smili_project_id = 1;
-	string smili_project_name = 2;
-	SmiliTech smili_technology = 3;
-	repeated SmiliNodeModel nodes = 4;
-	repeated RequestDestination destinations = 5;
-	string owner_login = 6;
-}
-
-message RequestDestination {
-
-    string req_destination_adress = 1;
-	int32 req_destination_port = 2;
-	string req_broker_adress = 3;
-	int32 req_broker_port = 4;
-	DestType destination_type = 5;	
-
-	enum DestType {
-		SELF = 0; // data acquizition on the same device
-		BLUETOOTHMASTER = 1;
-		WIREPASBASE = 2;
-		SERVICE = 3;
 	}
 }
