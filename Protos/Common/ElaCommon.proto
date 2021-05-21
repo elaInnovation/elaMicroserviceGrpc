@@ -129,3 +129,14 @@ message ElaCloseStreamingRequest {
 	string clientId = 3;	
 }
 ///////////////////////////////////////////////////////////
+/**
+ * \class ElaConfigurationRequest
+ * \brief configuration request to redefinee the authentication module 
+ */
+message ElaConfigurationRequest {
+
+	ElaInputBaseRequest request = 1;
+	string hostname = 2;
+	uint32 port = 3;
+}
+///////////////////////////////////////////////////////////
