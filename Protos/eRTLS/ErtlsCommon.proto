@@ -26,7 +26,7 @@ service ErtlsRequestService {
  * \brief interoperable eRTLS datapacket description 
  */
 message ErtlsDataPacket {
-	ErtlsNodeModel node_packet = 1;
+	string node_json = 1;
 	ElaCommon.ElaError error = 2;
 }
 
@@ -78,51 +78,17 @@ message ErtlsStatusRequest {
 }
 
 
-/*
- * \class ErtlsNodeModel
- * \brief description of a eRTLS result packet
- */  
-
-message ErtlsNodeModel {
-    
-	ErtlsNodeItem node_item = 1;
-    string x_coordinate = 2;
-	string y_coordinate = 3;
-	string z_coordinate = 4;
-	string floor = 5;
-	string battery = 6;
-	string sensor_value = 7;
-	string time_stamp = 8;
-	string environment = 9;
+enum ErtlsNodeType {
+	ANCHOR = 0;
+	TAG = 1;
+	UNKNOWNTYPE = 100;
 }
-
-/*
- * \class ErtlsNodeItem
- * \brief description of a node information item
- */
-message ErtlsNodeItem {
-
-	string id = 1; // MAC address for bluetooth, node address for Wirepas
-	string local_name = 2;
-    ErtlsNodeType ertls_node_type = 3;
-	ErtlsTech ertls_technology = 4;
-	string host_name = 5; //for ble base anchor
-	uint32 network_id = 6;
-
-	enum ErtlsNodeType {
-		ANCHOR = 0;
-		TAG = 1;
-		UNKNOWNTYPE = 100;
-	}
-}
-
 
 
 enum ErtlsTech {
 	WIREPAS = 0;
 	BLUETOOTH = 1;
 	MULTITECH = 2;
-	UNKNOWNTECH = 100;
 }
 
 
