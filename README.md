@@ -5,7 +5,7 @@ To find all the information about gRPC, you can go directly to the official webs
 
 So, you will find more detail about what you can find in this repository by clicking on the following link and navigate through the different documentation. 
 - [Description](#description)
-- [Publics API](#public-api)
+- [API](#api)
     - [Bluetooth](#bluetooth)
     - [Wirepas](#wirepas)
 
@@ -29,7 +29,7 @@ If you are familiar with Microsoft technologies, you can clone the repository an
 | Bluetooth Master | 50054 |
 | EPE | 50055 |
 
-## Publics API
+## API
 So for each service, we can talk about their public API and where you can find them. As we said, we used the **proto** file which describe the main interface and the common object used to exchange informations between server and clients. For more information about our service and what ELA provide, you can find more information [here](https://github.com/elaInnovation/ELA-Microservices/blob/master/README.md) in the main service presentation.
 
 You can install it using [docker][here_docker], all information are provided in the previous link.
