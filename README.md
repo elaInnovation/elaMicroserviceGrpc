@@ -6,8 +6,8 @@ To find all the information about gRPC, you can go directly to the official webs
 So, you will find more detail about what you can find in this repository by clicking on the following link and navigate through the different documentation. 
 - [Description](#description)
 - [Publics API](#public-api)
-    -[Bluetooth](#bluetooth)
-    -[Wirepas](#wirepas)
+    - [Bluetooth](#bluetooth)
+    - [Wirepas](#wirepas)
 
 ## Description
 So this repository contains the declaration of different API to code our applications. You will find here the declaration for the followig services. Some are public and we will provide more details there and some are not (unfortunately you will find no more documentation):
