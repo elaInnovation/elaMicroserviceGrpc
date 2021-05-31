@@ -10,6 +10,7 @@ To find all the information about gRPC, you can go directly to the official webs
     - [SendElaBluetoothCommand](#sendelabluetoothcommand)
     - [Authenticate](#authenticate)
 - [Objects](#objects)
+    - [ElaBluetoothScanningRequest](#elabluetoothscanningrequest)
 
 ## Functions
 The different function provided for the current interface are the one describe in the **proto** summary just below.
@@ -46,7 +47,7 @@ You will find the associted proto file [here](https://github.com/elaInnovation/e
     - ***Information*** : [ElaBluetoothScanningRequest](#elabluetoothscanningrequest)
 - **Output** ElaCommon.ElaError : 
     - ***Description*** : Generic error for the ELA Microservices
-    - ***Information*** : 
+    - ***Information*** : ElaError
 
 ## GetScannedDevices
 ```proto
