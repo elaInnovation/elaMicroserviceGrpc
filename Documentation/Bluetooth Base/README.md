@@ -47,7 +47,7 @@ You will find the associted proto file [here](https://github.com/elaInnovation/e
     - ***Information*** : [ElaBluetoothScanningRequest](#elabluetoothscanningrequest)
 - **Output** ElaCommon.ElaError : 
     - ***Description*** : Generic error for the ELA Microservices
-    - ***Information*** : ElaError
+    - ***Information*** : [ElaError](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elaerror)
 
 ## GetScannedDevices
 ```proto
