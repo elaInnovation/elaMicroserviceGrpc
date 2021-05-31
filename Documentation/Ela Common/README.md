@@ -8,7 +8,7 @@ You will find the description here for the following objects
 - [ElaInputBaseRequest](#elainputbaserequest)
 - [ElaError](#elaerror)
 
-### ElaError
+### ElaInputBaseRequest
 ```proto
 message ElaInputBaseRequest {
 
