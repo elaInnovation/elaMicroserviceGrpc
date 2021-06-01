@@ -63,7 +63,7 @@ message ElaUserRight {
 	string feature = 1;
 	uint32 enrolled_instances = 2;
 	uint32 maximum_instances = 3;
-	string expiration_date = 4;
+	int64 expiration_date = 4;
 }
 
 ///////////////////////////////////////////////////////////
