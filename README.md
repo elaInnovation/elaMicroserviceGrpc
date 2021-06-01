@@ -66,6 +66,8 @@ service ElaBluetoothPublicService {
 }
 ```
 
+The complete description of the **Bluetooth Base API** is available [here](#https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Bluetooth%20Base/README.md). 
+
 ### Wirepas 
 For the **Wirepas Base** the main description is declared in the **ElaWirepasPublicAPI.proto** file that you can reach [here](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Protos/Bluetooth/ElaBluetoothPublicAPI.proto). You can find a description for this service [here](https://github.com/elaInnovation/ELA-Microservices/blob/master/Documentation/Wirepas%20Base/README.md) where we try to summarize all the functionnalities available for the **Wirepas Base** Microservice.
 
