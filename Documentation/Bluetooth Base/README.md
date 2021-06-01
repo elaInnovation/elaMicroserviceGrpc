@@ -51,8 +51,18 @@ You will find the associted proto file [here](https://github.com/elaInnovation/e
 
 ## GetScannedDevices
 ```proto
-  rpc StartBluetoothListening(ElaBluetoothScanningRequest) returns (ElaCommon.ElaError) {}
+  rpc GetScannedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothScanResults) {}
 ```
+
+**Brief** : This function allow you to get the scanned device using the associated object. To get the object, you need to call previously the **StartBluetoothListening** function. If the service is not in Scanning state, you won't have results.
+
+### parameters
+- **Input** ElaInputBaseRequest :
+    - ***Description*** : Ela Input Base Request
+    - ***Information*** : 
+- **Output** ElaBluetoothScanResults : 
+    - ***Description*** : Object containing all the results
+    - ***Information*** : 
 
 ## StopBluetoothListening
 ```proto
@@ -87,6 +97,17 @@ message ElaBluetoothScanningRequest {
 | filter | ElaBluetoothFilter | Bluetooth filter object to define a specific filter for your Bluetooth Scanner | Optionnal |
 | define_scan_time | bool | Define or not a specific time to scan, associated to **scan_time_seconds** | Optionnal |
 | scan_time_seconds | uint32 | Target scan time, associated to the **define_scan_time** variable to define a time scan in seconds | Optionnal |
+
+### ElaBluetoothScanningRequest
+```proto
+message ElaBluetoothScanningRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaBluetoothFilter filter = 2;
+	bool define_scan_time = 3;
+	uint32 scan_time_seconds = 4;
+}
+```
 
 [here_grpc]: https://grpc.io
 
