@@ -32,10 +32,10 @@ message ElaBluetoothScanResults {
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
 | error | ElaError | Common error returned by a ELA Microservice | Always Present |
-| current_filter_info | ElaBluetoothFilter | Bluetooth Filter description associated for the current scan | Always Present |
+| current_filter_info | [ElaBluetoothFilter](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Bluetooth%20Common/README.md#elabluetoothfilter) | Bluetooth Filter description associated for the current scan | Always Present |
 | total_scanned_items_counter | uint32 | Total number of scanned devices till the start bluetooth scan | Always Present |
 | last_scanned_items_counter | uint32 | Current number of devices scanned | Always Present |
-| scanned | ElaBluetoothScanResultList | Reseved | Always Present |
+| scanned | [ElaBluetoothScanResultList](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Bluetooth%20Common/README.md#elabluetoothscanresultlist) | Reseved | Always Present |
 
 ### ElaBluetoothFilter
 **Brief** : This class describe the content and function allowed to filter devices during a bluetooth scan.
@@ -67,7 +67,7 @@ message ElaBluetoothFilter {
 | filter_white_list | string array | Reserved | Optionnal |
 | filter_maximum_rssi | int32 | Define the maximum of rssi | Optionnal |
 | filter_only_manufacturer_id | bool | Only device with the ELA Manufacturer Id (0x0757) | Optionnal |
-| filter_only_connectable | Reserced | Reseved | Optionnal |
+| filter_only_connectable | bool | Reseved | Optionnal |
 | filter_type | FilterType | Enumeration associated to the type of filter defined | Optionnal |
 
 ### ElaBluetoothScanResultList
@@ -86,7 +86,7 @@ message ElaBluetoothScanResultList {
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
 | clientId | string | identifiant of the client id from where the devices are comming | Optionnal |
-| results | ElaBluetoothScanResultItem array | List of ElaBluetoothScanResultItem containing each devices | Optionnal |
+| results | [ElaBluetoothScanResultItem](https://github.com/elaInnovation/elaMicroserviceGrpc/edit/master/Documentation/Bluetooth%20Common/README.md#elabluetoothscanresultitem) array | List of ElaBluetoothScanResultItem containing each devices | Optionnal |
 
 ### ElaBluetoothScanResultItem
 **Brief** : This class describe all the parameters available for a scanned device.
