@@ -22,68 +22,6 @@ service ElaAuthenticationPublicService {
 	rpc GetUsers(ElaManagerUserRequest) returns (ElaAuthenticationUserList) {}
 	rpc UpdateUser(ElaManagerUserRequest) returns (ElaCommon.ElaError) {}
 	rpc DeleteUser(ElaManagerUserRequest) returns (ElaCommon.ElaError) {}
-
-	// main licence management function
-	rpc LoadLicence(ElaCommon.ElaLicenceRequest) returns (ElaCommon.ElaError) {}
-	rpc RevokeLicence(ElaCommon.ElaLicenceRequest) returns (ElaCommon.ElaError) {}
-	rpc CheckUserRights(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}
-	rpc EnrollInstance(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}	
-	rpc GetEnrolledInstance(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}	
-	rpc ReleasedEnrolledInstance(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}	
-	//
-	// RFU to see for the next updates
-	// rpc CypherToken(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}	
-	// rpc UncypherToken(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}	
-}
-
-///////////////////////////////////////////////////////////
-/**
- * \class ElaLicenceRequest
- * \brief request to manage the licence operation into the module 
- */
-message ElaLicenceRequest {
-
-	ElaCommon.ElaInputBaseRequest request = 1;
-	repeated string datas = 2;
-	repeated string signs = 3;
-}
-
-///////////////////////////////////////////////////////////
-/**
- * \class ElaUserRight
- * \brief object associated to an user right
- */
-message ElaUserRight {
-
-	string feature = 1;
-	uint32 entrolled_instances = 2;
-	uint32 maximum_instances = 3;
-	string expiration_date = 4;
-}
-
-///////////////////////////////////////////////////////////
-/**
- * \class ElaUserRightsRequest
- * \brief request the access to the user rights
- */
-message ElaUserRightsRequest {
-
-	ElaCommon.ElaInputBaseRequest request = 1;
-	string user = 2;
-	string feature = 3;
-}
-
-///////////////////////////////////////////////////////////
-/**
- * \class ElaUserRightsResponse
- * \brief response to handle data from 
- */
-messafe ElaUserRightsResponse {
-
-	ElaCommon.ElaError error = 1;
-	ElaUserRightsRequest request = 2;
-	bool isAllowed = 3;
-	repeated ElaUserRight rights = 4;
 }
 
 ///////////////////////////////////////////////////////////
