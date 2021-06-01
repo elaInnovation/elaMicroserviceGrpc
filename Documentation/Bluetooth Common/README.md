@@ -6,7 +6,7 @@ To find all the information about gRPC, you can go directly to the official webs
 ## Objects
 You will find the description here for the following objects
 - [ElaBluetoothScanResults](#elabluetoothscanresults)
-- [ElaBluetoothFilter](#bluetoothfilter)
+- [ElaBluetoothFilter](#elabluetoothfilter)
 - [ElaBluetoothScanResultList](#elabluetoothscanresultlist)
 - [ElaBluetoothScanResultItem](#elabluetoothscanresultitem)
 
