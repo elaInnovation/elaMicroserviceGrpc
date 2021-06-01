@@ -9,6 +9,9 @@ You will find the description here for the following objects
 - [ElaError](#elaerror)
 
 ### ElaInputBaseRequest
+**Brief** : This object is the base of all request and contains params wich allow you to identify your request, your client or to notify through session Id is you are allowed to talk with the microservices.
+
+**Declaration** 
 ```proto
 message ElaInputBaseRequest {
 
@@ -19,6 +22,7 @@ message ElaInputBaseRequest {
 }
 ````
 
+**Information**
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
 | client_id | string | Identifiant defined by user to specify to which client is associated the request | Mandatory |
@@ -28,6 +32,9 @@ message ElaInputBaseRequest {
 
 
 ### ElaError
+**Brief** : This object is the common error associated to a response provided by a service.
+
+**Declaration** 
 ```proto
 message ElaError {
 
@@ -39,6 +46,7 @@ message ElaError {
 }
 ````
 
+**Information**
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
 | error | uint32 | Returned error code associated to the service (no Error is 0). For the other errors, you can report to the specific description | Always present |

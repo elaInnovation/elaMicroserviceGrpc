@@ -11,6 +11,7 @@ To find all the information about gRPC, you can go directly to the official webs
     - [Authenticate](#authenticate)
 - [Objects](#objects)
     - [ElaBluetoothScanningRequest](#elabluetoothscanningrequest)
+    - [ElaBluetoothConnectRequest](#elabluetoothconnectrequest)
 
 ## Functions
 The different function provided for the current interface are the one describe in the **proto** summary just below.
@@ -59,20 +60,40 @@ You will find the associted proto file [here](https://github.com/elaInnovation/e
 ### parameters
 - **Input** ElaInputBaseRequest :
     - ***Description*** : Ela Input Base Request
-    - ***Information*** : 
+    - ***Information*** : [ElaInputBaseRequest](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elainputbaserequest)
 - **Output** ElaBluetoothScanResults : 
     - ***Description*** : Object containing all the results
-    - ***Information*** : 
+    - ***Information*** : [ElaBluetoothScanResults](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Bluetooth%20Common/README.md#elabluetoothscanresults)
 
 ## StopBluetoothListening
 ```proto
-  rpc StartBluetoothListening(ElaBluetoothScanningRequest) returns (ElaCommon.ElaError) {}
+  rpc StopBluetoothListening(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 ```
+
+**Brief** : This function stop the bluetooth scanner for the **Bluetooth Base Microservice**. The scan stop and the microservice state switch in ***Pending*** mode. All the information relative to the **Bluetooth Base** are available [here][here_bluetooth_information].
+
+### parameters
+- **Input** ElaInputBaseRequest :
+    - ***Description*** : Ela Input Base Request
+    - ***Information*** : [ElaInputBaseRequest](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elainputbaserequest)
+- **Output** ElaBluetoothScanResults : 
+    - ***Description*** : Generic error for the ELA Microservices
+    - ***Information*** : [ElaError](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elaerror)
 
 ## SendElaBluetoothCommand
 ```proto
-  rpc StartBluetoothListening(ElaBluetoothScanningRequest) returns (ElaCommon.ElaError) {}
+  rpc SendElaBluetoothCommand(ElaBluetoothConnectRequest) returns (ElaBluetoothConnectResult) {}
 ```
+
+**Brief** : This function send a command to the ELA Bluetooth device using **Bluetooth Base Microservice** and the associated Bluetooth service to ensure a connection. Calling this function change the state to service and switch in ***Connecting*** mode. When a connection is really established the state switch in **Connected** mode till the tag provide a response to the service. All the information relative to the **Bluetooth Base** are available [here][here_bluetooth_information].
+
+### parameters
+- **Input** ElaBluetoothConnectRequest :
+    - ***Description*** : Ela Bluetooth Connection Request
+    - ***Information*** : [ElaBluetoothConnectRequest](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Base/README.md#elabluetoothconnectrequest)
+- **Output** ElaBluetoothConnectResult : 
+    - ***Description*** : Ela Bluetooth Connection Result
+    - ***Information*** : [ElaBluetoothConnectResult](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Base/README.md#elabluetoothconnectresult)
 
 ## Authenticate
 All the information relative to the authentication, managing object and **session id** are available [here](https://github.com/elaInnovation/ELA-Microservices/blob/master/Documentation/Authentication/README.md})
@@ -81,6 +102,9 @@ All the information relative to the authentication, managing object and **sessio
 You will find here all the object description relative to the **Bluetooth Base Microservice**.
 
 ### ElaBluetoothScanningRequest
+**Brief** : Bluetooth Scanning request object
+
+**Desciption**
 ```proto
 message ElaBluetoothScanningRequest {
 
@@ -91,6 +115,7 @@ message ElaBluetoothScanningRequest {
 }
 ````
 
+**Information**
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
 | request | ElaInputBaseRequest | Main input request for all ELA Microservice request | Mandatory |
@@ -98,16 +123,51 @@ message ElaBluetoothScanningRequest {
 | define_scan_time | bool | Define or not a specific time to scan, associated to **scan_time_seconds** | Optionnal |
 | scan_time_seconds | uint32 | Target scan time, associated to the **define_scan_time** variable to define a time scan in seconds | Optionnal |
 
-### ElaBluetoothScanningRequest
-```proto
-message ElaBluetoothScanningRequest {
+### ElaBluetoothConnectRequest
+**Brief** : Bluetooth Connection Request definition
 
+**Desciption**
+```proto
+message ElaBluetoothConnectRequest {
+	
 	ElaCommon.ElaInputBaseRequest request = 1;
-	ElaBluetoothFilter filter = 2;
-	bool define_scan_time = 3;
-	uint32 scan_time_seconds = 4;
+	string target_mac_address = 2;
+	string ela_command = 3;
+	string ela_command_password = 4;
+	string ela_command_arguments = 5;
+	bool isLongWaitCommand = 6;
+	//
 }
 ```
+
+**Information**
+| Name | Type | Description | Presence |
+| --- | --- | --- | --- |
+| request | ElaInputBaseRequest | Main input request for all ELA Microservice request | Mandatory |
+| target_mac_address | string | Target mac address of the device to connect | Mandatory |
+| ela_command_password | string | Bluetooth password associated to the tag | Optionnal |
+| ela_command_arguments | string | Associated arguments to the command | Optionnal |
+| isLongWaitCommand | bool | Is this command a long command where the service has to wait multiple answer (like data logger) | Optionnal |
+
+### ElaBluetoothConnectResult
+**Brief** : Bluetooth Connection Result definition, this object is the result provided by function **SendElaBluetoothCommand**.
+
+**Desciption**
+```proto
+message ElaBluetoothConnectResult {
+
+	ElaCommon.ElaError error = 1;
+	ElaBluetoothConnectRequest input_request = 2;
+	string result = 3;
+}
+```
+
+**Information**
+| Name | Type | Description | Presence |
+| --- | --- | --- | --- |
+| error | ElaError | Common error returned by a ELA Microservice | Always Present |
+| input_request | ElaBluetoothConnectRequest | Copy of the input request associated to this result | Always Present |
+| result | string | Result from the tag as a string | Optionnal |
 
 [here_grpc]: https://grpc.io
 
