@@ -94,8 +94,12 @@ service ElaWirepasPublicService {
 }
 ```
 
+The complete description of the **Wirepas Base API** is available [here][here_wirepas_api]. 
+
 [here_grpc]: https://grpc.io
 
 [here_docker]: https://www.docker.com
 
 [here_bluetooth_api]: https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Bluetooth%20Base/README.md
+
+[here_wirepas_api]: https://github.com/elaInnovation/elaMicroserviceGrpc/tree/master/Documentation/Wirepas%20Base/README.md
