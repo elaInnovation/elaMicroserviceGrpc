@@ -18,6 +18,8 @@ So this repository contains the declaration of different API to code our applica
 - Wirepas (Public)
 - eRTLS (Private)
 
+At now, some modules are private and some are public. We only provide the public module documentation. For the other one, we don't garantee today that you can use them or reach them, but we can decide to open it for future releases.
+
 If you are familiar with Microsoft technologies, you can clone the repository and run the solution for Visual Studio. But there, we will talk about the different services you can reach using gRPC, a couple hostname / port, and the public API we provide with the **proto file** declaration. The table just below summarize the port expose for each service.
 
 | Service Name | Port |
