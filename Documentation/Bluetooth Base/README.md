@@ -12,6 +12,7 @@ To find all the information about gRPC, you can go directly to the official webs
 - [Objects](#objects)
     - [ElaBluetoothScanningRequest](#elabluetoothscanningrequest)
     - [ElaBluetoothConnectRequest](#elabluetoothconnectrequest)
+    - [ElaBluetoothConnectResult](#elabluetoothconnectresult)
 
 ## Functions
 The different function provided for the current interface are the one describe in the **proto** summary just below.
@@ -143,7 +144,7 @@ message ElaBluetoothConnectRequest {
 **Information**
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
-| request | ElaInputBaseRequest | Main input request for all ELA Microservice request | Mandatory |
+| request | [ElaInputBaseRequest](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elainputbaserequest) | Main input request for all ELA Microservice request | Mandatory |
 | target_mac_address | string | Target mac address of the device to connect | Mandatory |
 | ela_command_password | string | Bluetooth password associated to the tag | Optionnal |
 | ela_command_arguments | string | Associated arguments to the command | Optionnal |
@@ -165,8 +166,8 @@ message ElaBluetoothConnectResult {
 **Information**
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
-| error | ElaError | Common error returned by a ELA Microservice | Always Present |
-| input_request | ElaBluetoothConnectRequest | Copy of the input request associated to this result | Always Present |
+| error | [ElaError](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elaerror) | Common error returned by a ELA Microservice | Always Present |
+| input_request | [ElaBluetoothConnectRequest](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Bluetooth%20Base/README.md#elabluetoothscanningrequest) | Copy of the input request associated to this result | Always Present |
 | result | string | Result from the tag as a string | Optionnal |
 
 [here_grpc]: https://grpc.io
