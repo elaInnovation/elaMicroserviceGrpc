@@ -34,7 +34,7 @@ service ElaWirepasPublicService {
 }
 ```
 
-You will find the associted proto file [here](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Protos/Wirepas/ElaWirepasPublicAPI.proto
+You will find the associted proto file [here](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Protos/Wirepas/ElaWirepasPublicAPI.proto)
 
 ## StartWirepasDataFlow
 ### function
