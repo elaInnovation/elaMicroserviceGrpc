@@ -48,8 +48,8 @@ namespace elaMicroservicesGrpc.Constant
         /// ///////////////////////////////////////////////////////
         // Proto version constant definition
         public static readonly uint VERSION_PROTO_MAJOR = 1;
-        public static readonly uint VERSION_PROTO_MINOR = 2;
-        public static readonly uint VERSION_PROTO_RELEASE = 2;
+        public static readonly uint VERSION_PROTO_MINOR = 3;
+        public static readonly uint VERSION_PROTO_RELEASE = 0;
         //
 
         /**

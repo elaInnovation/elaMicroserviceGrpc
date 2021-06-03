@@ -53,7 +53,12 @@ message ElaWirepasSensorDataItem {
     ElaWirepasAT at = 6; // anti tear
     ElaWirepasMAG mag = 7;
     ElaWirepasMOV mov =8;  
-    uint32 sensorType = 9;
+    ElaWirepasANG ang =9;
+    ElaWirepasAI ai =10;
+    ElaWirepasTPROBE tprobe =11;
+    ElaWirepasPIR pir =12;
+    ElaWirepasTOUCH touch =13;          
+    uint32 sensorType = 14;
 }
 
 message ElaWirepasBV{
@@ -62,11 +67,11 @@ message ElaWirepasBV{
 }
 
 message ElaWirepasT{  
-    uint32 temp =1;
+    double temp =1;
 }
 
 message ElaWirepasRHT{
-    uint32 temp =1;
+    double temp =1;
     uint32 humi =2;
 }
 
@@ -95,4 +100,26 @@ message ElaWirepasMOV{
     uint32 mov_dectect_count =2;
 }
 
+message ElaWirepasANG{
+    int32 ang_x =1;
+    int32 ang_y =2;
+    int32 ang_z =3;
+}
 
+message ElaWirepasAI{  
+    double analog_in =1;
+}
+
+message ElaWirepasTPROBE{  
+    double temp =1;
+}
+
+message ElaWirepasPIR{  
+    uint32 pir_dectect =1;
+    uint32 pir_dectect_count =2;
+}
+
+message ElaWirepasTOUCH{  
+    uint32 touch_dectect =1;
+    uint32 touch_dectect_count =2;
+}
