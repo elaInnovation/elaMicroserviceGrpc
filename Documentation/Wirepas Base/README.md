@@ -79,7 +79,7 @@ You will find the associted proto file [here](https://github.com/elaInnovation/e
 ### parameters
 - **Input** SendPacketReq :
     - ***Description*** : Object to create a packet to send a request to the tag
-    - ***Information*** : [SendPacketReq](#sendpacketreq)
+    - ***Information*** : [SendPacketReq](https://github.com/elaInnovation/elaMicroserviceGrpc/tree/master/Documentation/Wirepas%20Common#sendpacketreq)
 - **Output** SendPacketResp : 
     - ***Description*** : Response from the tag or from the network
     - ***Information*** : [SendPacketResp](#sendpacketresp)      
@@ -88,7 +88,7 @@ You will find the associted proto file [here](https://github.com/elaInnovation/e
 All the information relative to the authentication, managing object and **session id** are available [here](https://github.com/elaInnovation/ELA-Microservices/blob/master/Documentation/Authentication/README.md)
 
 ## Objects
-You will find here all the object description relative to the **Bluetooth Base Microservice**.
+You will find here all the object description relative to the **Wirepas Base Microservice**. The one provided by the public API are describe here, and some other common objet present for the different API are referenced in other documentation. However, you will find all the usefull links here.
 
 ### ElaWirepasDataRequest
 **Brief** : Request object which handle all information to start a streaming request
