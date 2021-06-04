@@ -9,8 +9,8 @@ To find all the information about gRPC, you can go directly to the official webs
     - [SendElaWirepasCommand](#stopbluetoothlistening)
     - [Authenticate](#authenticate)
 - [Objects](#objects)
-    - [ElaBluetoothScanningRequest](#elabluetoothscanningrequest)
-    - [ElaBluetoothConnectRequest](#elabluetoothconnectrequest)
+    - [ElaWirepasDataRequest](#elawirepasdatarequest)
+    - [ElaWirepasDataPacket](#elawirepasdatapacket)
 
 ## Functions
 The different function provided for the current interface are the one describe in the **proto** summary just below.
