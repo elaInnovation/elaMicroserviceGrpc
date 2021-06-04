@@ -68,6 +68,22 @@ You will find the associted proto file [here](https://github.com/elaInnovation/e
     - ***Description*** : Generic error for the ELA Microservices
     - ***Information*** : [ElaError](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elaerror)  
 
+## SendElaWirepasCommand
+### function
+```proto
+  rpc SendElaWirepasCommand(SendPacketReq) returns (SendPacketResp) {}
+```
+
+**Brief** : This function allow to send a command through the network to the tag, using MQTT Broker and publish functionnalities. 
+
+### parameters
+- **Input** SendPacketReq :
+    - ***Description*** : Object to create a packet to send a request to the tag
+    - ***Information*** : [SendPacketReq](#sendpacketreq)
+- **Output** SendPacketResp : 
+    - ***Description*** : Response from the tag or from the network
+    - ***Information*** : [SendPacketResp](#sendpacketresp)      
+
 ## Authenticate
 All the information relative to the authentication, managing object and **session id** are available [here](https://github.com/elaInnovation/ELA-Microservices/blob/master/Documentation/Authentication/README.md)
 
