@@ -4,9 +4,9 @@ This part describe the API associated to the **Wirepas Base Module** developped 
 To find all the information about gRPC, you can go directly to the official website [here][here_grpc]. The are lots of documentation, but we will provide here some description for the different public API, and at least how to generate the client side to plug directly to our application. But if you are familiar with the technologie, this is the place to be to have a good overview for the different fonctions and object.
 
 - [Functions](#functions)
-    - [StartWirepasDataFlow](#startbluetoothlistening)
-    - [StopWirepasDataFlow](#getscanneddevices)
-    - [SendElaWirepasCommand](#stopbluetoothlistening)
+    - [StartWirepasDataFlow](#startwirepasdataflow)
+    - [StopWirepasDataFlow](#stopwirepasdataflow)
+    - [SendElaWirepasCommand](#sendelawirepascommand)
     - [Authenticate](#authenticate)
 - [Objects](#objects)
     - [ElaWirepasDataRequest](#elawirepasdatarequest)
