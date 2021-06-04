@@ -97,7 +97,7 @@ You will find the associted proto file [here](https://github.com/elaInnovation/e
     - ***Information*** : [ElaBluetoothConnectResult](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Base/README.md#elabluetoothconnectresult)
 
 ## Authenticate
-All the information relative to the authentication, managing object and **session id** are available [here](https://github.com/elaInnovation/ELA-Microservices/blob/master/Documentation/Authentication/README.md})
+All the information relative to the authentication, managing object and **session id** are available [here](https://github.com/elaInnovation/ELA-Microservices/blob/master/Documentation/Authentication/README.md)
 
 ## Objects
 You will find here all the object description relative to the **Bluetooth Base Microservice**.
@@ -144,8 +144,7 @@ message ElaBluetoothConnectRequest {
 **Information**
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
-| request | [ElaInputBaseRequest](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elainputbaserequest) | Main input request for all ELA Microservice request | Mandatory |
-| target_mac_address | string | Target mac address of the device to connect | Mandatory |
+| request | [ElaInputBaseRequest](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elainputbaserequest) | Main input request for all ELA Microservice request | Mandatory || target_mac_address | string | Target mac address of the device to connect | Mandatory |
 | ela_command_password | string | Bluetooth password associated to the tag | Optionnal |
 | ela_command_arguments | string | Associated arguments to the command | Optionnal |
 | isLongWaitCommand | bool | Is this command a long command where the service has to wait multiple answer (like data logger) | Optionnal |
@@ -167,7 +166,7 @@ message ElaBluetoothConnectResult {
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
 | error | [ElaError](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elaerror) | Common error returned by a ELA Microservice | Always Present |
-| input_request | [ElaBluetoothConnectRequest](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Bluetooth%20Base/README.md#elabluetoothscanningrequest) | Copy of the input request associated to this result | Always Present |
+| input_request | [ElaBluetoothConnectRequest](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Bluetooth%20Base/README.md#elabluetoothscanningrequest) | Copy of the input request associated to this result | Always Present || result | string | Result from the tag as a string | Optionnal |
 | result | string | Result from the tag as a string | Optionnal |
 
 [here_grpc]: https://grpc.io
