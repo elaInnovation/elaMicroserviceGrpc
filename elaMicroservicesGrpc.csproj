@@ -19,6 +19,7 @@
     <Folder Include="Protos\Authentication\" />
 	<Folder Include="Protos\Wirepas\" />
 	<Folder Include="Protos\Tagset\" />
+	  <Folder Include="Protos\MacAddress\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +46,7 @@
 	  <Protobuf Include="Protos\Tagset\ElaTagsetCommon.proto" />
 	  <Protobuf Include="Protos\Tagset\ElaTagsetPublicAPI.proto" />
 	  <Protobuf Include="Protos\eRTLS\ErtlsCommon.proto" />
+	  <Protobuf Include="Protos\MacAddress\ElaMacAddressCommon.proto" />
   </ItemGroup>
 
   <ItemGroup>

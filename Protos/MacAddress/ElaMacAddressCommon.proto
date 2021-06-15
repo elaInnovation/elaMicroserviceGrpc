@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package ElaMacAddress;
+
+// import
+import "Protos/Common/ElaCommon.proto";
+
+// The BackendConfig service definition.
+service ElaMacAddressPublicService {
+
+	// RPC definition
+
+	rpc UpdateDatabaseAddress(ElaMacAddressDatabaseRequest) returns (ElaCommon.ElaError) {}
+
+	// mac address function
+	rpc GetMacAddress(ElaMacAddressGetRequest) returns (ElaMacAddressGeneratedResults) {}
+	rpc UnreserveMacAddress(ElaMacAddressUnreserveRequest) returns (ElaCommon.ElaError) {}
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothConnectRequest
+ * \brief mac address creation request 
+ */
+message ElaMacAddressDatabaseRequest {
+	
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string ip = 2;
+	uint32 port = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBluetoothConnectRequest
+ * \brief mac address creation request 
+ */
+message ElaMacAddressGetRequest {
+	
+	ElaCommon.ElaInputBaseRequest request = 1;
+	uint32 mac_address_number = 2;
+	bool check_database = 3;
+	bool reserve = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMacAddressUnreserveRequest
+ * \brief unreserve request 
+ */
+message ElaMacAddressUnreserveRequest {
+	
+	ElaCommon.ElaInputBaseRequest request = 1;
+	repeated string mac_address = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaMacAddressGeneratedResults
+ * \brief message to return mac addresses
+ */
+message ElaMacAddressGeneratedResults {
+
+	ElaCommon.ElaError error = 1;
+	repeated string mac_address = 2;
+}
+
+///////////////////////////////////////////////////////////
