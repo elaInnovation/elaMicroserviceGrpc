@@ -86,7 +86,7 @@ message ElaBluetoothScanResultList {
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
 | clientId | string | identifiant of the client id from where the devices are comming | Optionnal |
-| results | [ElaBluetoothScanResultItem](https://github.com/elaInnovation/elaMicroserviceGrpc/edit/master/Documentation/Bluetooth%20Common/README.md#elabluetoothscanresultitem) array | List of ElaBluetoothScanResultItem containing each devices | Optionnal |
+| results | [ElaBluetoothScanResultItem](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Bluetooth%20Common/README.md#elabluetoothscanresultitem) array | List of ElaBluetoothScanResultItem containing each devices | Optionnal |
 
 ### ElaBluetoothScanResultItem
 **Brief** : This class describe all the parameters available for a scanned device.
