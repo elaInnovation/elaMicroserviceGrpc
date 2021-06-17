@@ -4,13 +4,13 @@ This part describe the API associated to the **Wirepas Base Module** developped 
 To find all the information about gRPC, you can go directly to the official website [here][here_grpc]. The are lots of documentation, but we will provide here some description for the different public API, and at least how to generate the client side to plug directly to our application. But if you are familiar with the technologie, this is the place to be to have a good overview for the different fonctions and object.
 
 - [Functions](#functions)
-    - [StartWirepasDataFlow](#startbluetoothlistening)
-    - [StopWirepasDataFlow](#getscanneddevices)
-    - [SendElaWirepasCommand](#stopbluetoothlistening)
+    - [StartWirepasDataFlow](#startwirepasdataflow)
+    - [StopWirepasDataFlow](#stopwirepasdataflow)
+    - [SendElaWirepasCommand](#sendelawirepascommand)
     - [Authenticate](#authenticate)
 - [Objects](#objects)
-    - [ElaBluetoothScanningRequest](#elabluetoothscanningrequest)
-    - [ElaBluetoothConnectRequest](#elabluetoothconnectrequest)
+    - [ElaWirepasDataRequest](#elawirepasdatarequest)
+    - [ElaWirepasDataPacket](#elawirepasdatapacket)
 
 ## Functions
 The different function provided for the current interface are the one describe in the **proto** summary just below.
@@ -68,11 +68,27 @@ You will find the associted proto file [here](https://github.com/elaInnovation/e
     - ***Description*** : Generic error for the ELA Microservices
     - ***Information*** : [ElaError](https://github.com/elaInnovation/elaMicroserviceGrpc/blob/master/Documentation/Ela%20Common/README.md#elaerror)  
 
+## SendElaWirepasCommand
+### function
+```proto
+  rpc SendElaWirepasCommand(SendPacketReq) returns (SendPacketResp) {}
+```
+
+**Brief** : This function allow to send a command through the network to the tag, using MQTT Broker and publish functionnalities. 
+
+### parameters
+- **Input** SendPacketReq :
+    - ***Description*** : Object to create a packet to send a request to the tag
+    - ***Information*** : [SendPacketReq](https://github.com/elaInnovation/elaMicroserviceGrpc/tree/master/Documentation/Wirepas%20Common#sendpacketreq)
+- **Output** SendPacketResp : 
+    - ***Description*** : Response from the tag or from the network
+    - ***Information*** : [SendPacketResp](#sendpacketresp)      
+
 ## Authenticate
 All the information relative to the authentication, managing object and **session id** are available [here](https://github.com/elaInnovation/ELA-Microservices/blob/master/Documentation/Authentication/README.md)
 
 ## Objects
-You will find here all the object description relative to the **Bluetooth Base Microservice**.
+You will find here all the object description relative to the **Wirepas Base Microservice**. The one provided by the public API are describe here, and some other common objet present for the different API are referenced in other documentation. However, you will find all the usefull links here.
 
 ### ElaWirepasDataRequest
 **Brief** : Request object which handle all information to start a streaming request
