@@ -8,7 +8,6 @@ import "Protos/Common/ElaCommon.proto";
 service UwbAnchorDataService {
 
   rpc StartUwbDataFlow(ElaCommon.ElaInputBaseRequest) returns (stream ElaUwbDataPacket) {}
-  rpc StopUwbDataFlow(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
   rpc SetUwbData(ElaUwbDataPacket) returns (ElaCommon.ElaError) {}
 }
 

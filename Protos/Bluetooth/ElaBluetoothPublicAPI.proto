@@ -22,7 +22,7 @@ service ElaBluetoothPublicService {
   rpc StopBluetoothListening(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // bluetooth scanning streaming
-  rpc StartBluetoothDataFlow(ElaBluetoothScanningRequest) returns (stream ElaBluetoothScanResultItem) {}
+  rpc StartBluetoothDataFlow(ElaBluetoothScanningRequest) returns (stream ElaBluetoothScanResults) {}
   rpc StopBluetoothDataFlow(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // bluetooth connections
@@ -90,7 +90,6 @@ message ElaBluetoothMicroserviceStatus {
 		Scanning = 2;
 		Connecting = 3;
 		Connected = 4;
-		Streaming = 5;
 	}
 	ElaCommon.ElaError last_error = 1;
 	ScannerStatus scanner_status = 2;

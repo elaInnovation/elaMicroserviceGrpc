@@ -15,6 +15,7 @@ service ErtlsRequestService {
 
     // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc. and unary calls such as request to stop data/results flow
 	rpc GetResults(ErtlsRequest) returns (stream ErtlsDataPacket) {}  // request of results to epe returns stream of results
+	rpc StopResults(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}  // request to stop results from epe returns ElaError with status
 	rpc UpdateConfigs(ErtlsRequest) returns (ElaCommon.ElaError) {}  // request to update configurations to epe returns ElaError with status
 	rpc GetStatus(ErtlsStatusRequest) returns (ErtlsStatus) {}  // request to get Positioning Engine status
 }
@@ -89,7 +90,7 @@ enum ErtlsTech {
 	WIREPAS = 0;
 	BLUETOOTH = 1;
 	MULTITECH = 2;
-	UWB = 3;
+	Uwb = 3;
 	UNKNOWNTECH = 100;
 }
 
