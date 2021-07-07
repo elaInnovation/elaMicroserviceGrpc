@@ -89,6 +89,8 @@ enum ErtlsTech {
 	WIREPAS = 0;
 	BLUETOOTH = 1;
 	MULTITECH = 2;
+	UWB = 3;
+	UNKNOWNTECH = 100;
 }
 
 
