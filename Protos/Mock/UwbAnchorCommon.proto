@@ -14,7 +14,7 @@ service UwbAnchorDataService {
 message ElaUwbDataPacket {
 	string AnchorID = 1;
 	string TagID = 2;
-	double TwrDistance = 3;
+	double RangingMeasurement = 3;
 	string TimeStamp = 4;
 }
 
