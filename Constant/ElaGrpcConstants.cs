@@ -29,6 +29,9 @@ namespace elaMicroservicesGrpc.Constant
         // Wirepas definition
         public static readonly int PORT_WIREPAS_REMOTE_API = 50052;
         public static readonly String DEFAULT_WIREPAS_BASE_NAME = "Wirepas Base Service";
+        // Uwb definition
+        public static readonly int PORT_UWB_REMOTE_API = 50060;
+        public static readonly String DEFAULT_UWB_BASE_NAME = "Uwb Base Service";
         /// ///////////////////////////////////////////////////////
         // MQTT Broker
         public static readonly int PORT_MQTT_BROKER_REMOTE_API_UNSECURE = 1883;

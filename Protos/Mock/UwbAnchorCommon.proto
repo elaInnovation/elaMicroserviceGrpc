@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+package UwbAnchor;
+
+import "Protos/Common/ElaCommon.proto";
+
+
+service UwbAnchorDataService {
+
+  rpc StartUwbDataFlow(ElaCommon.ElaInputBaseRequest) returns (stream ElaUwbDataPacket) {}
+  rpc SetUwbData(ElaUwbDataPacket) returns (ElaCommon.ElaError) {}
+}
+
+message ElaUwbDataPacket {
+	string AnchorID = 1;
+	string TagID = 2;
+	double RangingMeasurement = 3;
+	string TimeStamp = 4;
+}
+
+

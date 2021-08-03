@@ -45,8 +45,9 @@ message ErtlsRequest {
 enum ReqType {
 	DATA = 0;
 	RESULTS = 1;
-	CONFIG = 3; //!
-	STATUS = 4;
+	CONFIG = 2; //!
+	STATUS = 3;
+	VERSION = 4;
 }
 
 ///////////////////////////////////////////////////////////
@@ -89,6 +90,8 @@ enum ErtlsTech {
 	WIREPAS = 0;
 	BLUETOOTH = 1;
 	MULTITECH = 2;
+	Uwb = 3;
+	UNKNOWNTECH = 100;
 }
 
 
@@ -104,6 +107,7 @@ message ErtlsStatus {
 	string ertls_status_timestamp = 4;
 	repeated string ertls_project_json_list = 5;
 	ElaCommon.ElaError ela_error = 6;
+	string epe_version = 7;
 	
 	enum Stat{
 	AVAILABLE = 0;
