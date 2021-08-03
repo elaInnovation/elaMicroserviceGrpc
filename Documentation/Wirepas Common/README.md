@@ -7,6 +7,7 @@ To find all the information about gRPC, you can go directly to the official webs
 You will find the description here for the following objects
 - [SendPacketReq](#sendpacketreq)
 - [SendPacketResp](#sendpacketresp)
+- [RequestHeader](#requestheader)
 - [ResponseHeader](#responseheader)
 
 ### SendPacketReq
@@ -59,6 +60,25 @@ message SendPacketResp {
 | Name | Type | Description | Presence |
 | --- | --- | --- | --- |
 | header | ResponseHeader | Response with all information provided by the network | Always present |
+
+### RequestHeader 
+**Brief** : This class describe the hader information associated to a request.
+
+**Declaration** 
+```proto
+ message RequestHeader { 
+    // Unique request id 
+    uint64 req_id = 1; 
+    // Sink id if relevant for request 
+    string sink_id = 2; 
+} 
+```
+
+**Information**
+| Name | Type | Description | Presence |
+| --- | --- | --- | --- |
+| req_id | uint64 | **Request ID** as request unique identifiant provided to identifiy the request | Always present |
+| sink_id | string | **Sink ID** identifiant of your sink plug in your Wirepas Gateway | Always present |
 
 ### ResponseHeader 
 **Brief** : This header describe all the content
