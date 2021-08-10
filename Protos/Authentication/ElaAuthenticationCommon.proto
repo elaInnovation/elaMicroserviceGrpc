@@ -32,6 +32,7 @@ service ElaAuthenticationPublicService {
 	rpc EnrollInstance(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}	
 	rpc GetEnrolledInstance(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}	
 	rpc ReleasedEnrolledInstance(ElaUserRightsRequest) returns (ElaUserRightsResponse) {}	
+	rpc getNumberLicence(ElaCommon.ElaInputBaseRequest) returns (ElaNumberLicenceResponse) {}
 	//
 	// RFU to see for the next updates
 	// rpc CypherToken(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}	
@@ -165,4 +166,14 @@ message ElaAuthenticationUser {
 	string role = 4;
 }
 
+///////////////////////////////////////////////////////////
+/**
+ * \class ElaNumberLicenceResponse
+ * \brief response to a number licence request
+ */
+message ElaNumberLicenceResponse {
+
+       ElaCommon.ElaError error = 1;
+       uint32 numberLicence = 2;
+}
 ///////////////////////////////////////////////////////////
