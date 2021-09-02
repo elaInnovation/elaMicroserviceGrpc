@@ -54,6 +54,7 @@ message SendPacketReq {
     ElaCommon.ElaInputBaseRequest request = 10;
     string broker_hostanme = 11;
     uint32 broker_port = 12;
+    uint32 network_id = 13;
 }
 
 /*
