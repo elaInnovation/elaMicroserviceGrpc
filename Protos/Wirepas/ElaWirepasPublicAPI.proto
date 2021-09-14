@@ -5,7 +5,6 @@ package ElaWirepas;
 // import
 import "Protos/Common/ElaCommon.proto";
 import "Protos/Wirepas/ElaWirepasCommon.proto";
-import "Protos/Wirepas/WirepasMessages.proto";
 import "Protos/Authentication/ElaAuthenticationCommon.proto";
 
 // The service definition.
@@ -18,8 +17,13 @@ service ElaWirepasPublicService {
   // Wirepas flow management
   rpc StartWirepasDataFlow(ElaWirepasDataRequest) returns (stream ElaWirepasDataPacket) {}
 
+  // Wirepas data polling
+  rpc StartListening(ElaWirepasDataRequest) returns (ElaCommon.ElaError) {}
+  rpc GetPackets(ElaWirepasDataRequest) returns (ElaWirepasDataPacketsList) {}
+  rpc StopListening(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
   // Wirepas Commands
-  rpc SendElaWirepasCommand(SendPacketReq) returns (SendPacketResp) {}
+  rpc SendElaWirepasCommand(ElaWirepasSendCommandRequest) returns (ElaCommon.ElaError) {}
 
   // Wirepas Monitoring
   rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaWirepasMicroserviceStatus) {}
@@ -34,8 +38,35 @@ message ElaWirepasDataRequest {
 
 	ElaCommon.ElaInputBaseRequest request = 1;
 	string DataType = 2; // defines what type of data is requested e.g. Location or Sensor data
-	string BrokerAdress = 3;
+	string BrokerAddress = 3;
 	int32 BrokerPort = 4;
+	int32 packetsCount = 5;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaWirepasSendCommandRequest
+ * \brief Ela Wirepas Data Request
+ */
+message ElaWirepasSendCommandRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	uint32 destination_address = 2;
+    uint32 source_endpoint = 3;
+    uint32 destination_endpoint = 4;
+    uint32 qos = 5;
+    string command = 6;
+
+    uint32 initial_delay_ms = 7;
+    bool is_unack_csma_ca = 8;
+    uint32 hop_limit = 9;
+
+	string broker_address = 10;
+	int32 broker_port = 11;
+	uint32 network_id = 12;
+
+	bool retainMessage = 13;
+
 }
 
 
@@ -60,14 +91,14 @@ message ElaWirepasDataPacket {
 
 ///////////////////////////////////////////////////////////
 /*
- * \class ElaWirepasNodeList 
- * \brief List of available wirepas nodes 
+ * \class ElaWirepasDataPacket
+ * \brief interoperable ELA datapacket discription 
  */
-//message ElaWirepasNodeList {
-
-//	string clientId = 1;
-	//repeated ElaWirepasNodeItem results = 2;
-//}
+message ElaWirepasDataPacketsList {
+	ElaCommon.ElaInputBaseRequest request = 1;
+	repeated ElaWirepasDataPacket packetsList = 2;
+	ElaCommon.ElaError error = 3;
+}
 
 ///////////////////////////////////////////////////////////
 /*
