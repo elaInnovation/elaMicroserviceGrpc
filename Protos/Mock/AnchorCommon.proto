@@ -1,0 +1,32 @@
+﻿syntax = "proto3";
+
+package PositioningAnchor;
+
+import "Protos/Common/ElaCommon.proto";
+
+
+service AnchorDataService {
+
+  rpc StartAnchorDataFlow(ElaCommon.ElaInputBaseRequest) returns (stream ElaAnchorDataPacket) {}
+  rpc SetAnchorData(ElaAnchorDataPacket) returns (ElaCommon.ElaError) {}
+}
+
+message ElaAnchorDataPacket {
+	ElaUwbDataPacket UwbData = 1;
+	ElaAngleDataPacket AngleData = 2;
+}
+
+message ElaUwbDataPacket {
+	string AnchorID = 1;
+	string TagID = 2;
+	double RangingMeasurement = 3;
+	string TimeStamp = 4;
+}
+
+message ElaAngleDataPacket {
+	string AnchorID = 1;
+	string TagID = 2;
+	double ThetaAngleMeasurement = 3;
+	double PhiAngleMeasurement = 4;
+	string TimeStamp = 5;
+}
