@@ -12,20 +12,19 @@ service AnchorDataService {
 }
 
 message ElaAnchorDataPacket {
+	string AnchorID = 1;
+	string TagID = 2;
 	ElaUwbDataPacket UwbData = 1;
 	ElaAngleDataPacket AngleData = 2;
 }
 
 message ElaUwbDataPacket {
-	string AnchorID = 1;
-	string TagID = 2;
+
 	double RangingMeasurement = 3;
 	string TimeStamp = 4;
 }
 
 message ElaAngleDataPacket {
-	string AnchorID = 1;
-	string TagID = 2;
 	double ThetaAngleMeasurement = 3;
 	double PhiAngleMeasurement = 4;
 	string TimeStamp = 5;
