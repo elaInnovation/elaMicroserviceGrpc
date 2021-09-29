@@ -28,8 +28,8 @@ service ElaBluetoothMasterPublicService {
   
   // bluetooth scanning
   rpc StartBluetoothListening(ElaBluetoothMasterScanRequest) returns (ElaBluetoothMasterScanResult) {}
-  rpc GetScannedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothMasterScanResults) {}
-  rpc GetJsonScannedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaBluetoothMasterScanJsonResults) {}
+  rpc GetScannedDevices(ElaBluetoothMasterScanRequest) returns (ElaBluetoothMasterScanResults) {}
+  rpc GetJsonScannedDevices(ElaBluetoothMasterScanRequest) returns (ElaBluetoothMasterScanJsonResults) {}
   rpc StopBluetoothListening(ElaBluetoothMasterScanRequest) returns (ElaBluetoothMasterScanResult) {}
 
   // bluetooth scanning streaming
