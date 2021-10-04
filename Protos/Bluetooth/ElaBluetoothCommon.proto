@@ -50,6 +50,7 @@ message ElaBluetoothScanResultItem {
 	// RFU
 	string gps_coordinate = 13;
 	string microservice_id = 14;
+	string ela_base_data_json = 15;
 }
 
 ///////////////////////////////////////////////////////////
