@@ -20,7 +20,6 @@
 	<Folder Include="Protos\Wirepas\" />
 	<Folder Include="Protos\Tagset\" />
     <Folder Include="Protos\eRTLS\" />
-    <Folder Include="Protos\Mock\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,12 +41,11 @@
     <Protobuf Include="Protos\Bluetooth\ElaBluetoothMasterPublicAPI.proto" />
 	  <Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
 	  <Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
-	  <Protobuf Include="Protos\Wirepas\WirepasMessages.proto" />
 	  <Protobuf Include="Protos\Wirepas\ElaWirepasConfigAPI.proto" />
 	  <Protobuf Include="Protos\Tagset\ElaTagsetCommon.proto" />
 	  <Protobuf Include="Protos\Tagset\ElaTagsetPublicAPI.proto" />
 	  <Protobuf Include="Protos\eRTLS\ErtlsCommon.proto" />
-    <Protobuf Include="Protos\Mock\UwbAnchorCommon.proto" />
+    <Protobuf Include="Protos\Mock\AnchorCommon.proto" />
   </ItemGroup>
 
   <ItemGroup>
