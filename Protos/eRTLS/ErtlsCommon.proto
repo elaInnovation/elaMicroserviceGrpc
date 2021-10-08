@@ -28,6 +28,7 @@ service ErtlsRequestService {
 message ErtlsDataPacket {
 	string node_json = 1;
 	ElaCommon.ElaError error = 2;
+	ElaCommon.ElaCloseStreamingRequest closeStreamingRequest = 3;
 }
 
 ///////////////////////////////////////////////////////////
