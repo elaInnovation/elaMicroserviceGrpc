@@ -91,7 +91,9 @@ enum ErtlsTech {
 	WIREPAS = 0;
 	BLUETOOTH = 1;
 	MULTITECH = 2;
-	Uwb = 3;
+	BLUETOOTH_5_1 = 3;
+	LF_RFID = 4;
+	UWB_TWR = 5;
 	UNKNOWNTECH = 100;
 }
 
