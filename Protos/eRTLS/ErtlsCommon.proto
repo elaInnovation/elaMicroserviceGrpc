@@ -9,15 +9,23 @@ import "Protos/Common/ElaCommon.proto";
 import "Protos/Authentication/ElaAuthenticationCommon.proto";
 
 // eRTLS requests service definition. handles all requests interoperability
-service ErtlsRequestService {
+service ErtlsPublicService {
 	rpc Connect (ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
 	rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
     // request functions for all streamable data for example: localization request to EPE, rawdata request to handler miroservices etc. and unary calls such as request to stop data/results flow
-	rpc GetResults(ErtlsRequest) returns (stream ErtlsDataPacket) {}  // request of results to epe returns stream of results
-	rpc StopResults(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}  // request to stop results from epe returns ElaError with status
-	rpc UpdateConfigs(ErtlsRequest) returns (ElaCommon.ElaError) {}  // request to update configurations to epe returns ElaError with status
-	rpc GetStatus(ErtlsStatusRequest) returns (ErtlsStatus) {}  // request to get Positioning Engine status
+	rpc GetResults(ErtlsLocalizationRequest) returns (stream ErtlsDataPacket) {}  // request of results to epe returns stream of results
+	//rpc StopResults(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}  // request to stop results from epe returns ElaError with status
+	
+	rpc GetProjects(ElaCommon.ElaInputBaseRequest) returns (ErtlsProjectsResponse) {}
+	rpc UploadProject(ErtlsProjectUploadRequest) returns (ElaCommon.ElaError) {}
+	rpc RemoveProject(ErtlsProjectRemoveRequest) returns (ElaCommon.ElaError) {}
+	
+	rpc UploadPlan(stream ErtlsFileChunk) returns (ElaCommon.ElaError) {}
+	rpc DownloadPlan(ErtlsPlanRequest) returns (stream ErtlsFileChunk) {}
+	rpc RemovePlan(ErtlsPlanRequest) returns (ElaCommon.ElaError) {}
+	
+	rpc GetVersion(ElaCommon.ElaInputBaseRequest) returns (ErtlsEngineVersion) {} 
 }
 
 ///////////////////////////////////////////////////////////
@@ -33,14 +41,14 @@ message ErtlsDataPacket {
 
 ///////////////////////////////////////////////////////////
 /*
- * \class ErtlsRequest
+ * \class ErtlsLocalizationRequest
  * \brief eRTLS request discription 
  */
-message ErtlsRequest {
+message ErtlsLocalizationRequest {
 
 	ElaCommon.ElaInputBaseRequest request = 1;
-    ReqType ertls_request_type = 2;  
-	ErtlsConfigRequest ertls_config_request = 3;
+	string localization_project_id = 2;
+	//ErtlsConfigRequest ertls_config_request = 3;
 }
 
 enum ReqType {
@@ -69,6 +77,34 @@ message ErtlsConfigRequest {
 	}
 }
 
+
+message ErtlsProjectsResponse {
+	ElaCommon.ElaError error = 1;
+	repeated string ertls_project_json_list = 2;
+}
+
+message ErtlsProjectUploadRequest {
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string ertls_project_json = 2;
+}
+
+message ErtlsProjectRemoveRequest {
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string project_id = 2;
+}
+
+message ErtlsFileChunk {
+	/*ElaCommon.ElaInputBaseRequest request = 1;	
+	string file_name = 2;*/
+	bytes data = 1;
+	ElaCommon.ElaError error = 2;
+}
+
+message ErtlsPlanRequest {
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string file_name = 2;
+}
+
 /*
  * \class ErtlsStatusRequest
  * \brief eRTLS request description 
@@ -95,24 +131,7 @@ enum ErtlsTech {
 	UNKNOWNTECH = 100;
 }
 
-
-/*
- * \class ErtlsStatus
- * \brief description of a status information message
- */
-message ErtlsStatus {
-
-	string ertls_user_id = 1;
-	string ertls_service_id = 2;
-	Stat ertls_status_code = 3;
-	string ertls_status_timestamp = 4;
-	repeated string ertls_project_json_list = 5;
-	ElaCommon.ElaError ela_error = 6;
-	string epe_version = 7;
-	
-	enum Stat{
-	AVAILABLE = 0;
-	NOCONFIGS = 1;
-	ONLINE = 2;
-	}
+message ErtlsEngineVersion {
+	string epe_version = 1;
+	ElaCommon.ElaError error = 2;
 }
