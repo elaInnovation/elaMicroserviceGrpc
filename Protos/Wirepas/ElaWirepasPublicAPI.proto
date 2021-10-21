@@ -85,8 +85,10 @@ message ElaWirepasDataPacket {
 	double VBat = 4;
 	string TimeStamp = 5;
 	ElaWirepasNodeItem wpNode_item = 6;
-	//
+	
 	ElaCommon.ElaCloseStreamingRequest closeStreamingRequest = 7;
+
+	string ela_base_data_json = 8;
 }
 
 ///////////////////////////////////////////////////////////
