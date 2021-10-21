@@ -27,5 +27,7 @@ message ElaUwbDataPacket {
 message ElaAngleDataPacket {
 	double ThetaAngleMeasurement = 1;
 	double PhiAngleMeasurement = 2;
-	string TimeStamp = 3;
+	double rssi_p1 = 3;
+	double rssi_p2 = 4;
+	string TimeStamp = 5;
 }
