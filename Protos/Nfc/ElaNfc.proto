@@ -1,0 +1,66 @@
+﻿syntax = "proto3";
+
+package ElaNfc;
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+
+service ElaNfcService {
+	// authentication functions
+	rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+	rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+  
+	// Read NFC
+	rpc ConnectReader(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+	rpc DisconnectReader(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+	rpc ReadData(ElaCommon.ElaInputBaseRequest) returns (ElaNfcDataResult) {}
+	rpc WriteData(ElaNfcData) returns (ElaCommon.ElaError) {}
+  
+  // Status of the microservice
+  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaNfcMicroserviceStatus) {}
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaNfcData
+ * \brief Ela Nfc request
+ */
+ message ElaNfcData {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string jsonRaw = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaNfcDataResult
+ * \brief message to map results from scanner
+ */
+ message ElaNfcDataResult {
+
+  ElaCommon.ElaError error = 1;
+  uint32 len_json = 2;
+  string json = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaNfcMicroserviceStatus
+ * \brief the status of the nfc microservice
+ */
+ message ElaNfcMicroserviceStatus {
+
+	enum NfcStatus {
+
+		Unknown = 0;
+		Pending = 1;
+		Read = 2;
+		Write = 3;
+		Connected = 4;
+		Disconnected = 5;
+	}
+	ElaCommon.ElaError last_error = 1;
+	NfcStatus nfc_status = 2;
+	ElaCommon.ElaMicroserviceInfos microservice_infos = 3;
+}

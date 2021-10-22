@@ -46,6 +46,7 @@
 	  <Protobuf Include="Protos\Tagset\ElaTagsetPublicAPI.proto" />
 	  <Protobuf Include="Protos\eRTLS\ErtlsCommon.proto" />
     <Protobuf Include="Protos\Mock\AnchorCommon.proto" />
+    <Protobuf Include="Protos\Nfc\ElaNfc.proto" />
   </ItemGroup>
 
   <ItemGroup>
