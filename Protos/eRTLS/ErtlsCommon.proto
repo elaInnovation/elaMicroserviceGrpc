@@ -47,8 +47,7 @@ message ErtlsDataPacket {
 message ErtlsLocalizationRequest {
 
 	ElaCommon.ElaInputBaseRequest request = 1;
-	string localization_project_id = 2;
-	//ErtlsConfigRequest ertls_config_request = 3;
+	string localization_project_json = 2;
 }
 
 enum ReqType {
