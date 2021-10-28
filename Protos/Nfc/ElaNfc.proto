@@ -16,9 +16,21 @@ service ElaNfcService {
 	rpc DisconnectReader(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 	rpc ReadData(ElaCommon.ElaInputBaseRequest) returns (ElaNfcDataResult) {}
 	rpc WriteData(ElaNfcData) returns (ElaCommon.ElaError) {}
+	rpc LockNfc(ElaLockRequest) returns (ElaCommon.ElaError) {}
   
   // Status of the microservice
   rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaNfcMicroserviceStatus) {}
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaLockRequest
+ * \brief Ela lock object
+ */
+ message ElaLockRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	bool lockNfc = 2;
 }
 
 ///////////////////////////////////////////////////////////
