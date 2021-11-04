@@ -140,3 +140,25 @@ message ElaConfigurationRequest {
 	uint32 port = 3;
 }
 ///////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaFilePathRequest
+ * \brief file path
+ */
+message ElaFilePathRequest {
+
+	ElaInputBaseRequest request = 1;
+	string path = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaFilePathResponse
+ * \brief message to get a file path
+ */
+message ElaFilePathResponse {
+
+	ElaCommon.ElaError last_error = 1;
+	string path = 2;
+}

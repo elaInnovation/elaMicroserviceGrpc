@@ -12,52 +12,33 @@ package ElaTagset;
 service ElaTagsetPublicService {
 
   // authentication functions
-  rpc CheckAuthentication(ElaTagset.ElaTagsetAuthenticationRequest) returns (ElaTagset.ElaTagsetAuthenticationResponse) {}
+  rpc CheckAuthentication(ElaTagset.ElaTagsetAuthenticationRequest) returns (ElaTagset.ElaTagsetMicroserviceAuthenticationResponse) {}
 
   // tagset configuration
   rpc GetCustomers(ElaCommon.ElaInputBaseRequest) returns (ElaTagset.ElaTagsetMicroserviceCustomers) {}
   rpc GetTechnos(ElaCommon.ElaInputBaseRequest) returns (ElaTagset.ElaTagsetMicroserviceTechnos) {}
-  rpc GetFirmwareVersions(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceFirmwareVersions) {}
-  rpc GetFirmwareFormats(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceFirmwareFormats) {}
-  rpc GetHardwareFormats(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceHardwareFormats) {}
+  rpc GetFirmwareVersions(ElaTagset.ElaTagsetFirmwareVersionRequest) returns (ElaTagset.ElaTagsetMicroserviceFirmwareVersions) {}
+  rpc GetFirmwareFormats(ElaTagset.ElaTagsetFirmwareFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceFirmwareFormats) {}
+  rpc GetHardwareFormats(ElaTagset.ElaTagsetHardwareFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceHardwareFormats) {}
   rpc GetDefaultConfiguration(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceTagConfiguration) {}
-  rpc CheckTagConfiguration(ElaTagset.ElaTagsetTagNfcConfigurationRequest) returns (ElaTagset.ElaTagsetMicroserviceValidity) {}
+  rpc CheckTagConfiguration(ElaTagset.ElaTagsetTagConfiurationRequest) returns (ElaTagset.ElaTagsetMicroserviceConfigurationValid) {}
 
-  // tagset incremental variables
-  rpc GetIncrementalVariablesAvailable(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceTagIncrementsAvailable) {}
-  rpc GetDefaultIncrementalEntry(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceDefaultTagIncrements) {}
-  rpc CheckIncrementalEntry(ElaTagset.ElaTagsetTagIncrementalVariableConfigurationRequest) returns (ElaTagset.ElaTagsetMicroserviceValidity) {}
-  rpc GetIncrementalEntryValues(ElaTagset.ElaTagsetTagIncrementalVariableRequest) returns (ElaTagset.ElaTagsetMicroserviceTagIncrementsValues) {}
+  // tag configuration constant / variables
+  rpc GetDefaultVariables(ElaTagset.ElaTagsetTagFormatQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariables) {}
+  rpc ImportTagConstants(ElaCommon.ElaFilePathRequest) returns (ElaTagset.ElaTagsetMicroserviceConstantImport) {}
+  rpc ExportTagConstants(ElaTagset.ElaTagsetConstantRequest) returns (ElaCommon.ElaFilePathResponse) {}
+  rpc ImportTagVariables(ElaTagset.ElaTagsetVariablesImportRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableImport) {}
+  rpc ExportTagVariables(ElaTagset.ElaTagsetVariablesRequest) returns (ElaCommon.ElaFilePathResponse) {}
+
+  // tag specific variables
+  rpc RandomizeMacAddress(ElaTagset.ElaTagsetQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableValues) {}
 
   // tagset file functions
-  rpc GetOutpuFields(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetFileOutputFieldsRequest) {}
-  rpc GetDefaultOutputFields(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetFileOutputFieldsRequest) {}
-  rpc CreateProductionFile(ElaTagset.ElaTagsetFileProductionRequest) returns (ElaTagset.ElaTagsetMicroserviceFilePath) {}
-  rpc CreateOutputFieldsFile(ElaTagset.ElaTagsetFileOutputFieldsRequest) returns (ElaTagset.ElaTagsetMicroserviceFilePath) {}
+  rpc GetDefaultOutputFields(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceOutputFields) {}
+  rpc CreateProductionFile(ElaTagset.ElaTagsetProductionFileRequest) returns (ElaCommon.ElaFilePathResponse) {}
 
   // monitoring
-  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaTagsetMicroserviceStatus) {}
-}
-
-///////////////////////////////////////////////////////////
-/*
- * \class ElaBluetoothMicroserviceStatus
- * \brief the status of the bluetooth microservice
- */
-message ElaTagsetMicroserviceStatus {
-
-	enum DatabaseStatus {
-
-		Unknown = 0;
-		Pending = 1;
-		waiting_response = 2;
-	}
-	ElaCommon.ElaError last_error = 1;
-	DatabaseStatus database_status = 2;
-	ElaCommon.ElaMicroserviceInfos microservice_infos = 3;
-	ElaCommon.ServiceInformations user_informations = 4;
-	ElaCommon.ElaMicroserviceStatistics statisticsSummary = 5;
-	// RFU
+  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaTagset.ElaTagsetMicroserviceStatus) {}
 }
 
 ///////////////////////////////////////////////////////////
