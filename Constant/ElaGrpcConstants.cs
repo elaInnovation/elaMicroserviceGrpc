@@ -51,6 +51,10 @@ namespace elaMicroservicesGrpc.Constant
         // Nfc Master definition
         public static readonly int PORT_NFC_MASTER_REMOTE_API = 50056;
         public static readonly String DEFAULT_NFC_MASTER_BASE_NAME = "NFC Base Service";
+        /// ///////////////////////////////////////////////////////
+        // Nfc Master definition
+        public static readonly int PORT_TAGSET_REMOTE_API = 50057;
+        public static readonly String DEFAULT_TAGSET_BASE_NAME = "Tagset Service";
 
         /// ///////////////////////////////////////////////////////
         // Proto version constant definition
