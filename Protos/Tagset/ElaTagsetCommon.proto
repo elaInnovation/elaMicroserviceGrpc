@@ -40,6 +40,20 @@ message ConfigurationValid {
 
 ///////////////////////////////////////////////////////////
 /*
+ * \class StickerConfiguration
+ * \brief sticker configuration variables
+ */
+message StickerConfiguration {
+
+	repeated string customFields = 1;
+	repeated string imagesFields = 2;
+	string logo = 3;
+	string datamatrix = 4;
+	string labname = 5;
+}
+
+///////////////////////////////////////////////////////////
+/*
  * \class ElaTagsetFirmwareVersionRequest
  * \brief Ela Tagset Version Firmware definition
  */
@@ -157,7 +171,7 @@ message ElaTagsetProductionFileRequest {
 	string configuration = 10;
 	repeated ConfigurationVariables variables = 11;
 	repeated string outputfields = 12;
-	string sticker = 13;
+	StickerConfiguration sticker = 13;
 	string path = 14;
 }
 
