@@ -106,18 +106,6 @@ message ElaTagsetConstantRequest {
 
 ///////////////////////////////////////////////////////////
 /*
- * \class ElaTagsetVariablesImportRequest
- * \brief Ela Tagset Format Firmware definition
- */
-message ElaTagsetVariablesImportRequest {
-
-	ElaCommon.ElaFilePathRequest request = 1;
-	string techno = 2;
-	string version = 3;
-}
-
-///////////////////////////////////////////////////////////
-/*
  * \class ElaTagsetVariablesRequest
  * \brief Ela Tagset Format Firmware definition
  */
@@ -349,4 +337,15 @@ message ElaTagsetMicroserviceAuthenticationResponse {
 
 	ElaCommon.ElaError last_error = 1;
 	bool authorized = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetFileChunk
+ * \brief message to get a file content
+ */
+message ElaTagsetFileChunk {
+
+	ElaCommon.ElaError last_error = 1;
+	bytes data = 2;
 }
