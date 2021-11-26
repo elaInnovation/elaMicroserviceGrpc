@@ -54,6 +54,20 @@ message StickerConfiguration {
 
 ///////////////////////////////////////////////////////////
 /*
+ * \class CommandType
+ * \brief command function to use for automation
+ */
+ enum CommandType {
+
+	NONE = 0;
+	STATUS = 1;
+	CONFIG = 2;
+	REJECT = 3;
+	CUSTOM = 4;
+ }
+
+///////////////////////////////////////////////////////////
+/*
  * \class ElaTagsetFirmwareVersionRequest
  * \brief Ela Tagset Version Firmware definition
  */
@@ -172,7 +186,8 @@ message ElaTagsetProductionFileRequest {
 	repeated ConfigurationVariables variables = 11;
 	repeated string outputfields = 12;
 	StickerConfiguration sticker = 13;
-	string path = 14;
+	CommandType command = 14;
+	string path = 15;
 }
 
 ///////////////////////////////////////////////////////////
