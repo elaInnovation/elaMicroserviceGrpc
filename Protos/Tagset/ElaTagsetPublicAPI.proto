@@ -25,17 +25,17 @@ service ElaTagsetPublicService {
 
   // tag configuration constant / variables
   rpc GetDefaultVariables(ElaTagset.ElaTagsetTagFormatQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariables) {}
-  rpc ImportTagConstants(ElaCommon.ElaFilePathRequest) returns (ElaTagset.ElaTagsetMicroserviceConstantImport) {}
-  rpc ExportTagConstants(ElaTagset.ElaTagsetConstantRequest) returns (ElaCommon.ElaFilePathResponse) {}
-  rpc ImportTagVariables(ElaTagset.ElaTagsetVariablesImportRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableImport) {}
-  rpc ExportTagVariables(ElaTagset.ElaTagsetVariablesRequest) returns (ElaCommon.ElaFilePathResponse) {}
+  rpc UploadTagConstants(stream ElaTagset.ElaTagsetFileChunk) returns (ElaTagset.ElaTagsetMicroserviceConstantImport) {}
+  rpc DownloadTagConstants(ElaTagset.ElaTagsetConstantRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
+  rpc UploadTagVariables(stream ElaTagset.ElaTagsetFileChunk) returns (ElaTagset.ElaTagsetMicroserviceVariableImport) {}
+  rpc DownloadTagVariables(ElaTagset.ElaTagsetVariablesRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
 
   // tag specific variables
   rpc RandomizeMacAddress(ElaTagset.ElaTagsetQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableValues) {}
 
   // tagset file functions
   rpc GetDefaultOutputFields(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceOutputFields) {}
-  rpc CreateProductionFile(ElaTagset.ElaTagsetProductionFileRequest) returns (ElaCommon.ElaFilePathResponse) {}
+  rpc CreateProductionFile(ElaTagset.ElaTagsetProductionFileRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
 
   // monitoring
   rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaTagset.ElaTagsetMicroserviceStatus) {}

@@ -40,6 +40,34 @@ message ConfigurationValid {
 
 ///////////////////////////////////////////////////////////
 /*
+ * \class StickerConfiguration
+ * \brief sticker configuration variables
+ */
+message StickerConfiguration {
+
+	repeated string customFields = 1;
+	repeated string imagesFields = 2;
+	string logo = 3;
+	string datamatrix = 4;
+	string labname = 5;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class CommandType
+ * \brief command function to use for automation
+ */
+ enum CommandType {
+
+	NONE = 0;
+	STATUS = 1;
+	CONFIG = 2;
+	REJECT = 3;
+	CUSTOM = 4;
+ }
+
+///////////////////////////////////////////////////////////
+/*
  * \class ElaTagsetFirmwareVersionRequest
  * \brief Ela Tagset Version Firmware definition
  */
@@ -107,18 +135,6 @@ message ElaTagsetConstantRequest {
 
 ///////////////////////////////////////////////////////////
 /*
- * \class ElaTagsetVariablesImportRequest
- * \brief Ela Tagset Format Firmware definition
- */
-message ElaTagsetVariablesImportRequest {
-
-	ElaCommon.ElaFilePathRequest request = 1;
-	string techno = 2;
-	string version = 3;
-}
-
-///////////////////////////////////////////////////////////
-/*
  * \class ElaTagsetVariablesRequest
  * \brief Ela Tagset Format Firmware definition
  */
@@ -171,8 +187,9 @@ message ElaTagsetProductionFileRequest {
 	string configuration = 10;
 	repeated ConfigurationVariables variables = 11;
 	repeated string outputfields = 12;
-	string sticker = 13;
-	string path = 14;
+	StickerConfiguration sticker = 13;
+	CommandType command = 14;
+	string path = 15;
 }
 
 ///////////////////////////////////////////////////////////
@@ -351,4 +368,15 @@ message ElaTagsetMicroserviceAuthenticationResponse {
 
 	ElaCommon.ElaError last_error = 1;
 	bool authorized = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetFileChunk
+ * \brief message to get a file content
+ */
+message ElaTagsetFileChunk {
+
+	ElaCommon.ElaError last_error = 1;
+	bytes data = 2;
 }
