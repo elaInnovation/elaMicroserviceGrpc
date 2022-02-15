@@ -2,24 +2,25 @@
 
 package ElaNfc;
 
-// import
 import "Protos/Common/ElaCommon.proto";
 import "Protos/Authentication/ElaAuthenticationCommon.proto";
 
-service ElaNfcService {
-	// authentication functions
-	rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
-	rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+service ElaNfcService 
+{
+  // authentication functions
+  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
   
-	// Read NFC
+  // Read NFC
 	rpc ConnectReader(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 	rpc DisconnectReader(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
-	rpc ReadData(ElaCommon.ElaInputBaseRequest) returns (ElaNfcDataResult) {}
-	rpc WriteData(ElaNfcData) returns (ElaCommon.ElaError) {}
+  rpc ReadData(ElaCommon.ElaInputBaseRequest) returns (ElaNfcDataResult) {}
+  rpc WriteData(ElaNfcData) returns (ElaCommon.ElaError) {}
 	rpc LockNfc(ElaLockRequest) returns (ElaCommon.ElaError) {}
   
   // Status of the microservice
   rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaNfcMicroserviceStatus) {}
+	rpc GetLogInformations(ElaCommon.ElaLogRequest) returns (ElaCommon.ElaLogResponse) {}
 }
 
 ///////////////////////////////////////////////////////////
