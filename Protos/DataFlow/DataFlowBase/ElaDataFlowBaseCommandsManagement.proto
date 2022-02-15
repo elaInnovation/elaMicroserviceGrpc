@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+
+
+package ElaDataFlowBase;
+
+
+
+message ElaBaseCommandsRequest {
+	ElaCommon.ElaInputBaseRequest base_request = 1;
+	repeated WirepasCommandRequest wirepas_requests = 2; // Faire comme ble => gérer commandes séquentielles
+	repeated BluetoothCommandsRequest bluetooth_requests = 3;
+}
+
+message WirepasCommandRequest {
+	string command_request_id = 1;
+
+	uint32 destination_address = 2;
+    uint32 source_endpoint = 3;
+    uint32 destination_endpoint = 4;
+    uint32 qos = 5;
+    string command = 6;
+
+    uint32 initial_delay_ms = 7;
+    bool is_unack_csma_ca = 8;
+    uint32 hop_limit = 9;
+
+	string broker_address = 10;
+	int32 broker_port = 11;
+	uint32 network_id = 12;
+
+	bool retainMessage = 13;
+}
+
+message BluetoothCommandsRequest {
+	string target_mac_address = 1;
+	repeated BluetoothCommandArguments commands = 2;
+}
+
+message BluetoothCommandArguments {
+	string command_request_id = 1;
+	string ela_command = 2;
+	string ela_command_password = 3;
+	string ela_command_arguments = 4;
+	bool isLongWaitCommand = 5;
+}
+
+message ElaBaseListenCommandResponsesRequest {
+	ElaCommon.ElaInputBaseRequest base_request = 1;
+	repeated string command_ids = 2;
+}
+
+message ElaBaseCommandResponse {
+	//string client_id = 1;
+	string command_request_id = 1;
+	string command_response_message = 2;
+	ElaCommon.ElaError error = 3;
+}
+
+message DetectedDevicesResponse {
+	repeated DetectedDevice devices = 1;
+}
+
+message DetectedDevice {
+	string id = 1;
+	int32 last_rssi = 2;
+	string last_seen = 3;
+	string technology = 4;
+}

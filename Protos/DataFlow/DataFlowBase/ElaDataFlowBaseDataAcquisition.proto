@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+
+package ElaDataFlowBase;
+
+
+
+message ElaAcquisitionRequest {
+	ElaCommon.ElaInputBaseRequest request = 1;
+	DataFlowConfiguration configuration = 2;
+	repeated DeviceFilter device_filters = 3;
+	//FiltersRelation relation = 4;
+}
+
+
+/*
+ * \class ElaDeviceFilter
+ * \brief Ela Device Filter definition
+ */
+message DeviceFilter {
+	string contains_string = 1;
+	repeated string white_list = 2;
+	int32 minimum_rssi = 3;
+	string provider_hostname = 4;
+	string mqtt_broker_hostname = 5;
+	string regex_pattern = 6;
+	DeviceFilterType filter_type = 7;
+} 
+
+enum DeviceFilterType {
+	None = 0;
+	Contains_String = 1;
+	White_List = 2;
+	Maximum_Rssi = 4;
+	Provider_Hostname = 8;
+	Mqtt_Broker_Hostname = 16;
+	Regex = 32;
+}
+
+enum FiltersRelation {
+	And = 0;
+	Or = 1;
+}
+
+message DataFlowConfiguration {
+	WirepasConfiguration wirepas_configuration = 1;
+	// later: other technology configurations
+}
+
+message WirepasConfiguration {
+	string mqtt_broker_hostname = 1;
+	int32 mqtt_broker_port = 2;
+}
+
+message ElaAcquiredDevices {
+	ElaCommon.ElaError error = 1;
+	repeated ElaAcquiredDevice acquired_devices = 2;
+}
+
+message ElaAcquiredDevice {
+	ElaCommon.ElaError error = 1;
+	string acquired_device_json = 2;
+}
+
+message AcquisitionSessionInfos {
+	int32 total_acquired_devices_counter = 1;
+	repeated DeviceFilter current_filters = 2;
+	repeated string session_logs = 3;
+}

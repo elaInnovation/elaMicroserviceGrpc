@@ -18,6 +18,10 @@ namespace elaMicroservicesGrpc.Constant
         public static readonly String DEFAULT_LOCALHOST = "127.0.0.1";
 
         /// ///////////////////////////////////////////////////////
+        // Dataflow base definition
+        public static readonly int PORT_DATAFLOW_BASE_REMOTE_API = 50057;
+        public static readonly String DEFAULT_DATAFLOW_BASE_NAME = "Ela Dataflow Base Service";
+        /// ///////////////////////////////////////////////////////
         // Authentication definition
         public static readonly int PORT_AUTHENTICATION_REMOTE_API = 50050;
         public static readonly String DEFAULT_AUTHENTICATION_NAME = "Authentication Service";
@@ -51,10 +55,6 @@ namespace elaMicroservicesGrpc.Constant
         // Nfc Master definition
         public static readonly int PORT_NFC_MASTER_REMOTE_API = 50056;
         public static readonly String DEFAULT_NFC_MASTER_BASE_NAME = "NFC Base Service";
-        /// ///////////////////////////////////////////////////////
-        // Nfc Master definition
-        public static readonly int PORT_TAGSET_REMOTE_API = 50057;
-        public static readonly String DEFAULT_TAGSET_BASE_NAME = "Tagset Service";
 
         /// ///////////////////////////////////////////////////////
         // Proto version constant definition

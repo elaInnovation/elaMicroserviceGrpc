@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseCommandsManagement.proto";
+
+package ElaDataFlowMaster;
+
+message ElaMasterCommandsRequest {
+	repeated string target_microservice_ids = 1;
+	ElaDataFlowBase.ElaBaseCommandsRequest commands_request = 2;
+} 

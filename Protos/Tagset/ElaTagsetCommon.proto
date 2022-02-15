@@ -102,6 +102,7 @@ message ElaTagsetConstantRequest {
 
 	ElaCommon.ElaFilePathRequest request = 1;
 	string constant = 2;
+	string path = 3;
 }
 
 ///////////////////////////////////////////////////////////
@@ -126,6 +127,7 @@ message ElaTagsetVariablesRequest {
 	ElaCommon.ElaFilePathRequest request = 1;
 	repeated ConfigurationVariables variables = 2;
 	uint32 quantity = 3;
+	string path = 4;
 }
 
 ///////////////////////////////////////////////////////////

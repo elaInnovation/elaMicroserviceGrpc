@@ -65,6 +65,15 @@ message ElaMicroserviceInfos {
 	string proto_version = 3;
 	string target_OS = 4;
 	string connector_name = 5;
+	ConnectorStatus status = 6;
+	ElaError error = 7;
+}
+
+enum ConnectorStatus {
+	Unknown = 0;
+	Pending = 1;
+	AcquiringData = 2;
+	SendingCommands = 3;
 }
 
 ///////////////////////////////////////////////////////////

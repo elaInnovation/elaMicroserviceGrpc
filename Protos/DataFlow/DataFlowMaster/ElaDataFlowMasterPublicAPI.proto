@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+// Common
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+// Master
+import "Protos/DataFlow/DataFlowMaster/ElaDataFlowMasterMicroserviceManagement.proto";
+import "Protos/DataFlow/DataFlowMaster/ElaDataFlowMasterDataAcquisition.proto";
+import "Protos/DataFlow/DataFlowMaster/ElaDataFlowMasterCommandsManagement.proto";
+// Base
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseDataAcquisition.proto";
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseCommandsManagement.proto";
+
+package ElaDataFlowMaster;
+
+
+service ElaDataFlowMasterService {
+
+  // authentication functions
+  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
+  // base microservices management
+  rpc AddBaseMicroservice(ElaBaseMicroserviceAddRequest) returns (ElaBaseMicroserviceAddResponse) {}
+  rpc RemoveBaseMicroservice(ElaBaseMicroserviceRemoveRequest) returns (ElaCommon.ElaError) {}
+  rpc GetBaseMicroservicesInfos(ElaBaseMicroserviceGetInfosRequest) returns (ElaBaseMicroserviceGetInfosResponse) {}
+
+  // data polling
+  rpc StartDataAcquisition(ElaMasterStartAcquisitionRequest) returns (ElaMasterAcquisitionResponse) {}
+  rpc GetLastDevices(ElaMasterGetAcquisitionRequest) returns (ElaDataFlowBase.ElaAcquiredDevices) {}
+  rpc StopDataAcquisition(ElaMasterStopAcquisitionRequest) returns (ElaMasterAcquisitionResponse) {}
+
+  // data streaming
+  rpc StartDataStreaming(ElaMasterStartAcquisitionRequest) returns (stream ElaDataFlowBase.ElaAcquiredDevice) {}
+  rpc StopDataStreaming(ElaCommon.ElaInputBaseRequest) returns (ElaMasterAcquisitionResponse) {}
+
+  // service status
+  //rpc GetStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
+
+  // commands management
+  rpc SendCommands(ElaMasterCommandsRequest) returns (ElaCommon.ElaError) {}
+  rpc StartListeningToCommandResponses(ElaCommon.ElaInputBaseRequest) returns (stream ElaDataFlowBase.ElaBaseCommandResponse) {}
+  rpc StopListeningToCommandResponses(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+  rpc GetAllDetectedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaDataFlowBase.DetectedDevicesResponse) {}
+}

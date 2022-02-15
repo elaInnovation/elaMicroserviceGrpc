@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Authentication/ElaAuthenticationCommon.proto";
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseDataAcquisition.proto";
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseCommandsManagement.proto";
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseServiceManagement.proto";
+
+package ElaDataFlowBase;
+
+// The BackendConfig service definition.
+service ElaDataFlowBaseService {
+
+  // authentication functions
+  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
+  // data polling
+  rpc StartDataAcquisition(ElaAcquisitionRequest) returns (ElaCommon.ElaError) {}
+  rpc GetLastDevices(ElaCommon.ElaInputBaseRequest) returns (ElaAcquiredDevices) {}
+  rpc StopDataAcquisition(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
+  // data streaming
+  rpc StartDataStreaming(ElaAcquisitionRequest) returns (stream ElaAcquiredDevice) {}
+  rpc StopDataStreaming(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+
+  // session info
+  rpc GetAcquisitionSessionInfo(ElaCommon.ElaInputBaseRequest) returns (AcquisitionSessionInfos) {}
+
+  // service management
+  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
+  rpc ConfigureService(ConfigureServiceRequest) returns (ElaCommon.ElaError) {}
+
+  // commands management
+  rpc SendCommands(ElaBaseCommandsRequest) returns (ElaCommon.ElaError) {}
+  rpc StartListeningToCommandResponses(ElaCommon.ElaInputBaseRequest) returns (stream ElaBaseCommandResponse) {}
+  rpc StopListeningToCommandResponses(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+  rpc GetAllDetectedDevices(ElaCommon.ElaInputBaseRequest) returns (DetectedDevicesResponse) {}
+}

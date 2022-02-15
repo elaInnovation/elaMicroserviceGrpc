@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+import "Protos/Common/ElaCommon.proto";
+
+package ElaDataFlowMaster;
+
+/*
+ * \class ElaBaseMicroserviceAddRequest
+ * \brief request to add a base microservice into the master pool
+ */
+message ElaBaseMicroserviceAddRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaMicroserviceItem microservice_infos = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBaseMicroserviceAddResponse
+ * \brief answer to add an add request to the microservice the management pool
+ */
+message ElaBaseMicroserviceAddResponse {
+
+	ElaCommon.ElaError error = 1;
+	ElaMicroserviceItem microservice_infos = 2;
+}
+
+/*
+ * \class ElaBaseMicroserviceAddRequest
+ * \brief request to add a base microservice into the master pool
+ */
+message ElaBaseMicroserviceRemoveRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string microservice_id = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaBaseMicroserviceGetInfosRequest 
+ * \brief request to get information about the target service point by its id
+ */
+message ElaBaseMicroserviceGetInfosRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string microservice_id = 2;
+}
+
+/*
+ * \class ElaBaseMicroserviceGetInfosRequest 
+ * \brief response to get information about the target service point by its id
+ */
+message ElaBaseMicroserviceGetInfosResponse {
+
+	ElaCommon.ElaError error = 1;
+	ElaMicroserviceItem microservice_infos = 2;
+}
+
+/*
+ * \class ElaMicroserviceItem
+ * \brief microservice item to handle microservice listing and instanciation information
+ */
+message ElaMicroserviceItem {
+
+	string hostname = 1;
+	uint32 port = 2;
+	string login = 3;
+	string password = 4;
+	string microservice_username = 5;
+	string microservice_id = 6;
+}

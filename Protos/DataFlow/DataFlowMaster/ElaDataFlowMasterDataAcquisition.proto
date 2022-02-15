@@ -1,0 +1,37 @@
+﻿syntax = "proto3";
+
+import "Protos/Common/ElaCommon.proto";
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseDataAcquisition.proto";
+
+package ElaDataFlowMaster;
+
+message ElaMasterStartAcquisitionRequest {
+	ElaCommon.ElaInputBaseRequest base_request = 1;
+	repeated ElaBaseAcquisitionRequest acquisition_requests = 2;
+}
+
+message ElaBaseAcquisitionRequest {
+	string microservice_id = 1;
+	ElaDataFlowBase.DataFlowConfiguration configuration = 2;
+	repeated ElaDataFlowBase.DeviceFilter device_filters = 3;
+}
+
+message ElaMasterAcquisitionResponse {
+	ElaCommon.ElaError general_error = 1;
+	repeated ElaBaseAcquisitionResponse service_responses = 2;
+}
+
+message ElaBaseAcquisitionResponse {
+	string microservice_id = 1;
+	ElaCommon.ElaError error = 2;
+}
+
+message ElaMasterGetAcquisitionRequest {
+	ElaCommon.ElaInputBaseRequest base_request = 1;
+	repeated string microservice_ids = 2;
+}
+
+message ElaMasterStopAcquisitionRequest {
+	ElaCommon.ElaInputBaseRequest base_request = 1;
+	repeated string microservice_ids = 2;
+}
