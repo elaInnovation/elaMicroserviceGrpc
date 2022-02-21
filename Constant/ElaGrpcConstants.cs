@@ -19,7 +19,9 @@ namespace elaMicroservicesGrpc.Constant
 
         /// ///////////////////////////////////////////////////////
         // Dataflow base definition
-        public static readonly int PORT_DATAFLOW_BASE_REMOTE_API = 50057;
+        public static readonly int PORT_DATAFLOW_BASE_REMOTE_API_DEFAULT = 50057;
+        public static readonly int PORT_DATAFLOW_BASE_REMOTE_API_BLE = 50058;
+        public static readonly int PORT_DATAFLOW_BASE_REMOTE_API_WIREPAS = 50059;
         public static readonly String DEFAULT_DATAFLOW_BASE_NAME = "Ela Dataflow Base Service";
         /// ///////////////////////////////////////////////////////
         // Authentication definition
