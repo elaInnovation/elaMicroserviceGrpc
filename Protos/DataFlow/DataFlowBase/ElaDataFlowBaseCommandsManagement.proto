@@ -54,10 +54,10 @@ message ElaBaseListenCommandResponsesRequest {
 }
 
 message ElaBaseCommandResponse {
-	//string client_id = 1;
 	string command_request_id = 1;
 	string command_response_message = 2;
 	ElaCommon.ElaError error = 3;
+	string for_client_id = 4;
 }
 
 message DetectedDevicesResponse {
