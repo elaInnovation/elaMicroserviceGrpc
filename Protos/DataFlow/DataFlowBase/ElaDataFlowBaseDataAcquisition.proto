@@ -34,7 +34,7 @@ enum DeviceFilterType {
 	None = 0;
 	Contains_String = 1;
 	White_List = 2;
-	Maximum_Rssi = 4;
+	Minimum_Rssi = 4;
 	Provider_Hostname = 8;
 	Mqtt_Broker_Hostname = 16;
 	Regex = 32;
