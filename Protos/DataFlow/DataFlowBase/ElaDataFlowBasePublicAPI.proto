@@ -26,7 +26,7 @@ service ElaDataFlowBaseService {
   rpc StopDataStreaming(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // session info
-  rpc GetAcquisitionSessionInfo(ElaCommon.ElaInputBaseRequest) returns (AcquisitionSessionInfos) {}
+  rpc GetSessionInfo(ElaCommon.ElaInputBaseRequest) returns (AcquisitionSessionInfos) {}
 
   // service management
   rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
