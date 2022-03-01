@@ -35,7 +35,7 @@ service ElaDataFlowMasterService {
   rpc StopDataStreaming(ElaCommon.ElaInputBaseRequest) returns (ElaMasterAcquisitionResponse) {}
 
   // service status
-  //rpc GetStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
+  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
 
   // commands management
   rpc SendCommands(ElaMasterCommandsRequest) returns (ElaCommon.ElaError) {}
