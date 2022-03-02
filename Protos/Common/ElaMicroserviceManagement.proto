@@ -12,7 +12,7 @@ package ElaCommon;
  */
 message ElaManageMicroserviceRequest {
 
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	ElaCommon.ElaMicroserviceItem microservice_infos = 2;
 }
 
@@ -34,7 +34,7 @@ message ElaMicroserviceAddResult {
  */
 message ElaMicroserviceGetInfosRequest {
 
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	string target_id = 2;
 }
 

@@ -1,7 +1,3 @@
 syntax = "proto3";
 
-// import
-import "Protos/Common/ElaCommon.proto";
-import "Protos/Authentication/ElaAuthenticationCommon.proto";
-
 package ElaDataFlowBase;

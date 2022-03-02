@@ -2,14 +2,13 @@ syntax = "proto3";
 
 // import
 import "Protos/Common/ElaCommon.proto";
-import "Protos/Authentication/ElaAuthenticationCommon.proto";
 
 package ElaDataFlowBase;
 
 
 
 message ElaAcquisitionRequest {
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	DataFlowConfiguration configuration = 2;
 	repeated DeviceFilter device_filters = 3;
 	//FiltersRelation relation = 4;

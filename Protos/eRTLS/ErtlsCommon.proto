@@ -4,7 +4,6 @@ package Ertls;
 
 // import
 
-import "Protos/Wirepas/ElaWirepasPublicAPI.proto";
 import "Protos/Common/ElaCommon.proto";
 import "Protos/Authentication/ElaAuthenticationCommon.proto";
 

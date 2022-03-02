@@ -2,12 +2,11 @@ syntax = "proto3";
 
 // import
 import "Protos/Common/ElaCommon.proto";
-import "Protos/Authentication/ElaAuthenticationCommon.proto";
 
 package ElaDataFlowBase;
 
 
 message ConfigureServiceRequest {
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	bool debug_mode = 2; 
 }

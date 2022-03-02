@@ -10,7 +10,7 @@ package ElaDataFlowMaster;
  */
 message ElaBaseMicroserviceAddRequest {
 
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	ElaCommon.ElaMicroserviceItem microservice_infos = 2;
 }
 
@@ -31,7 +31,7 @@ message ElaBaseMicroserviceAddResponse {
  */
 message ElaBaseMicroserviceRemoveRequest {
 
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	string microservice_id = 2;
 }
 
@@ -42,7 +42,7 @@ message ElaBaseMicroserviceRemoveRequest {
  */
 message ElaBaseMicroserviceGetInfosRequest {
 
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	string microservice_id = 2;
 }
 

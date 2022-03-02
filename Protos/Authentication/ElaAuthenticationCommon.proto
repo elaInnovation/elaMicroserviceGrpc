@@ -49,7 +49,7 @@ service ElaAuthenticationPublicService {
  */
 message ElaLicenceRequest {
 
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	repeated string datas = 2;
 	repeated string signs = 3;
 }
@@ -74,7 +74,7 @@ message ElaUserRight {
  */
 message ElaUserRightsRequest {
 
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	string user = 2;
 	string feature = 3;
 }
@@ -102,7 +102,7 @@ message ElaUserRightsResponse {
  */
 message ElaAuthenticationRequest {
 
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	string login = 2;
 	string certificate = 3;
 }
@@ -125,7 +125,7 @@ message ElaAuthenticationResponse {
  */
 message ElaManagerUserRequest {
 
-	ElaCommon.ElaInputBaseRequest request = 1;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
 	ElaAuthenticationUser user = 2;
 }
 

@@ -35,7 +35,7 @@ message ServiceInformations {
  */
 message ElaUserInformationsRequest {
 
-	ElaInputBaseRequest request = 1;
+	ElaInputBaseRequest base_request = 1;
 	ServiceInformations user_information = 2;
 }
 
@@ -110,7 +110,7 @@ message ElaMicroserviceItem {
  */
 message ElaLogRequest {
 
-	ElaInputBaseRequest request = 1;
+	ElaInputBaseRequest base_request = 1;
 	bool AllValuesRequired = 2;
 	uint32 max_log_values = 3;
 }
@@ -144,7 +144,7 @@ message ElaCloseStreamingRequest {
  */
 message ElaConfigurationRequest {
 
-	ElaInputBaseRequest request = 1;
+	ElaInputBaseRequest base_request = 1;
 	string hostname = 2;
 	uint32 port = 3;
 }
@@ -157,7 +157,7 @@ message ElaConfigurationRequest {
  */
 message ElaFilePathRequest {
 
-	ElaInputBaseRequest request = 1;
+	ElaInputBaseRequest base_request = 1;
 	string path = 2;
 }
 
