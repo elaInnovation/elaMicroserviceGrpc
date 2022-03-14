@@ -67,6 +67,7 @@ message ElaMicroserviceInfos {
 	string connector_name = 5;
 	ConnectorStatus status = 6;
 	ElaError error = 7;
+	bool debug_mode = 8;
 }
 
 enum ConnectorStatus {
