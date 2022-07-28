@@ -51,9 +51,20 @@ message ElaBaseMicroserviceGetInfosRequest {
  * \brief response to get information about the target service point by its id
  */
 message ElaBaseMicroserviceGetInfosResponse {
-
 	ElaCommon.ElaError error = 1;
-	ElaMicroserviceItem microservice_infos = 2;
+	ElaMicroserviceItem microservice_config = 2;
+	ElaCommon.ElaMicroserviceInfos  microservice_infos = 3;
+}
+
+message ElaBaseMicroserviceConfigureRequest {
+	ElaCommon.ElaInputBaseRequest base_request = 1;
+	string microservice_id = 2;
+	bool debug_mode = 3;
+}
+
+message ElaBaseMicroserviceConfigureResponse {
+	ElaCommon.ElaError error = 1;
+	ElaCommon.ElaMicroserviceInfos  microservice_infos = 2;
 }
 
 /*

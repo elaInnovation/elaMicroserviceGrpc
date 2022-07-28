@@ -7,13 +7,12 @@ package ElaDataFlowMaster;
 
 message ElaMasterStartAcquisitionRequest {
 	ElaCommon.ElaInputBaseRequest base_request = 1;
-	repeated ElaBaseAcquisitionRequest acquisition_requests = 2;
+	repeated ElaMasterAcquisitionRequest acquisition_requests = 2;
 }
 
-message ElaBaseAcquisitionRequest {
+message ElaMasterAcquisitionRequest {
 	string microservice_id = 1;
-	ElaDataFlowBase.DataFlowConfiguration configuration = 2;
-	repeated ElaDataFlowBase.DeviceFilter device_filters = 3;
+	ElaDataFlowBase.ElaAcquisitionParameters acquisition_parameters = 2;
 }
 
 message ElaMasterAcquisitionResponse {

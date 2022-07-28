@@ -7,11 +7,14 @@ package ElaDataFlowBase;
 
 
 
-message ElaAcquisitionRequest {
+message ElaBaseAcquisitionRequest {
 	ElaCommon.ElaInputBaseRequest base_request = 1;
-	DataFlowConfiguration configuration = 2;
-	repeated DeviceFilter device_filters = 3;
-	//FiltersRelation relation = 4;
+	ElaAcquisitionParameters acquisition_parameters = 2;
+}
+
+message ElaAcquisitionParameters {
+	DataFlowConfiguration configuration = 1;
+	repeated DeviceFilter device_filters = 2;
 }
 
 
@@ -56,7 +59,7 @@ message WirepasConfiguration {
 
 message ElaAcquiredDevices {
 	ElaCommon.ElaError error = 1;
-	repeated ElaAcquiredDevice acquired_devices = 2;
+	repeated string acquired_devices_json = 2;
 }
 
 message ElaAcquiredDevice {

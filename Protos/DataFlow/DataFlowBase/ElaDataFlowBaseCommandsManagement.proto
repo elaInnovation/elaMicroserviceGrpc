@@ -57,8 +57,9 @@ message ElaBaseCommandResponse {
 	string for_client_id = 4;
 }
 
-message DetectedDevicesResponse {
-	repeated DetectedDevice devices = 1;
+message ElaBaseDetectedDevicesResponse {
+	ElaCommon.ElaError error = 1;
+	repeated DetectedDevice devices = 2;
 }
 
 message DetectedDevice {
