@@ -70,5 +70,4 @@ message ElaAcquiredDevice {
 message AcquisitionSessionInfos {
 	int64 total_acquired_devices_counter = 1;
 	repeated DeviceFilter current_filters = 2;
-	repeated string session_logs = 3;
 }

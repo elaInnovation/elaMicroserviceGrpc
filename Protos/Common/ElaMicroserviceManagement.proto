@@ -49,5 +49,3 @@ message ElaMicroserviceListResult {
 	uint32 number_items = 2;
 	repeated ElaCommon.ElaMicroserviceItem items = 3;
 }
-
-///////////////////////////////////////////////////////////

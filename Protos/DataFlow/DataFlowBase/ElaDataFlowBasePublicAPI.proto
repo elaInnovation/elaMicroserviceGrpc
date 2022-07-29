@@ -31,6 +31,7 @@ service ElaDataFlowBaseService {
   // service management
   rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
   rpc ConfigureService(ConfigureServiceRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
+  rpc GetLogs(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaGetLogsResponse) {}
 
   // commands management
   rpc SendCommands(ElaBaseCommandsRequest) returns (ElaCommon.ElaError) {}
