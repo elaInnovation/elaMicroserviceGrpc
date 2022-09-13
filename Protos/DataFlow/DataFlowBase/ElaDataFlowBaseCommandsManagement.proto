@@ -42,7 +42,7 @@ message BluetoothCommandArguments {
 	string ela_command = 2;
 	string ela_command_password = 3;
 	string ela_command_arguments = 4;
-	bool isLongWaitCommand = 5;
+	bool multiple_responses = 5;
 }
 
 message ElaBaseListenCommandResponsesRequest {

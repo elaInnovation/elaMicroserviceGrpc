@@ -55,6 +55,8 @@ message DataFlowConfiguration {
 message WirepasConfiguration {
 	string mqtt_broker_hostname = 1;
 	int32 mqtt_broker_port = 2;
+	string mqtt_broker_username = 3;
+	string mqtt_broker_password = 4;
 }
 
 message ElaAcquiredDevices {
