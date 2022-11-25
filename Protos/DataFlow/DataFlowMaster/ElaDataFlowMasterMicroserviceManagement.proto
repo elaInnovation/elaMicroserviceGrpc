@@ -22,7 +22,7 @@ message ElaBaseMicroserviceAddRequest {
 message ElaBaseMicroserviceAddResponse {
 
 	ElaCommon.ElaError error = 1;
-	ElaMicroserviceItem microservice_infos = 2;
+	ElaCommon.ElaMicroserviceItem microservice_infos = 2;
 }
 
 /*
@@ -51,21 +51,18 @@ message ElaBaseMicroserviceGetInfosRequest {
  * \brief response to get information about the target service point by its id
  */
 message ElaBaseMicroserviceGetInfosResponse {
-
 	ElaCommon.ElaError error = 1;
-	ElaMicroserviceItem microservice_infos = 2;
+	ElaCommon.ElaMicroserviceItem microservice_config = 2;
+	ElaCommon.ElaMicroserviceInfos  microservice_infos = 3;
 }
 
-/*
- * \class ElaMicroserviceItem
- * \brief microservice item to handle microservice listing and instanciation information
- */
-message ElaMicroserviceItem {
+message ElaBaseMicroserviceConfigureRequest {
+	ElaCommon.ElaInputBaseRequest base_request = 1;
+	string microservice_id = 2;
+	bool debug_mode = 3;
+}
 
-	string hostname = 1;
-	uint32 port = 2;
-	string login = 3;
-	string password = 4;
-	string microservice_username = 5;
-	string microservice_id = 6;
+message ElaBaseMicroserviceConfigureResponse {
+	ElaCommon.ElaError error = 1;
+	ElaCommon.ElaMicroserviceInfos  microservice_infos = 2;
 }

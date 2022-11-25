@@ -169,6 +169,12 @@ message ElaFilePathRequest {
  */
 message ElaFilePathResponse {
 
-	ElaCommon.ElaError last_error = 1;
+	ElaError last_error = 1;
 	string path = 2;
+}
+
+message ElaGetLogsResponse {
+	ElaError error = 1;
+	repeated string service_logs = 2;
+	repeated string client_logs = 3;
 }

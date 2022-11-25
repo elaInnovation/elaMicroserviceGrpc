@@ -7,10 +7,17 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>ELA Innovation Software Team</Authors>
     <Copyright>Copyright ELA Innovation (c) 2019</Copyright>
+<<<<<<< HEAD
     <AssemblyVersion>1.5.6.0</AssemblyVersion>
     <FileVersion>1.5.6.0</FileVersion>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Version>1.5.6</Version>
+=======
+    <AssemblyVersion>1.5.5.0</AssemblyVersion>
+    <FileVersion>1.5.5.0</FileVersion>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Version>1.5.5</Version>
+>>>>>>> 067c8248ea5b0d080ba21fe3209d12bb648cdbdc
   </PropertyGroup>
 
   <ItemGroup>

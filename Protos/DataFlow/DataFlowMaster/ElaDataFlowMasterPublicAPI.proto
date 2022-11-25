@@ -17,13 +17,14 @@ package ElaDataFlowMaster;
 service ElaDataFlowMasterService {
 
   // authentication functions
-  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
-  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+  rpc Login(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Logout(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // base microservices management
   rpc AddBaseMicroservice(ElaBaseMicroserviceAddRequest) returns (ElaBaseMicroserviceAddResponse) {}
   rpc RemoveBaseMicroservice(ElaBaseMicroserviceRemoveRequest) returns (ElaCommon.ElaError) {}
   rpc GetBaseMicroservicesInfos(ElaBaseMicroserviceGetInfosRequest) returns (ElaBaseMicroserviceGetInfosResponse) {}
+  rpc ConfigureBaseMicroservice(ElaBaseMicroserviceConfigureRequest) returns (ElaBaseMicroserviceConfigureResponse) {}
 
   // data polling
   rpc StartDataAcquisition(ElaMasterStartAcquisitionRequest) returns (ElaMasterAcquisitionResponse) {}
@@ -35,11 +36,15 @@ service ElaDataFlowMasterService {
   rpc StopDataStreaming(ElaCommon.ElaInputBaseRequest) returns (ElaMasterAcquisitionResponse) {}
 
   // service status
-  rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
+  rpc GetMasterStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
+
+  // Logs
+  rpc GetBaseLogs(ElaBaseMicroserviceGetInfosRequest) returns (ElaCommon.ElaGetLogsResponse) {}
+  rpc GetMasterLogs(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaGetLogsResponse) {}
 
   // commands management
   rpc SendCommands(ElaMasterCommandsRequest) returns (ElaCommon.ElaError) {}
   rpc StartListeningToCommandResponses(ElaCommon.ElaInputBaseRequest) returns (stream ElaDataFlowBase.ElaBaseCommandResponse) {}
   rpc StopListeningToCommandResponses(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
-  rpc GetAllDetectedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaDataFlowBase.DetectedDevicesResponse) {}
+  rpc GetAllDetectedDevices(ElaMasterGetAcquisitionRequest) returns (ElaMasterDetectedDevicesResponse) {}
 }
