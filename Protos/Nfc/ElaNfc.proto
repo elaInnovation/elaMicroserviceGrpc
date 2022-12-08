@@ -32,6 +32,8 @@ service ElaNfcService
 
 	ElaCommon.ElaInputBaseRequest request = 1;
 	bool lockNfc = 2;
+	string pass = 3;
+	string pack = 4;
 }
 
 ///////////////////////////////////////////////////////////
