@@ -1,10 +1,23 @@
 ﻿syntax = "proto3";
 
+import "Protos/Common/ElaCommon.proto";
 import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseCommandsManagement.proto";
 
 package ElaDataFlowMaster;
 
 message ElaMasterCommandsRequest {
-	repeated string target_microservice_ids = 1;
-	ElaDataFlowBase.ElaBaseCommandsRequest commands_request = 2;
+	ElaCommon.ElaInputBaseRequest base_request = 1;
+	repeated string target_microservice_ids = 2;
+	repeated ElaDataFlowBase.WirepasCommandRequest wirepas_requests = 3;
+	repeated ElaDataFlowBase.BluetoothCommandsRequest bluetooth_requests = 4;
 } 
+
+message ElaMasterDetectedDevicesResponse {
+	ElaCommon.ElaError error = 1;
+	repeated BaseDetectedDevices base_detected_devices = 2;
+}
+
+message BaseDetectedDevices {
+	string microservice_id = 1;
+	repeated ElaDataFlowBase.DetectedDevice devices = 2;
+}

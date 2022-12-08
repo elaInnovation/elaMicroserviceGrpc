@@ -48,6 +48,8 @@ message ElaBluetoothConnectRequest {
 	string ela_command_password = 4;
 	string ela_command_arguments = 5;
 	bool isLongWaitCommand = 6;
+	uint32 hci=7;
+
 	//
 }
 
@@ -74,6 +76,8 @@ message ElaBluetoothScanningRequest {
 	ElaBluetoothFilter filter = 2;
 	bool define_scan_time = 3;
 	uint32 scan_time_seconds = 4;
+	uint32 hci=5;
+
 }
 
 ///////////////////////////////////////////////////////////

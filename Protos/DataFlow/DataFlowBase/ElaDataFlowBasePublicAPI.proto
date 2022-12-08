@@ -13,16 +13,16 @@ package ElaDataFlowBase;
 service ElaDataFlowBaseService {
 
   // authentication functions
-  rpc Connect(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
-  rpc Disconnect(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+  rpc Login(ElaAuthentication.ElaAuthenticationRequest) returns (ElaAuthentication.ElaAuthenticationResponse) {}
+  rpc Logout(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // data polling
-  rpc StartDataAcquisition(ElaAcquisitionRequest) returns (ElaCommon.ElaError) {}
+  rpc StartDataAcquisition(ElaBaseAcquisitionRequest) returns (ElaCommon.ElaError) {}
   rpc GetLastDevices(ElaCommon.ElaInputBaseRequest) returns (ElaAcquiredDevices) {}
   rpc StopDataAcquisition(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // data streaming
-  rpc StartDataStreaming(ElaAcquisitionRequest) returns (stream ElaAcquiredDevice) {}
+  rpc StartDataStreaming(ElaBaseAcquisitionRequest) returns (stream ElaAcquiredDevice) {}
   rpc StopDataStreaming(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
 
   // session info
@@ -30,11 +30,12 @@ service ElaDataFlowBaseService {
 
   // service management
   rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
-  rpc ConfigureService(ConfigureServiceRequest) returns (ElaCommon.ElaError) {}
+  rpc ConfigureService(ConfigureServiceRequest) returns (ElaCommon.ElaMicroserviceInfos) {}
+  rpc GetLogs(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaGetLogsResponse) {}
 
   // commands management
   rpc SendCommands(ElaBaseCommandsRequest) returns (ElaCommon.ElaError) {}
   rpc StartListeningToCommandResponses(ElaCommon.ElaInputBaseRequest) returns (stream ElaBaseCommandResponse) {}
   rpc StopListeningToCommandResponses(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
-  rpc GetAllDetectedDevices(ElaCommon.ElaInputBaseRequest) returns (DetectedDevicesResponse) {}
+  rpc GetAllDetectedDevices(ElaCommon.ElaInputBaseRequest) returns (ElaBaseDetectedDevicesResponse) {}
 }
