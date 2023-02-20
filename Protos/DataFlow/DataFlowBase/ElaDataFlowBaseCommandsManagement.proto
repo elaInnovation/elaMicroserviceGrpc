@@ -18,18 +18,14 @@ message WirepasCommandRequest {
 	uint32 destination_address = 2;
     uint32 source_endpoint = 3;
     uint32 destination_endpoint = 4;
-    uint32 qos = 5;
-    string command = 6;
+	uint32 network_id = 5;
 
-    uint32 initial_delay_ms = 7;
-    bool is_unack_csma_ca = 8;
-    uint32 hop_limit = 9;
+    bytes command = 6;
+	bool is_elason = 7;
+	bool is_app_config_data = 8;
 
-	string broker_address = 10;
-	int32 broker_port = 11;
-	uint32 network_id = 12;
-
-	bool retainMessage = 13;
+	string broker_address = 9;
+	int32 broker_port = 10;
 }
 
 message BluetoothCommandsRequest {
@@ -39,10 +35,9 @@ message BluetoothCommandsRequest {
 
 message BluetoothCommandArguments {
 	string command_request_id = 1;
-	string ela_command = 2;
-	string ela_command_password = 3;
-	string ela_command_arguments = 4;
-	bool multiple_responses = 5;
+	bytes ela_command = 2;
+	bool multiple_responses = 3;
+	bool is_elason = 4;
 }
 
 message ElaBaseListenCommandResponsesRequest {
@@ -52,7 +47,7 @@ message ElaBaseListenCommandResponsesRequest {
 
 message ElaBaseCommandResponse {
 	string command_request_id = 1;
-	string command_response_message = 2;
+	string command_response = 2;
 	ElaCommon.ElaError error = 3;
 	string for_client_id = 4;
 }
