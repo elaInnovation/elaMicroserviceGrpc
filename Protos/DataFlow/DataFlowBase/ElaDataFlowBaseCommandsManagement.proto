@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "Protos/Common/ElaCommon.proto";
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseDataAcquisition.proto";
 
 package ElaDataFlowBase;
 
@@ -24,8 +25,7 @@ message WirepasCommandRequest {
 	bool is_elason = 7;
 	bool is_app_config_data = 8;
 
-	string broker_address = 9;
-	int32 broker_port = 10;
+	ElaDataFlowBase.WirepasConfiguration mqtt_broker_configuration = 9;
 }
 
 message BluetoothCommandsRequest {

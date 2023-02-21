@@ -57,6 +57,7 @@ message WirepasConfiguration {
 	int32 mqtt_broker_port = 2;
 	string mqtt_broker_username = 3;
 	string mqtt_broker_password = 4;
+	bool use_tls = 5;
 }
 
 message ElaAcquiredDevices {
