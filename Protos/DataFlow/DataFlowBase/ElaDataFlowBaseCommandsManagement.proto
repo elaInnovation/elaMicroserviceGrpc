@@ -25,7 +25,7 @@ message WirepasCommandRequest {
 	bool is_elason = 7;
 	bool is_app_config_data = 8;
 
-	ElaDataFlowBase.WirepasConfiguration mqtt_broker_configuration = 9;
+	ElaDataFlowBase.MqttBrokerConfiguration mqtt_broker_configuration = 9;
 }
 
 message BluetoothCommandsRequest {
