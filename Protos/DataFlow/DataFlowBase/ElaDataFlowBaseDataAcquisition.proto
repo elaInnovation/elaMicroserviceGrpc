@@ -53,10 +53,15 @@ message DataFlowConfiguration {
 }
 
 message WirepasConfiguration {
-	string mqtt_broker_hostname = 1;
-	int32 mqtt_broker_port = 2;
-	string mqtt_broker_username = 3;
-	string mqtt_broker_password = 4;
+	MqttBrokerConfiguration mqtt_broker_configuration = 1;
+	string gateway_name = 2;
+}
+
+message MqttBrokerConfiguration {
+	string hostname = 1;
+	int32 port = 2;
+	string username = 3;
+	string password = 4;
 	bool use_tls = 5;
 }
 
