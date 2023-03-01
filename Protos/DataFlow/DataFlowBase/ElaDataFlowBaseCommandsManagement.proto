@@ -24,8 +24,9 @@ message WirepasCommandRequest {
     bytes command = 6;
 	bool is_elason = 7;
 	bool is_app_config_data = 8;
+	bool multiple_responses = 9;
 
-	ElaDataFlowBase.MqttBrokerConfiguration mqtt_broker_configuration = 9;
+	ElaDataFlowBase.MqttBrokerConfiguration mqtt_broker_configuration = 10;
 }
 
 message BluetoothCommandsRequest {
@@ -35,7 +36,7 @@ message BluetoothCommandsRequest {
 
 message BluetoothCommandArguments {
 	string command_request_id = 1;
-	bytes ela_command = 2;
+	bytes command = 2;
 	bool multiple_responses = 3;
 	bool is_elason = 4;
 }
