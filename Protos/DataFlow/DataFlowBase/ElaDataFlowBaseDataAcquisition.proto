@@ -63,6 +63,7 @@ message MqttBrokerConfiguration {
 	string username = 3;
 	string password = 4;
 	bool use_tls = 5;
+	bytes server_certificate = 6;
 }
 
 message ElaAcquiredDevices {
