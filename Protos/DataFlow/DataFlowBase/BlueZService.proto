@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "google/protobuf/empty.proto";
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseCommandsManagement.proto";
+import "Protos/DataFlow/DataFlowBase/ElaDataFlowBaseDataAcquisition.proto";
+
+
+package BlueZService;
+
+service BlueZService {
+  // data polling
+  rpc StartDiscovery(google.protobuf.Empty) returns (ElaCommon.ElaError) {}
+  rpc GetDevices(google.protobuf.Empty) returns (ElaDataFlowBase.ElaAcquiredDevices) {}
+  rpc StopDiscovery(google.protobuf.Empty) returns (ElaCommon.ElaError) {}
+
+  // commands management
+  rpc SendCommands(ElaDataFlowBase.BluetoothCommandsRequest) returns (ElaCommon.ElaError) {}
+  rpc StartListeningToCommandResponses(google.protobuf.Empty) returns (stream ElaDataFlowBase.ElaBaseCommandResponse) {}
+  rpc StopListeningToCommandResponses(google.protobuf.Empty) returns (ElaCommon.ElaError) {}
+}

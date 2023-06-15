@@ -7,10 +7,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>ELA Innovation Software Team</Authors>
     <Copyright>Copyright ELA Innovation (c) 2019</Copyright>
-    <AssemblyVersion>1.5.12.0</AssemblyVersion>
-    <FileVersion>1.5.12.0</FileVersion>
+    <AssemblyVersion>1.6.0</AssemblyVersion>
+    <FileVersion>1.6.0</FileVersion>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <Version>1.5.12</Version>
+    <Version>1.6.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,16 +44,17 @@
     <Protobuf Include="Protos\DataFlow\DataFlowBase\ElaDataFlowBaseServiceManagement.proto" />
     <Protobuf Include="Protos\DataFlow\DataFlowBase\ElaDataFlowBaseDataAcquisition.proto" />
     <Protobuf Include="Protos\DataFlow\DataFlowBase\ElaDataFlowBasePublicAPI.proto" />
+    <Protobuf Include="Protos\DataFlow\DataFlowBase\BlueZService.proto" />
     <Protobuf Include="Protos\DataFlow\DataFlowMaster\ElaDataFlowMasterMicroserviceManagement.proto" />
     <Protobuf Include="Protos\DataFlow\DataFlowMaster\ElaDataFlowMasterPublicAPI.proto" />
     <Protobuf Include="Protos\DataFlow\DataFlowMaster\ElaDataFlowMasterDataAcquisition.proto" />
     <Protobuf Include="Protos\DataFlow\DataFlowMaster\ElaDataFlowMasterCommandsManagement.proto" />
-	  <Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
-	  <Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
-	  <Protobuf Include="Protos\Wirepas\ElaWirepasConfigAPI.proto" />
-	  <Protobuf Include="Protos\Tagset\ElaTagsetCommon.proto" />
-	  <Protobuf Include="Protos\Tagset\ElaTagsetPublicAPI.proto" />
-	  <Protobuf Include="Protos\eRTLS\ErtlsCommon.proto" />
+	<Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
+	<Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
+	<Protobuf Include="Protos\Wirepas\ElaWirepasConfigAPI.proto" />
+	<Protobuf Include="Protos\Tagset\ElaTagsetCommon.proto" />
+	<Protobuf Include="Protos\Tagset\ElaTagsetPublicAPI.proto" />
+	<Protobuf Include="Protos\eRTLS\ErtlsCommon.proto" />
     <Protobuf Include="Protos\Mock\AnchorCommon.proto" />
     <Protobuf Include="Protos\Nfc\ElaNfc.proto" />
   </ItemGroup>
