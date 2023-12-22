@@ -380,3 +380,28 @@ message ElaTagsetFileChunk {
 	ElaCommon.ElaError last_error = 1;
 	bytes data = 2;
 }
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetIncrementalVariable
+ * \brief message to get incremental variables configurations
+ */
+message ElaTagsetIncrementalVariable {
+
+	repeated IncrementalVariables variables = 1;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class IncrementalVariables
+ * \brief incremental variable configuration
+ */
+message IncrementalVariables {
+
+	string variable = 1;
+	string fix_part = 2;
+	uint32 length = 3;
+	string start_id = 4;
+	uint32 number = 5;
+	bool is_prefix = 6;
+}

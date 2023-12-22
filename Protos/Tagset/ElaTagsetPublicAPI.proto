@@ -29,6 +29,7 @@ service ElaTagsetPublicService {
   rpc DownloadTagConstants(ElaTagset.ElaTagsetConstantRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
   rpc UploadTagVariables(stream ElaTagset.ElaTagsetFileChunk) returns (ElaTagset.ElaTagsetMicroserviceVariableImport) {}
   rpc DownloadTagVariables(ElaTagset.ElaTagsetVariablesRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
+  rpc ImportTagVariables(ElaTagset.ElaTagsetIncrementalVariable) returns (ElaTagset.ElaTagsetMicroserviceVariableImport) {}
 
   // tag specific variables
   rpc RandomizeMacAddress(ElaTagset.ElaTagsetQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableValues) {}
