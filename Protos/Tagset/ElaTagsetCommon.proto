@@ -393,6 +393,17 @@ message ElaTagsetIncrementalVariable {
 
 ///////////////////////////////////////////////////////////
 /*
+ * \class ElaTagsetIncrementalVariableRequest
+ * \brief message to get incremental variables configurations
+ */
+message ElaTagsetIncrementalVariableRequest {
+
+	ElaTagsetQuantityRequest request = 1;
+	repeated IncrementalVariables variables = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
  * \class IncrementalVariables
  * \brief incremental variable configuration
  */
@@ -401,7 +412,7 @@ message IncrementalVariables {
 	string variable = 1;
 	string fix_part = 2;
 	uint32 length = 3;
-	string start_id = 4;
+	uint32 start_id = 4;
 	uint32 number = 5;
 	bool is_prefix = 6;
 }

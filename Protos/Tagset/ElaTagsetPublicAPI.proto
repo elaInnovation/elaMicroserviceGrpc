@@ -25,11 +25,11 @@ service ElaTagsetPublicService {
 
   // tag configuration constant / variables
   rpc GetDefaultVariables(ElaTagset.ElaTagsetTagFormatQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariables) {}
+  rpc CalculateVariables(ElaTagset.ElaTagsetIncrementalVariableRequest) returns (ElaTagset.ElaTagsetMicroserviceVariables) {}
   rpc UploadTagConstants(stream ElaTagset.ElaTagsetFileChunk) returns (ElaTagset.ElaTagsetMicroserviceConstantImport) {}
   rpc DownloadTagConstants(ElaTagset.ElaTagsetConstantRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
   rpc UploadTagVariables(stream ElaTagset.ElaTagsetFileChunk) returns (ElaTagset.ElaTagsetMicroserviceVariableImport) {}
   rpc DownloadTagVariables(ElaTagset.ElaTagsetVariablesRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
-  rpc ImportTagVariables(ElaTagset.ElaTagsetIncrementalVariable) returns (ElaTagset.ElaTagsetMicroserviceVariableImport) {}
 
   // tag specific variables
   rpc RandomizeMacAddress(ElaTagset.ElaTagsetQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableValues) {}
