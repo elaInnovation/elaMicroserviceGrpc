@@ -416,3 +416,36 @@ message IncrementalVariables {
 	uint32 number = 5;
 	bool is_prefix = 6;
 }
+
+///////////////////////////////////////////////////////////
+/*
+ * \class StickerRecord
+ * \brief sticker configuration record
+ */
+message StickerRecord{
+
+	string name = 1;
+	StickerConfiguration sticker = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetStickerConfigurationRequest
+ * \brief message to save sticker configuration
+ */
+message ElaTagsetStickerConfigurationRequest{
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	StickerRecord sticker = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetStickerConfigurationResponse
+ * \brief message to get all sticker configurations
+ */
+message ElaTagsetStickerConfigurationResponse{
+
+	ElaCommon.ElaError error = 1;
+	repeated StickerRecord sticker = 2;
+}

@@ -34,6 +34,10 @@ service ElaTagsetPublicService {
   // tag specific variables
   rpc RandomizeMacAddress(ElaTagset.ElaTagsetQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableValues) {}
 
+  // sticker configuration
+  rpc GetAllStickerConfiguration(ElaCommon.ElaInputBaseRequest) returns (ElaTagset.ElaTagsetStickerConfigurationResponse) {}
+  rpc SaveStickerConfiguration(ElaTagset.ElaTagsetStickerConfigurationRequest) returns (ElaCommon.ElaError) {}
+
   // tagset file functions
   rpc GetDefaultOutputFields(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceOutputFields) {}
   rpc CreateProductionFile(ElaTagset.ElaTagsetProductionFileRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
