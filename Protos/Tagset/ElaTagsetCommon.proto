@@ -383,6 +383,18 @@ message ElaTagsetFileChunk {
 
 ///////////////////////////////////////////////////////////
 /*
+ * \class ElaTagsetMultipleFileChunk
+ * \brief message to get a file content
+ */
+message ElaTagsetMultipleFileChunk {
+
+	ElaCommon.ElaError last_error = 1;
+	bytes data_production = 2;
+	bytes data_sticker = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
  * \class ElaTagsetIncrementalVariable
  * \brief message to get incremental variables configurations
  */

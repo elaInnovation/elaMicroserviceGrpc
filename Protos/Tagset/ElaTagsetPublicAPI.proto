@@ -40,7 +40,7 @@ service ElaTagsetPublicService {
 
   // tagset file functions
   rpc GetDefaultOutputFields(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceOutputFields) {}
-  rpc CreateProductionFile(ElaTagset.ElaTagsetProductionFileRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
+  rpc CreateProductionFile(ElaTagset.ElaTagsetProductionFileRequest) returns (stream ElaTagset.ElaTagsetMultipleFileChunk) {}
 
   // monitoring
   rpc GetServiceStatus(ElaCommon.ElaInputBaseRequest) returns (ElaTagset.ElaTagsetMicroserviceStatus) {}
