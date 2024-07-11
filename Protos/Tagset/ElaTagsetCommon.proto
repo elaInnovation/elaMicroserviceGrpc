@@ -391,6 +391,7 @@ message ElaTagsetMultipleFileChunk {
 	ElaCommon.ElaError last_error = 1;
 	bytes data_production = 2;
 	bytes data_sticker = 3;
+	bytes data_cardboard = 4;
 }
 
 ///////////////////////////////////////////////////////////
