@@ -1,0 +1,250 @@
+syntax = "proto3";
+
+package ElaIncrement;
+
+// import
+import "Protos/Common/ElaCommon.proto";
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementOrderRequest
+ * \brief Ela Increment order from format
+ */
+message ElaIncrementOrderRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string format = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementLineRequest
+ * \brief Ela Increment line from format order
+ */
+message ElaIncrementLineRequest {
+
+	ElaIncrementOrderRequest request = 1;
+	string order = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementQuantityRequest
+ * \brief Ela Increment quantity from order line
+ */
+message ElaIncrementQuantityRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string order = 2;
+	string line = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementIncrementDbRequest
+ * \brief Ela Increment in database request
+ */
+message ElaIncrementIncrementDbRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string format = 2;
+	Increment increment = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ReservationStatus
+ * \brief increment reservation status
+ */
+ enum ReservationStatus {
+
+	RESERVED = 0;
+    CANCELED = 1;
+    USED = 2;
+    DONE = 3;
+ }
+
+///////////////////////////////////////////////////////////
+/*
+ * \class Reservation
+ * \brief Increment reservation
+ */
+message Reservation {
+
+	uint32 firstid = 1;
+	uint32 lastid = 2;
+	string order = 3;
+	string line = 4;
+	ReservationStatus status = 5;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class IncrementalVariable
+ * \brief incremental variable
+ */
+ enum IncrementalVariable {
+
+	WIREPASIDSTACK4 = 0;
+    WIREPASIDSTACK5 = 1;
+    NAMEBLE = 2;
+    NAMEQUUPPA = 3;
+    UUID = 4;
+    MAJOR = 5;
+    MINOR = 6;
+    NID = 7;
+    BID = 8;
+    MANUFACTURERDATA = 9;
+ }
+
+///////////////////////////////////////////////////////////
+/*
+ * \class Increment
+ * \brief Increment
+ */
+message Increment {
+
+	IncrementalVariable variable = 1;
+	string fixpart = 2;
+	uint32 length = 3;
+	bool hexadecimal = 4;
+	uint32 lastid = 5;
+	repeated Reservation reservations = 6;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class IncrementFormat
+ * \brief association increment and format
+ */
+message IncrementFormat {
+
+	Increment increment  = 1;
+	string format = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementGetIncrementRequest
+ * \brief Get Increment from database request
+ */
+message ElaIncrementGetIncrementRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string format = 2;
+	IncrementalVariable variable = 3;
+	string fixpart = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementListIncrementOrderRequest
+ * \brief Get Increment list from database request
+ */
+message ElaIncrementListIncrementOrderRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string order = 2;
+	string line = 3;
+	IncrementalVariable variable = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementListIncrementVariableRequest
+ * \brief Get Increment list from database request
+ */
+message ElaIncrementListIncrementVariableRequest {
+
+	ElaIncrementOrderRequest request = 1;
+	IncrementalVariable variable = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementFormatIncrementRequest
+ * \brief Get list of incrememnt and variable from database request
+ */
+message ElaIncrementFormatIncrementRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	string order = 2;
+	string line = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementMicroserviceFormats
+ * \brief message to get a list of formats
+ */
+message ElaIncrementMicroserviceFormats {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string formats = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementMicroserviceOrders
+ * \brief message to get a list of orders
+ */
+message ElaIncrementMicroserviceOrders {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string orders = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementMicroserviceLines
+ * \brief message to get a list of lines
+ */
+message ElaIncrementMicroserviceLines {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string lines = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementMicroserviceQuantity
+ * \brief message to get a quantity
+ */
+message ElaIncrementMicroserviceQuantity {
+
+	ElaCommon.ElaError last_error = 1;
+	uint32 quantity = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementMicroserviceIncrement
+ * \brief message to get an increment
+ */
+message ElaIncrementMicroserviceIncrement {
+
+	ElaCommon.ElaError last_error = 1;
+	Increment increment = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementMicroserviceIncrementList
+ * \brief message to get a list of increment
+ */
+message ElaIncrementMicroserviceIncrementList {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated Increment increment = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaIncrementMicroserviceFormatIncrement
+ * \brief message to get a list of pair of increment and format
+ */
+message ElaIncrementMicroserviceFormatIncrement {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated IncrementFormat incrementformat = 2;
+}

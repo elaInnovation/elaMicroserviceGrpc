@@ -178,3 +178,26 @@ message ElaGetLogsResponse {
 	repeated string service_logs = 2;
 	repeated string client_logs = 3;
 }
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaDatabaseConnectionRequest
+ * \brief message to set a MongoDB connection address
+ */
+message ElaDatabaseConnectionRequest {
+
+	ElaConfigurationRequest request = 1;
+	string username = 2;
+	string password = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaDatabaseConfigurationRequest
+ * \brief message to set a MongoDB database
+ */
+message ElaDatabaseConfigurationRequest {
+
+	ElaInputBaseRequest base_request = 1;
+	string database = 2;
+}

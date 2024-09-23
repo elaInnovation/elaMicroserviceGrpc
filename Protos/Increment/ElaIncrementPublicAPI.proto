@@ -1,0 +1,33 @@
+﻿syntax = "proto3";
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Increment/ElaIncrementCommon.proto";
+
+package ElaIncrement;
+
+// The BackendConfig service definition.
+service ElaIncrementPublicService {
+
+  // database functions
+  rpc GetDatabaseStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+  rpc UpdateConnectionConfiguration(ElaCommon.ElaDatabaseConnectionRequest) returns (ElaCommon.ElaError) {}
+  rpc UpdateDatabase(ElaCommon.ElaDatabaseConfigurationRequest) returns (ElaCommon.ElaError) {}
+
+  // increment getter
+  rpc GetFormatList(ElaCommon.ElaInputBaseRequest) returns (ElaIncrement.ElaIncrementMicroserviceFormats) {}
+  rpc GetOrder(ElaIncrement.ElaIncrementOrderRequest) returns (ElaIncrement.ElaIncrementMicroserviceOrders) {}
+  rpc GetLine(ElaIncrement.ElaIncrementLineRequest) returns (ElaIncrement.ElaIncrementMicroserviceLines) {}
+  rpc GetQuantity(ElaIncrement.ElaIncrementQuantityRequest) returns (ElaIncrement.ElaIncrementMicroserviceQuantity) {}
+
+  // increment database
+  rpc InsertIncrement(ElaIncrement.ElaIncrementIncrementDbRequest) returns (ElaCommon.ElaError) {}
+  rpc UpdateIncrement(ElaIncrement.ElaIncrementIncrementDbRequest) returns (ElaCommon.ElaError) {}
+  rpc DeleteIncrement(ElaIncrement.ElaIncrementIncrementDbRequest) returns (ElaCommon.ElaError) {}
+  rpc GetIncrement(ElaIncrement.ElaIncrementGetIncrementRequest) returns (ElaIncrement.ElaIncrementMicroserviceIncrement) {}
+  rpc GetIncrementListOrder(ElaIncrement.ElaIncrementListIncrementOrderRequest) returns (ElaIncrement.ElaIncrementMicroserviceIncrementList) {}
+  rpc GetIncrementListFormat(ElaIncrement.ElaIncrementListIncrementVariableRequest) returns (ElaIncrement.ElaIncrementMicroserviceIncrementList) {}
+  rpc GetIncrementFormatList(ElaIncrement.ElaIncrementFormatIncrementRequest) returns (ElaIncrement.ElaIncrementMicroserviceFormatIncrement) {}
+}
+
+///////////////////////////////////////////////////////////

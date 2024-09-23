@@ -20,6 +20,7 @@
 	<Folder Include="Protos\Wirepas\" />
 	<Folder Include="Protos\Tagset\" />
     <Folder Include="Protos\eRTLS\" />
+    <Folder Include="Protos\Increment\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,31 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\Common\ElaCommon.proto" />
-    <Protobuf Include="Protos\Common\ElaMicroserviceManagement.proto" />
-    <Protobuf Include="Protos\Authentication\ElaAuthenticationCommon.proto" />
-    <Protobuf Include="Protos\Bluetooth\ElaBluetoothCommon.proto" />
-    <Protobuf Include="Protos\Bluetooth\ElaBluetoothPublicAPI.proto" />
-    <Protobuf Include="Protos\Bluetooth\ElaBluetoothOtap.proto" />
-    <Protobuf Include="Protos\Bluetooth\ElaBluetoothMasterPublicAPI.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowBase\ElaDataFlowBaseCommandsManagement.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowBase\ElaDataFlowBaseUsersManagement.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowBase\ElaDataFlowBaseServiceManagement.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowBase\ElaDataFlowBaseDataAcquisition.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowBase\ElaDataFlowBasePublicAPI.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowBase\BlueZService.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowMaster\ElaDataFlowMasterMicroserviceManagement.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowMaster\ElaDataFlowMasterPublicAPI.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowMaster\ElaDataFlowMasterDataAcquisition.proto" />
-    <Protobuf Include="Protos\DataFlow\DataFlowMaster\ElaDataFlowMasterCommandsManagement.proto" />
-	<Protobuf Include="Protos\Wirepas\ElaWirepasCommon.proto" />
-	<Protobuf Include="Protos\Wirepas\ElaWirepasPublicAPI.proto" />
-	<Protobuf Include="Protos\Wirepas\ElaWirepasConfigAPI.proto" />
-	<Protobuf Include="Protos\Tagset\ElaTagsetCommon.proto" />
-	<Protobuf Include="Protos\Tagset\ElaTagsetPublicAPI.proto" />
-	<Protobuf Include="Protos\eRTLS\ErtlsCommon.proto" />
-    <Protobuf Include="Protos\Mock\AnchorCommon.proto" />
-    <Protobuf Include="Protos\Nfc\ElaNfc.proto" />
+    <Protobuf Include="Protos\*\*.proto" />
   </ItemGroup>
 
   <ItemGroup>
