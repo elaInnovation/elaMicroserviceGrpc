@@ -25,7 +25,7 @@ service ElaIncrementPublicService {
   rpc UpdateIncrement(ElaIncrement.ElaIncrementIncrementDbRequest) returns (ElaCommon.ElaError) {}
   rpc DeleteIncrement(ElaIncrement.ElaIncrementIncrementDbRequest) returns (ElaCommon.ElaError) {}
   rpc GetIncrement(ElaIncrement.ElaIncrementGetIncrementRequest) returns (ElaIncrement.ElaIncrementMicroserviceIncrement) {}
-  rpc GetIncrementListOrder(ElaIncrement.ElaIncrementListIncrementOrderRequest) returns (ElaIncrement.ElaIncrementMicroserviceIncrementList) {}
+  rpc GetIncrementOrder(ElaIncrement.ElaIncrementListIncrementOrderRequest) returns (ElaIncrement.ElaIncrementMicroserviceIncrement) {}
   rpc GetIncrementListFormat(ElaIncrement.ElaIncrementListIncrementVariableRequest) returns (ElaIncrement.ElaIncrementMicroserviceIncrementList) {}
   rpc GetIncrementFormatList(ElaIncrement.ElaIncrementFormatIncrementRequest) returns (ElaIncrement.ElaIncrementMicroserviceFormatIncrement) {}
 }

@@ -104,12 +104,13 @@ message Reservation {
  */
 message Increment {
 
-	IncrementalVariable variable = 1;
-	string fixpart = 2;
-	uint32 length = 3;
-	bool hexadecimal = 4;
-	uint32 lastid = 5;
-	repeated Reservation reservations = 6;
+	string id = 1;
+	IncrementalVariable variable = 2;
+	string fixpart = 3;
+	uint32 length = 4;
+	bool hexadecimal = 5;
+	uint32 lastid = 6;
+	repeated Reservation reservations = 7;
 }
 
 ///////////////////////////////////////////////////////////
