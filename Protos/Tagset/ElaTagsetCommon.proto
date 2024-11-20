@@ -463,3 +463,25 @@ message ElaTagsetStickerConfigurationResponse{
 	ElaCommon.ElaError error = 1;
 	repeated StickerRecord sticker = 2;
 }
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetStickerNameRequest
+ * \brief message to get sticker configuration name
+ */
+message ElaTagsetStickerNameRequest{
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	StickerConfiguration sticker = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetStickerNameResponse
+ * \brief message to get sticker configuration name
+ */
+message ElaTagsetStickerNameResponse{
+
+	ElaCommon.ElaError error = 1;
+	string name = 2;
+}

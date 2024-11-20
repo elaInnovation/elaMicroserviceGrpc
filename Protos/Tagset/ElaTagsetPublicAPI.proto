@@ -37,6 +37,7 @@ service ElaTagsetPublicService {
   // sticker configuration
   rpc GetAllStickerConfiguration(ElaCommon.ElaInputBaseRequest) returns (ElaTagset.ElaTagsetStickerConfigurationResponse) {}
   rpc SaveStickerConfiguration(ElaTagset.ElaTagsetStickerConfigurationRequest) returns (ElaCommon.ElaError) {}
+  rpc GetStickerConfigurationName(ElaTagset.ElaTagsetStickerNameRequest) returns (ElaTagset.ElaTagsetStickerNameResponse) {}
 
   // tagset file functions
   rpc GetDefaultOutputFields(ElaTagset.ElaTagsetTagFormatRequest) returns (ElaTagset.ElaTagsetMicroserviceOutputFields) {}
