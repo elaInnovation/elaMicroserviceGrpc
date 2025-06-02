@@ -66,20 +66,6 @@ message ElaIncrementIncrementDbRequest {
 
 ///////////////////////////////////////////////////////////
 /*
- * \class Reservation
- * \brief Increment reservation
- */
-message Reservation {
-
-	uint32 firstid = 1;
-	uint32 lastid = 2;
-	string order = 3;
-	string line = 4;
-	ReservationStatus status = 5;
-}
-
-///////////////////////////////////////////////////////////
-/*
  * \class IncrementalVariable
  * \brief incremental variable
  */
@@ -96,6 +82,21 @@ message Reservation {
     BID = 8;
     MANUFACTURERDATA = 9;
  }
+
+///////////////////////////////////////////////////////////
+/*
+ * \class Reservation
+ * \brief Increment reservation
+ */
+message Reservation {
+
+	uint32 firstid = 1;
+	uint32 lastid = 2;
+	IncrementalVariable FollowedVariable = 3;
+	string order = 4;
+	string line = 5;
+	ReservationStatus status = 6;
+}
 
 ///////////////////////////////////////////////////////////
 /*
