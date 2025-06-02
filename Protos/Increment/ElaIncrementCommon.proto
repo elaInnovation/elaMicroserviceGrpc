@@ -81,6 +81,7 @@ message ElaIncrementIncrementDbRequest {
     NID = 7;
     BID = 8;
     MANUFACTURERDATA = 9;
+	UNKNOWN = 10;
  }
 
 ///////////////////////////////////////////////////////////
