@@ -32,7 +32,7 @@ service ElaTagsetPublicService {
   rpc DownloadTagVariables(ElaTagset.ElaTagsetVariablesRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
 
   // tag specific variables
-  rpc RandomizeMacAddress(ElaTagset.ElaTagsetQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableValues) {}
+  rpc ReservePublicMacAddress(ElaTagset.ElaTagsetQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableValues) {}
 
   // sticker configuration
   rpc GetAllStickerConfiguration(ElaCommon.ElaInputBaseRequest) returns (ElaTagset.ElaTagsetStickerConfigurationResponse) {}
