@@ -31,6 +31,9 @@ service ElaTagsetPublicService {
   rpc UploadTagVariables(stream ElaTagset.ElaTagsetFileChunk) returns (ElaTagset.ElaTagsetMicroserviceVariableImport) {}
   rpc DownloadTagVariables(ElaTagset.ElaTagsetVariablesRequest) returns (stream ElaTagset.ElaTagsetFileChunk) {}
 
+  // tag specific variables
+  rpc ReservePublicMacAddress(ElaTagset.ElaTagsetQuantityRequest) returns (ElaTagset.ElaTagsetMicroserviceVariableValues) {}
+
   // sticker configuration
   rpc GetAllStickerConfiguration(ElaCommon.ElaInputBaseRequest) returns (ElaTagset.ElaTagsetStickerConfigurationResponse) {}
   rpc SaveStickerConfiguration(ElaTagset.ElaTagsetStickerConfigurationRequest) returns (ElaCommon.ElaError) {}
