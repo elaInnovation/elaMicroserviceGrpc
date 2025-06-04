@@ -336,6 +336,17 @@ message ElaTagsetMicroserviceConfigurationValid {
 	ElaCommon.ElaError last_error = 1;
 	ConfigurationValid validity = 2;
 }
+ 
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaTagsetMicroserviceVariableValues
+ * \brief message to get a list of customers
+ */
+message ElaTagsetMicroserviceVariableValues {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated string values = 2;
+}
 
 ///////////////////////////////////////////////////////////
 /*
