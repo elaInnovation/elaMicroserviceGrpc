@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+package ElaProductivity;
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "google/protobuf/duration.proto";  
+import "google/protobuf/timestamp.proto";
+
+///////////////////////////////////////////////////////////
+/*
+ * \class Tool
+ * \brief production tools
+ */
+ enum Tool {
+
+	NONE = 0;
+    AUTOMATON = 1;
+    FLASHMANUAL = 2;
+    FLASHBENCH = 3;
+    OTAPBOX = 4;
+    BATH = 5;
+    SOLDERINGIRON = 6;
+ }
+
+///////////////////////////////////////////////////////////
+/*
+ * \class TaskType
+ * \brief production task type
+ */
+ enum TaskType {
+
+	PRODUCTION = 0;
+    DEPARTURECHECK = 1;
+    SAMPLE = 2;
+    FLASH = 3;
+    OTAP = 4;
+    CREATEPRODUCTIONFILE = 5;
+ }
+
+///////////////////////////////////////////////////////////
+/*
+ * \class OrderInfo
+ * \brief Production order information
+ */
+message OrderInfo {
+
+	string customer = 1;
+	string order_number = 2;
+	string order_line = 3;
+	string product_reference = 4;
+	string designation = 5;
+	uint32 products_number = 6;
+	string production_file = 7;
+	string production_file_signature = 8;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class DeviceInfo
+ * \brief Production device information
+ */
+message DeviceInfo {
+
+	string form_factor = 1;
+	string techno = 2;
+	string firmware_version = 3;
+	string firmware_format = 4;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class Pause
+ * \brief Task pause
+ */
+message Pause {
+	
+	google.protobuf.Timestamp start = 1;
+	google.protobuf.Timestamp stop = 2;
+	string commentary = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class Reject
+ * \brief Product reject
+ */
+message Reject {
+	
+	string step = 1;
+	uint32 error_code = 2;
+	string commentary = 3;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class Task
+ * \brief Production task
+ */
+message Task {
+
+	string _id = 1;
+	TaskType type = 2;
+	OrderInfo orderInfo = 3;
+	DeviceInfo deviceInfo = 4;
+	google.protobuf.Timestamp start = 5;
+	google.protobuf.Timestamp stop = 6;
+	repeated Pause pauses = 7;
+	google.protobuf.Duration pause_total_duration = 8;
+	uint32 products_to_do = 9;
+	uint32 products_done = 10;
+	repeated Reject rejects = 11;
+	string station = 12;
+	string operator = 13;
+	Tool tool = 14;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaProductivityTaskRequest
+ * \brief Add productivity task to database
+ */
+message ElaProductivityTaskRequest {
+
+	ElaCommon.ElaInputBaseRequest request = 1;
+	Task task = 2;
+}
+
+///////////////////////////////////////////////////////////
+/*
+ * \class ElaProductivityMicroserviceTasks
+ * \brief message to get a list of formats
+ */
+message ElaProductivityMicroserviceTasks {
+
+	ElaCommon.ElaError last_error = 1;
+	repeated Task tasks = 2;
+}

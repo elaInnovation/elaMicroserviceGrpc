@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+
+// import
+import "Protos/Common/ElaCommon.proto";
+import "Protos/Productivity/ElaProductivityCommon.proto";
+
+package ElaProductivity;
+
+// The BackendConfig service definition.
+service ElaProductivityPublicService {
+
+  // database functions
+  rpc GetDatabaseStatus(ElaCommon.ElaInputBaseRequest) returns (ElaCommon.ElaError) {}
+  rpc UpdateConnectionConfiguration(ElaCommon.ElaDatabaseConnectionRequest) returns (ElaCommon.ElaError) {}
+  rpc UpdateDatabase(ElaCommon.ElaDatabaseConfigurationRequest) returns (ElaCommon.ElaError) {}
+
+  // Production task database
+  rpc GetAllTasks(ElaCommon.ElaInputBaseRequest) returns (ElaProductivity.ElaProductivityMicroserviceTasks) {}
+  rpc AddTask(ElaProductivity.ElaProductivityTaskRequest) returns (ElaCommon.ElaError) {}
+}
+
+///////////////////////////////////////////////////////////
